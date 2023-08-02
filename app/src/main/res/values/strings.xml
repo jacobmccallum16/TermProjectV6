@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">TermProjectV6</string>
+    <!--    header-->
+    <string name="tvTitle">Term Project v6</string>
+    <string name="EnterData_tvTitle">Enter Data</string>
+    <!-- Main Activity -->
+    <string name="MainActivity_title">Term Project v6 - Main</string>
+    <string name="btnDeleteAllEntries">Delete All Entries</string>
+    <string name="btnRemoveLastEntry">Remove Last Entry</string>
+    <!-- Enter Data -->
+    <string name="etDate_hint">Date</string>
+    <string name="etWeight_hint">Weight in lbs</string>
+    <string name="btnSubmit">Submit</string>
+    <string name="tvFeedback"> </string>
+    <!-- EnterData Activity -->
+    <string name="EnterData_title">Term Project v6 - Enter Data</string>
+    <!-- DisplayData Activity -->
+    <string name="DisplayData_title">Term Project v6 - Display Data</string>
+    <!--    old display format start-->
+    <string name="tvIDs_start">ID:</string>
+    <string name="tvDates_start">Date:</string>
+    <string name="tvWeights_start">Weight:</string>
+    <!--    navbar-->
+    <string name="btnMain">Main</string>
+    <string name="btnEnterData">Enter Data</string>
+    <string name="btnDisplayData">Display Data</string>
+    <!--    display tab bar-->
+    <string name="btnBarChart">Bar Chart</string>
+    <string name="btnLineChart">Line Chart</string>
+    <string name="btnOtherChart">Other Chart</string>
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <!-- Menu Settings -->
+    <string name="menu_settings">Settings</string>
+    <string name="menuRandomTheme">Random Theme</string>
+    <string name="menu_one">One</string>
+    <string name="menu_two">Two</string>
+    <string name="menu_activity_one">Activity One</string>
+    <string name="menu_activity_two">Activity Two</string>
+    <string name="delete">Delete</string>
+    <string name="search">Search</string>
+    <string name="settings">Settings</string>
+    <string name="edit">Edit</string>
+    <string name="exit">Exit</string>
+    <string name="menu_main_activity">Main</string>
+    <string name="menu_enter_data_activity">Enter Data</string>
+    <string name="menu_display_data_activity">Display</string>
+
+    <!-- Settings Activity -->
+    <string name="Settings_title">Term Project v6 - Settings</string>
+    <string name="Settings_tvTitle">Settings</string>
+    <string name="tvColorScheme">Color Scheme:</string>
+    <string-array name="txtColorScheme">
+        <item>Gray</item>
+        <item>Blue</item>
+        <item>Indigo</item>
+        <item>Purple</item>
+        <item>Pink</item>
+        <item>Red</item>
+        <item>Orange</item>
+        <item>Yellow</item>
+        <item>Green</item>
+        <item>Teal</item>
+        <item>Cyan</item>
+    </string-array>
+    <string name="btnSaveSettings">Save</string>
+</resources>

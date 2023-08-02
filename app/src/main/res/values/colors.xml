@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--    based on bootstrap colors-->
+    <color name="white">#FFFFFF</color>
+    <color name="gray1">#f8f9fa</color>
+    <color name="gray2">#e9ecef</color>
+    <color name="gray3">#dee2e6</color>
+    <color name="gray4">#ced4da</color>
+    <color name="gray5">#adb5bd</color>
+    <color name="gray6">#6c757d</color>
+    <color name="gray7">#495057</color>
+    <color name="gray8">#343a40</color>
+    <color name="gray9">#212529</color>
+    <color name="black">#000000</color>
+
+    <color name="blue1">#cfe2ff</color>
+    <color name="blue2">#9ec5fe</color>
+    <color name="blue3">#6ea8fe</color>
+    <color name="blue4">#3d8bfd</color>
+    <color name="blue5">#0d6efd</color>
+    <color name="blue6">#0a58ca</color>
+    <color name="blue7">#084298</color>
+    <color name="blue8">#052c65</color>
+    <color name="blue9">#031633</color>
+
+    <color name="indigo1">#e0cffc</color>
+    <color name="indigo2">#c29ffa</color>
+    <color name="indigo3">#a370f7</color>
+    <color name="indigo4">#8540f5</color>
+    <color name="indigo5">#6610f2</color>
+    <color name="indigo6">#520dc2</color>
+    <color name="indigo7">#3d0a91</color>
+    <color name="indigo8">#290661</color>
+    <color name="indigo9">#140330</color>
+
+    <color name="purple1">#e2d9f3</color>
+    <color name="purple2">#c5b3e6</color>
+    <color name="purple3">#a98eda</color>
+    <color name="purple4">#8c68cd</color>
+    <color name="purple5">#6f42c1</color>
+    <color name="purple6">#59359a</color>
+    <color name="purple7">#432874</color>
+    <color name="purple8">#2c1a4d</color>
+    <color name="purple9">#160d27</color>
+
+    <color name="pink1">#f7d6e6</color>
+    <color name="pink2">#efadce</color>
+    <color name="pink3">#e685b5</color>   <color name="text">#e685b5</color>
+    <color name="pink4">#de5c9d</color>
+    <color name="pink5">#d63384</color>
+    <color name="pink6">#ab296a</color>
+    <color name="pink7">#801f4f</color>   <color name="main">#801f4f</color>
+    <color name="pink8">#561435</color>   <color name="bg2">#561435</color>
+    <color name="pink9">#2b0a1a</color>   <color name="bg1">#2b0a1a</color>
+
+    <color name="red1">#f8d7da</color>
+    <color name="red2">#f1aeb5</color>
+    <color name="red3">#ea868f</color>
+    <color name="red4">#e35d6a</color>
+    <color name="red5">#dc3545</color>
+    <color name="red6">#b02a37</color>
+    <color name="red7">#842029</color>
+    <color name="red8">#58151c</color>
+    <color name="red9">#2c0b0e</color>
+
+    <color name="orange1">#ffe5d0</color>
+    <color name="orange2">#fecba1</color>
+    <color name="orange3">#feb272</color>
+    <color name="orange4">#fd9843</color>
+    <color name="orange5">#fd7e14</color>
+    <color name="orange6">#ca6510</color>
+    <color name="orange7">#984c0c</color>
+    <color name="orange8">#653208</color>
+    <color name="orange9">#331904</color>
+
+    <color name="yellow1">#fff3cd</color>
+    <color name="yellow2">#ffe69c</color>
+    <color name="yellow3">#ffda6a</color>
+    <color name="yellow4">#ffcd39</color>
+    <color name="yellow5">#ffc107</color>
+    <color name="yellow6">#cc9a06</color>
+    <color name="yellow7">#997404</color>
+    <color name="yellow8">#664d03</color>
+    <color name="yellow9">#332701</color>
+
+    <color name="green1">#d1e7dd</color>
+    <color name="green2">#a3cfbb</color>
+    <color name="green3">#75b798</color>
+    <color name="green4">#479f76</color>
+    <color name="green5">#198754</color>
+    <color name="green6">#146c43</color>
+    <color name="green7">#0f5132</color>
+    <color name="green8">#0a3622</color>
+    <color name="green9">#051b11</color>
+
+    <color name="teal1">#d2f4ea</color>
+    <color name="teal2">#a6e9d5</color>
+    <color name="teal3">#79dfc1</color>
+    <color name="teal4">#4dd4ac</color>
+    <color name="teal5">#20c997</color>
+    <color name="teal6">#1aa179</color>
+    <color name="teal7">#13795b</color>
+    <color name="teal8">#0d503c</color>
+    <color name="teal9">#06281e</color>
+
+    <color name="cyan1">#cff4fc</color>
+    <color name="cyan2">#9eeaf9</color>
+    <color name="cyan3">#6edff6</color>
+    <color name="cyan4">#3dd5f3</color>
+    <color name="cyan5">#0dcaf0</color>
+    <color name="cyan6">#0aa2c0</color>
+    <color name="cyan7">#087990</color>
+    <color name="cyan8">#055160</color>
+    <color name="cyan9">#032830</color>
+</resources>
