@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- based on old material ui colors   -->
+    <color name="lime50">#F9FBE7</color>
+    <color name="lime100">#F0F4C3</color>
+    <color name="lime200">#E6EE9C</color>
+    <color name="lime300">#DCE775</color>
+    <color name="lime400">#D4E157</color>
+    <color name="lime500">#CDDC39</color>
+    <color name="lime600">#C0CA33</color>
+    <color name="lime700">#AFB42B</color>
+    <color name="lime800">#9E9D24</color>
+    <color name="lime900">#827717</color>
+
     <!--    based on bootstrap colors-->
     <color name="white">#FFFFFF</color>
     <color name="gray1">#f8f9fa</color>

@@ -22,17 +22,6 @@ class RecyclerAdapter(val colorSchemeId : Int, val entries : ArrayList<Entry>) :
         viewHolder.item_ID.text = entries[i].id.toString()
         viewHolder.item_Date.text = entries[i].date
         viewHolder.item_Weight.text = entries[i].weight.toString()
-        if (colorSchemeId == 0) { viewHolder.card_view.setCardBackgroundColor(Color.parseColor("#6c757d")) }
-        if (colorSchemeId == 1) { viewHolder.card_view.setCardBackgroundColor(Color.parseColor("#0a58ca")) }
-        if (colorSchemeId == 2) { viewHolder.card_view.setCardBackgroundColor(Color.parseColor("#520dc2")) }
-        if (colorSchemeId == 3) { viewHolder.card_view.setCardBackgroundColor(Color.parseColor("#59359a")) }
-        if (colorSchemeId == 4) { viewHolder.card_view.setCardBackgroundColor(Color.parseColor("#ab296a")) }
-        if (colorSchemeId == 5) { viewHolder.card_view.setCardBackgroundColor(Color.parseColor("#b02a37")) }
-        if (colorSchemeId == 6) { viewHolder.card_view.setCardBackgroundColor(Color.parseColor("#ca6510")) }
-        if (colorSchemeId == 7) { viewHolder.card_view.setCardBackgroundColor(Color.parseColor("#cc9a06")) }
-        if (colorSchemeId == 8) { viewHolder.card_view.setCardBackgroundColor(Color.parseColor("#146c43")) }
-        if (colorSchemeId == 9) { viewHolder.card_view.setCardBackgroundColor(Color.parseColor("#1aa179")) }
-        if (colorSchemeId == 10) { viewHolder.card_view.setCardBackgroundColor(Color.parseColor("#0aa2c0")) }
     }
 
     override fun getItemCount(): Int {

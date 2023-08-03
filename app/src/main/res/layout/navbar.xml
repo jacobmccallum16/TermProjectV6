@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/linearLayoutBottom"
     android:layout_width="0dp"
     android:layout_height="50dp"
-    android:background="@color/pink9"
+    android:background="?attr/colorPrimaryDark"
     android:orientation="horizontal"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -22,10 +22,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:backgroundTint="@color/pink6"
+        android:backgroundTint="?attr/colorPrimaryVariant"
         android:onClick="openMain"
         android:text="@string/btnMain"
-        android:textColor="@color/gray1" />
+        android:textColor="?attr/colorOnPrimary" />
 
     <Space
         android:layout_width="wrap_content"
@@ -37,10 +37,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:backgroundTint="@color/pink6"
+        android:backgroundTint="?attr/colorPrimaryVariant"
         android:onClick="openEnterData"
         android:text="@string/btnEnterData"
-        android:textColor="@color/gray1" />
+        android:textColor="?attr/colorOnPrimary" />
 
     <Space
         android:layout_width="wrap_content"
@@ -52,10 +52,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:backgroundTint="@color/pink6"
+        android:backgroundTint="?attr/colorPrimaryVariant"
         android:onClick="openDisplayData"
         android:text="@string/btnDisplayData"
-        android:textColor="@color/gray1" />
+        android:textColor="?attr/colorOnPrimary" />
 
     <Space
         android:layout_width="wrap_content"

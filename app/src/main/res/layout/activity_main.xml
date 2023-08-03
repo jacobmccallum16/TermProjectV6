@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray9"
+    android:background="?android:attr/colorBackground"
     tools:context=".MainActivity">
 
     <!--    <TextView-->
@@ -49,9 +49,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/etDate_hint"
-            android:inputType="text"
-            android:textColor="@color/gray2"
-            android:textColorHint="@color/gray3" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etWeight"
@@ -60,18 +58,16 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/etWeight_hint"
-            android:inputType="numberDecimal"
-            android:textColor="@color/gray2"
-            android:textColorHint="@color/gray3" />
+            android:inputType="numberDecimal" />
 
         <Button
             android:id="@+id/btnSubmit"
             android:layout_width="160dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="@color/pink6"
+            android:backgroundTint="?attr/colorPrimary"
             android:text="@string/btnSubmit"
-            android:textColor="@color/gray1" />
+            android:textColor="?attr/colorOnPrimary" />
     </LinearLayout>
 
     <TextView
@@ -82,7 +78,7 @@
         android:layout_marginEnd="16dp"
         android:text="@string/tvFeedback"
         android:textAlignment="center"
-        android:textColor="@color/gray3"
+        android:textColor="?android:attr/textColorTertiary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutEnterData"
@@ -95,7 +91,6 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:text="@string/tvIDs_start"
-        android:textColor="@color/gray2"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/tvDates"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,7 +103,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:text="@string/tvDates_start"
-        android:textColor="@color/gray2"
         android:textSize="24sp"
         app:layout_constraintEnd_toStartOf="@+id/tvWeights"
         app:layout_constraintHorizontal_bias="0.5"
@@ -123,7 +117,6 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
         android:text="@string/tvWeights_start"
-        android:textColor="@color/gray2"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -137,11 +130,11 @@
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
-        android:backgroundTint="@color/red5"
+        android:backgroundTint="?attr/colorError"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:text="@string/btnDeleteAllEntries"
-        android:textColor="@color/white"
+        android:textColor="?attr/colorOnError"
         app:layout_constraintEnd_toStartOf="@+id/btnRemoveLastEntry"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -153,11 +146,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/pink6"
+        android:backgroundTint="?attr/colorSecondary"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:text="@string/btnRemoveLastEntry"
-        android:textColor="@color/gray1"
+        android:textColor="?attr/colorOnSecondary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnDeleteAllEntries"

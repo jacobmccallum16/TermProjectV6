@@ -1,9 +1,118 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.TermProjectV6" parent="Theme.Material3.Dark">
-        <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/pink6</item>
+    <style name="Base.Theme.TermProjectV6" parent="Theme.Material3.Light">
+        <!-- Error = DeleteAllBtns -->
+        <item name="colorError">@color/red5</item>          <item name="colorOnError">@color/white</item>
+        <!-- Background = allBackgrounds -->
+        <item name="android:colorBackground">@color/white</item>
+        <!-- Surface = topBar -->
+        <item name="colorSurface">@color/blue1</item>          <item name="colorOnSurface">@color/blue8</item>
+        <!-- PrimarySurface = cardView -->
+        <item name="colorPrimarySurface">@color/blue2</item>   <item name="colorOnPrimarySurface">@color/blue9</item>
+        <!-- submitBtns -->
+        <item name="colorPrimary">@color/blue5</item>          <item name="colorOnPrimary">@color/white</item>
+        <!-- navBtns -->
+        <item name="colorPrimaryVariant">@color/blue6</item>
+        <!-- navbarBackground -->
+        <item name="colorPrimaryDark">@color/blue9</item>
+        <!-- removeLastEntryBtn -->
+        <item name="colorSecondary">@color/blue7</item>        <item name="colorOnSecondary">@color/blue1</item>
+        <!-- colorTertiary =  -->
+        <item name="colorTertiary">@color/gray7</item>         <item name="colorOnTertiary">@color/gray2</item>
+        <!-- textColorHint =  -->
+        <item name="android:textColorHint">@color/gray5</item>
+        <!-- textColorTertiary = tvFeedback -->
+        <item name="android:textColorTertiary">@color/gray7</item>
     </style>
 
-    <style name="Theme.TermProjectV6" parent="Base.Theme.TermProjectV6" />
+    <style name="AppTheme.Blue" parent="Base.Theme.TermProjectV6" >
+        <item name="colorSurface">@color/blue1</item>          <item name="colorOnSurface">@color/blue8</item>
+        <item name="colorPrimarySurface">@color/blue2</item>   <item name="colorOnPrimarySurface">@color/blue9</item>
+        <item name="colorPrimary">@color/blue5</item>          <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/blue6</item>
+        <item name="colorSecondary">@color/blue7</item>        <item name="colorOnSecondary">@color/blue1</item>
+        <item name="colorSecondaryVariant">@color/blue8</item>
+    </style>
+    <style name="AppTheme.Indigo" parent="Base.Theme.TermProjectV6" >
+        <item name="colorSurface">@color/indigo1</item>          <item name="colorOnSurface">@color/indigo8</item>
+        <item name="colorPrimarySurface">@color/indigo2</item>   <item name="colorOnPrimarySurface">@color/indigo9</item>
+        <item name="colorPrimary">@color/indigo5</item>          <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/indigo6</item>
+        <item name="colorSecondary">@color/indigo7</item>        <item name="colorOnSecondary">@color/indigo1</item>
+        <item name="colorSecondaryVariant">@color/indigo8</item>
+    </style>
+    <style name="AppTheme.Purple" parent="Base.Theme.TermProjectV6" >
+        <item name="colorSurface">@color/purple1</item>          <item name="colorOnSurface">@color/purple8</item>
+        <item name="colorPrimarySurface">@color/purple2</item>   <item name="colorOnPrimarySurface">@color/purple9</item>
+        <item name="colorPrimary">@color/purple5</item>          <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/purple6</item>
+        <item name="colorSecondary">@color/purple7</item>        <item name="colorOnSecondary">@color/purple1</item>
+        <item name="colorSecondaryVariant">@color/purple8</item>
+    </style>
+    <style name="AppTheme.Pink" parent="Base.Theme.TermProjectV6" >
+        <item name="colorSurface">@color/pink1</item>          <item name="colorOnSurface">@color/pink8</item>
+        <item name="colorPrimarySurface">@color/pink2</item>   <item name="colorOnPrimarySurface">@color/pink9</item>
+        <item name="colorPrimary">@color/pink5</item>          <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/pink8</item>
+        <item name="colorPrimaryVariant">@color/pink6</item>
+        <item name="colorSecondary">@color/pink7</item>        <item name="colorOnSecondary">@color/pink1</item>
+        <item name="colorSecondaryVariant">@color/pink8</item>
+    </style>
+    <style name="AppTheme.Red" parent="Base.Theme.TermProjectV6" >
+        <item name="colorSurface">@color/red1</item>          <item name="colorOnSurface">@color/red8</item>
+        <item name="colorPrimarySurface">@color/red2</item>   <item name="colorOnPrimarySurface">@color/red9</item>
+        <item name="colorPrimary">@color/red5</item>          <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/red6</item>
+        <item name="colorSecondary">@color/red7</item>        <item name="colorOnSecondary">@color/red1</item>
+        <item name="colorSecondaryVariant">@color/red8</item>
+    </style>
+    <style name="AppTheme.Orange" parent="Base.Theme.TermProjectV6" >
+        <item name="colorSurface">@color/orange1</item>          <item name="colorOnSurface">@color/orange8</item>
+        <item name="colorPrimarySurface">@color/orange2</item>   <item name="colorOnPrimarySurface">@color/orange9</item>
+        <item name="colorPrimary">@color/orange5</item>          <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/orange6</item>
+        <item name="colorSecondary">@color/orange7</item>        <item name="colorOnSecondary">@color/orange1</item>
+        <item name="colorSecondaryVariant">@color/orange8</item>
+    </style>
+    <style name="AppTheme.Yellow" parent="Base.Theme.TermProjectV6" >
+        <item name="colorSurface">@color/yellow1</item>          <item name="colorOnSurface">@color/yellow8</item>
+        <item name="colorPrimarySurface">@color/yellow2</item>   <item name="colorOnPrimarySurface">@color/yellow9</item>
+        <item name="colorPrimary">@color/yellow5</item>          <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/yellow6</item>
+        <item name="colorSecondary">@color/yellow7</item>        <item name="colorOnSecondary">@color/yellow1</item>
+        <item name="colorSecondaryVariant">@color/yellow8</item>
+    </style>
+    <style name="AppTheme.Green" parent="Base.Theme.TermProjectV6" >
+        <item name="colorSurface">@color/green1</item>          <item name="colorOnSurface">@color/green8</item>
+        <item name="colorPrimarySurface">@color/green2</item>   <item name="colorOnPrimarySurface">@color/green9</item>
+        <item name="colorPrimary">@color/green5</item>          <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/green6</item>
+        <item name="colorSecondary">@color/green7</item>        <item name="colorOnSecondary">@color/green1</item>
+        <item name="colorSecondaryVariant">@color/green8</item>
+    </style>
+    <style name="AppTheme.Teal" parent="Base.Theme.TermProjectV6" >
+        <item name="colorSurface">@color/teal1</item>          <item name="colorOnSurface">@color/teal8</item>
+        <item name="colorPrimarySurface">@color/teal2</item>   <item name="colorOnPrimarySurface">@color/teal9</item>
+        <item name="colorPrimary">@color/teal5</item>          <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/teal6</item>
+        <item name="colorSecondary">@color/teal7</item>        <item name="colorOnSecondary">@color/teal1</item>
+        <item name="colorSecondaryVariant">@color/teal8</item>
+    </style>
+    <style name="AppTheme.Cyan" parent="Base.Theme.TermProjectV6" >
+        <item name="colorSurface">@color/cyan1</item>          <item name="colorOnSurface">@color/cyan8</item>
+        <item name="colorPrimarySurface">@color/cyan2</item>   <item name="colorOnPrimarySurface">@color/cyan9</item>
+        <item name="colorPrimary">@color/cyan5</item>          <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/cyan6</item>
+        <item name="colorSecondary">@color/cyan7</item>        <item name="colorOnSecondary">@color/cyan1</item>
+        <item name="colorSecondaryVariant">@color/cyan8</item>
+    </style>
+    <style name="AppTheme.Gray" parent="Base.Theme.TermProjectV6" >
+        <item name="colorSurface">@color/gray1</item>          <item name="colorOnSurface">@color/gray8</item>
+        <item name="colorPrimarySurface">@color/gray2</item>   <item name="colorOnPrimarySurface">@color/gray9</item>
+        <item name="colorPrimary">@color/gray5</item>          <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryVariant">@color/gray6</item>
+        <item name="colorSecondary">@color/gray7</item>        <item name="colorOnSecondary">@color/gray1</item>
+        <item name="colorSecondaryVariant">@color/gray8</item>
+    </style>
+
 </resources>
