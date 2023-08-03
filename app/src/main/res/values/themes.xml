@@ -1,71 +1,137 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.TermProjectV6" parent="Theme.Material3.Light">
-        <!-- Customize your light theme here. -->
-        <item name="colorPrimary">@color/pink6</item>
+    <style name="AppTheme" parent="Theme.Material3.Light">
+        <!-- White/Black -->
+        <color name="colorOnPrimary">@color/white</color>
+        <color name="android:colorBackground">@color/white</color>
+        <color name="colorSurface">@color/white</color>
+        <!-- Errors -->
+        <color name="colorOnError">@color/white</color>
+        <color name="colorErrorContainer">@color/red1</color>
+        <color name="colorError">@color/red6</color>
+        <color name="colorOnErrorContainer">@color/red9</color>
+        <!-- Grays -->
+        <color name="colorSurfaceVariant">@color/gray3</color>
+        <color name="colorOutline">@color/gray5</color>
+        <color name="colorOnSurfaceVariant">@color/gray7</color>
+        <!-- Setting Blue as the default in a way -->
+        <color name="colorPrimaryContainer">@color/blue1</color>
+        <color name="colorOnSurfaceInverse">@color/blue1</color>
+        <color name="colorPrimaryInverse">@color/blue2</color>
+        <color name="colorPrimary">@color/blue6</color>
+        <color name="colorSurfaceInverse">@color/blue8</color>
+        <color name="colorOnPrimaryContainer">@color/blue9</color>
+        <color name="colorOnBackground">@color/blue9</color>
+        <color name="colorOnSurface">@color/blue9</color>
     </style>
-    <style name="Theme.Blue" parent="Base.Theme.TermProjectV6">
-        <item name="colorPrimary">#0057ce</item>
-        <item name="colorOnPrimary">#ffffff</item>
-        <item name="colorPrimaryContainer">#dae2ff</item>
-        <item name="colorOnPrimaryContainer">#001946</item>
-        <item name="colorError">#0057ce</item>
-        <item name="colorOnError">#ffffff</item>
-        <item name="colorErrorContainer">#dae2ff</item>
-        <item name="colorOnErrorContainer">#001946</item>
+    <style name="Theme.Blue" parent="AppTheme">
+        <color name="colorPrimaryContainer">@color/blue1</color>
+        <color name="colorOnSurfaceInverse">@color/blue1</color>
+        <color name="colorPrimaryInverse">@color/blue2</color>
+        <color name="colorPrimary">@color/blue6</color>
+        <color name="colorSurfaceInverse">@color/blue8</color>
+        <color name="colorOnPrimaryContainer">@color/blue9</color>
+        <color name="colorOnBackground">@color/blue9</color>
+        <color name="colorOnSurface">@color/blue9</color>
     </style>
-    <style name="Theme.Indigo" parent="Base.Theme.TermProjectV6">
-        <item name="colorPrimary">#0057ce</item>
-        <item name="colorOnPrimary">#ffffff</item>
-        <item name="colorPrimaryContainer">#dae2ff</item>
-        <item name="colorOnPrimaryContainer">#001946</item>
+    <style name="Theme.Indigo" parent="AppTheme">
+        <color name="colorPrimaryContainer">@color/indigo1</color>
+        <color name="colorOnSurfaceInverse">@color/indigo1</color>
+        <color name="colorPrimaryInverse">@color/indigo2</color>
+        <color name="colorPrimary">@color/indigo6</color>
+        <color name="colorSurfaceInverse">@color/indigo8</color>
+        <color name="colorOnPrimaryContainer">@color/indigo9</color>
+        <color name="colorOnBackground">@color/indigo9</color>
+        <color name="colorOnSurface">@color/indigo9</color>
     </style>
-    <style name="Theme.Purple" parent="Base.Theme.TermProjectV6">
-        <item name="colorPrimary">#0057ce</item>
-        <item name="colorOnPrimary">#ffffff</item>
-        <item name="colorPrimaryContainer">#dae2ff</item>
-        <item name="colorOnPrimaryContainer">#001946</item>
+    <style name="Theme.Purple" parent="AppTheme">
+        <color name="colorPrimaryContainer">@color/purple1</color>
+        <color name="colorOnSurfaceInverse">@color/purple1</color>
+        <color name="colorPrimaryInverse">@color/purple2</color>
+        <color name="colorPrimary">@color/purple6</color>
+        <color name="colorSurfaceInverse">@color/purple8</color>
+        <color name="colorOnPrimaryContainer">@color/purple9</color>
+        <color name="colorOnBackground">@color/purple9</color>
+        <color name="colorOnSurface">@color/purple9</color>
     </style>
-    <style name="Theme.Pink" parent="Base.Theme.TermProjectV6">
-        <item name="colorPrimary">#0057ce</item>
-        <item name="colorOnPrimary">#ffffff</item>
-        <item name="colorPrimaryContainer">#dae2ff</item>
-        <item name="colorOnPrimaryContainer">#001946</item>
+    <style name="Theme.Pink" parent="AppTheme">
+        <color name="colorPrimaryContainer">@color/pink1</color>
+        <color name="colorOnSurfaceInverse">@color/pink1</color>
+        <color name="colorPrimaryInverse">@color/pink2</color>
+        <color name="colorPrimary">@color/pink6</color>
+        <color name="colorSurfaceInverse">@color/pink8</color>
+        <color name="colorOnPrimaryContainer">@color/pink9</color>
+        <color name="colorOnBackground">@color/pink9</color>
+        <color name="colorOnSurface">@color/pink9</color>
     </style>
-    <style name="Theme.Red" parent="Base.Theme.TermProjectV6">
-        <item name="colorPrimary">#0057ce</item>
-        <item name="colorOnPrimary">#ffffff</item>
-        <item name="colorPrimaryContainer">#dae2ff</item>
-        <item name="colorOnPrimaryContainer">#001946</item>
+    <style name="Theme.Red" parent="AppTheme">
+        <color name="colorPrimaryContainer">@color/red1</color>
+        <color name="colorOnSurfaceInverse">@color/red1</color>
+        <color name="colorPrimaryInverse">@color/red2</color>
+        <color name="colorPrimary">@color/red6</color>
+        <color name="colorSurfaceInverse">@color/red8</color>
+        <color name="colorOnPrimaryContainer">@color/red9</color>
+        <color name="colorOnBackground">@color/red9</color>
+        <color name="colorOnSurface">@color/red9</color>
     </style>
-    <style name="Theme.Orange" parent="Base.Theme.TermProjectV6">
-        <item name="colorPrimary">#0057ce</item>
-        <item name="colorOnPrimary">#ffffff</item>
-        <item name="colorPrimaryContainer">#dae2ff</item>
-        <item name="colorOnPrimaryContainer">#001946</item>
+    <style name="Theme.Orange" parent="AppTheme">
+        <color name="colorPrimaryContainer">@color/orange1</color>
+        <color name="colorOnSurfaceInverse">@color/orange1</color>
+        <color name="colorPrimaryInverse">@color/orange2</color>
+        <color name="colorPrimary">@color/orange6</color>
+        <color name="colorSurfaceInverse">@color/orange8</color>
+        <color name="colorOnPrimaryContainer">@color/orange9</color>
+        <color name="colorOnBackground">@color/orange9</color>
+        <color name="colorOnSurface">@color/orange9</color>
     </style>
-    <style name="Theme.Yellow" parent="Base.Theme.TermProjectV6">
-        <item name="colorPrimary">#0057ce</item>
-        <item name="colorOnPrimary">#ffffff</item>
-        <item name="colorPrimaryContainer">#dae2ff</item>
-        <item name="colorOnPrimaryContainer">#001946</item>
+    <style name="Theme.Yellow" parent="AppTheme">
+        <color name="colorPrimaryContainer">@color/yellow1</color>
+        <color name="colorOnSurfaceInverse">@color/yellow1</color>
+        <color name="colorPrimaryInverse">@color/yellow2</color>
+        <color name="colorPrimary">@color/yellow6</color>
+        <color name="colorSurfaceInverse">@color/yellow8</color>
+        <color name="colorOnPrimaryContainer">@color/yellow9</color>
+        <color name="colorOnBackground">@color/yellow9</color>
+        <color name="colorOnSurface">@color/yellow9</color>
     </style>
-    <style name="Theme.Green" parent="Base.Theme.TermProjectV6">
-        <item name="colorPrimary">#0057ce</item>
-        <item name="colorOnPrimary">#ffffff</item>
-        <item name="colorPrimaryContainer">#dae2ff</item>
-        <item name="colorOnPrimaryContainer">#001946</item>
+    <style name="Theme.Green" parent="AppTheme">
+        <color name="colorPrimaryContainer">@color/green1</color>
+        <color name="colorOnSurfaceInverse">@color/green1</color>
+        <color name="colorPrimaryInverse">@color/green2</color>
+        <color name="colorPrimary">@color/green6</color>
+        <color name="colorSurfaceInverse">@color/green8</color>
+        <color name="colorOnPrimaryContainer">@color/green9</color>
+        <color name="colorOnBackground">@color/green9</color>
+        <color name="colorOnSurface">@color/green9</color>
     </style>
-    <style name="Theme.Teal" parent="Base.Theme.TermProjectV6">
-        <item name="colorPrimary">#0057ce</item>
-        <item name="colorOnPrimary">#ffffff</item>
-        <item name="colorPrimaryContainer">#dae2ff</item>
-        <item name="colorOnPrimaryContainer">#001946</item>
+    <style name="Theme.Teal" parent="AppTheme">
+        <color name="colorPrimaryContainer">@color/teal1</color>
+        <color name="colorOnSurfaceInverse">@color/teal1</color>
+        <color name="colorPrimaryInverse">@color/teal2</color>
+        <color name="colorPrimary">@color/teal6</color>
+        <color name="colorSurfaceInverse">@color/teal8</color>
+        <color name="colorOnPrimaryContainer">@color/teal9</color>
+        <color name="colorOnBackground">@color/teal9</color>
+        <color name="colorOnSurface">@color/teal9</color>
     </style>
-    <style name="Theme.Cyan" parent="Base.Theme.TermProjectV6">
-        <item name="colorPrimary">#0057ce</item>
-        <item name="colorOnPrimary">#ffffff</item>
-        <item name="colorPrimaryContainer">#dae2ff</item>
-        <item name="colorOnPrimaryContainer">#001946</item>
+    <style name="Theme.Cyan" parent="AppTheme">
+        <color name="colorPrimaryContainer">@color/cyan1</color>
+        <color name="colorOnSurfaceInverse">@color/cyan1</color>
+        <color name="colorPrimaryInverse">@color/cyan2</color>
+        <color name="colorPrimary">@color/cyan6</color>
+        <color name="colorSurfaceInverse">@color/cyan8</color>
+        <color name="colorOnPrimaryContainer">@color/cyan9</color>
+        <color name="colorOnBackground">@color/cyan9</color>
+        <color name="colorOnSurface">@color/cyan9</color>
+    </style>
+    <style name="Theme.Gray" parent="AppTheme">
+        <color name="colorPrimaryContainer">@color/gray1</color>
+        <color name="colorOnSurfaceInverse">@color/gray1</color>
+        <color name="colorPrimaryInverse">@color/gray2</color>
+        <color name="colorPrimary">@color/gray6</color>
+        <color name="colorSurfaceInverse">@color/gray8</color>
+        <color name="colorOnPrimaryContainer">@color/gray9</color>
+        <color name="colorOnBackground">@color/gray9</color>
+        <color name="colorOnSurface">@color/gray9</color>
     </style>
 </resources>

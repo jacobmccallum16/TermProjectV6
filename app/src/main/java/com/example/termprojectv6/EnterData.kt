@@ -155,7 +155,7 @@ class EnterData : AppCompatActivity() {
             2 -> {
                 window.setStatusBarColor(getResources().getColor(R.color.indigo7))
                 supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.indigo7)))
-                btnSubmit.background.setTint(resources.getColor(R.color.indigo5))
+                btnSubmit.background.setTint(resources.getColor(R.color.indigo5)) // in5
                 btnSubmit.setTextColor(resources.getColor(R.color.white))
                 btnMain.background.setTint(resources.getColor(R.color.indigo6))
                 btnEnterData.background.setTint(resources.getColor(R.color.indigo6))
