@@ -1,16 +1,27 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.TermProjectV6" parent="Theme.Material3.Light">
+        <!-- Error = DeleteAllBtns -->
         <item name="colorError">@color/red5</item>          <item name="colorOnError">@color/white</item>
+        <!-- Background = allBackgrounds -->
         <item name="android:colorBackground">@color/white</item>
+        <!-- Surface = topBar -->
         <item name="colorSurface">@color/blue1</item>          <item name="colorOnSurface">@color/blue8</item>
+        <!-- PrimarySurface = cardView -->
         <item name="colorPrimarySurface">@color/blue2</item>   <item name="colorOnPrimarySurface">@color/blue9</item>
+        <!-- submitBtns -->
         <item name="colorPrimary">@color/blue5</item>          <item name="colorOnPrimary">@color/white</item>
+        <!-- navBtns -->
         <item name="colorPrimaryVariant">@color/blue6</item>
+        <!-- navbarBackground -->
+        <item name="colorPrimaryDark">@color/blue9</item>
+        <!-- removeLastEntryBtn -->
         <item name="colorSecondary">@color/blue7</item>        <item name="colorOnSecondary">@color/blue1</item>
-        <item name="colorSecondaryVariant">@color/blue8</item>
+        <!-- colorTertiary =  -->
         <item name="colorTertiary">@color/gray7</item>         <item name="colorOnTertiary">@color/gray2</item>
+        <!-- textColorHint =  -->
         <item name="android:textColorHint">@color/gray5</item>
+        <!-- textColorTertiary = tvFeedback -->
         <item name="android:textColorTertiary">@color/gray7</item>
     </style>
 
@@ -42,6 +53,7 @@
         <item name="colorSurface">@color/pink1</item>          <item name="colorOnSurface">@color/pink8</item>
         <item name="colorPrimarySurface">@color/pink2</item>   <item name="colorOnPrimarySurface">@color/pink9</item>
         <item name="colorPrimary">@color/pink5</item>          <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/pink8</item>
         <item name="colorPrimaryVariant">@color/pink6</item>
         <item name="colorSecondary">@color/pink7</item>        <item name="colorOnSecondary">@color/pink1</item>
         <item name="colorSecondaryVariant">@color/pink8</item>

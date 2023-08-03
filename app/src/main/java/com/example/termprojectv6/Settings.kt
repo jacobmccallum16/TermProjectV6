@@ -68,10 +68,8 @@ class Settings : AppCompatActivity() {
             editor.putInt("colorSchemeId", colorSchemeId).commit()
             tvFeedback.text = "Color scheme set to: ${colorSchemes[colorSchemeId]}"
             applyColorScheme()
+            recreateActivity()
         }
-        // set color
-        applyColorScheme()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
