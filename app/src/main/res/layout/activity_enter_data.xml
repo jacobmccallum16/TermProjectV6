@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gray9"
+    android:background="?android:attr/colorBackground"
     tools:context=".MainActivity">
 
-<!--    <TextView-->
-<!--        android:id="@+id/tvTitle"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@color/pink9"-->
-<!--        android:padding="8dp"-->
-<!--        android:text="@string/tvTitle"-->
-<!--        android:textAlignment="center"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:textSize="34sp"-->
-<!--        android:textStyle="bold"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/tvTitle"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="@color/pink9"-->
+    <!--        android:padding="8dp"-->
+    <!--        android:text="@string/tvTitle"-->
+    <!--        android:textAlignment="center"-->
+    <!--        android:textColor="@color/white"-->
+    <!--        android:textSize="34sp"-->
+    <!--        android:textStyle="bold"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent" />-->
 
     <include
         layout="@layout/navbar"
@@ -49,9 +49,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/etDate_hint"
-            android:inputType="text"
-            android:textColor="@color/gray2"
-            android:textColorHint="@color/gray3" />
+            android:inputType="text" />
 
         <EditText
             android:id="@+id/etWeight"
@@ -60,18 +58,16 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/etWeight_hint"
-            android:inputType="numberDecimal"
-            android:textColor="@color/gray2"
-            android:textColorHint="@color/gray3" />
+            android:inputType="numberDecimal" />
 
         <Button
             android:id="@+id/btnSubmit"
             android:layout_width="160dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:backgroundTint="@color/pink6"
+            android:backgroundTint="?attr/colorPrimary"
             android:text="@string/btnSubmit"
-            android:textColor="@color/gray1" />
+            android:textColor="?attr/colorOnPrimary" />
     </LinearLayout>
 
     <TextView
@@ -82,7 +78,6 @@
         android:layout_marginEnd="16dp"
         android:text="@string/tvFeedback"
         android:textAlignment="center"
-        android:textColor="@color/gray3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutEnterData"

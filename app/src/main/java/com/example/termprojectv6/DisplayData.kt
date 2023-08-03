@@ -2,21 +2,14 @@ package com.example.termprojectv6
 
 import android.content.Intent
 import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.SeekBar
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.view.marginLeft
-import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
@@ -26,8 +19,8 @@ import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min
-import kotlin.math.round
 import kotlin.random.Random
+
 
 class DisplayData : AppCompatActivity() {
 
@@ -49,6 +42,7 @@ class DisplayData : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applyColorScheme()
         setContentView(R.layout.activity_display_data)
 
         supportActionBar?.title = resources.getString(R.string.DisplayData_title)
@@ -121,7 +115,6 @@ class DisplayData : AppCompatActivity() {
         chart.legend.isEnabled = false
         chart.axisLeft.isEnabled = false
         chart.axisRight.isEnabled = false
-        applyColorScheme()
     }
 
     fun passData(entries: ArrayList<Entry>, colorSchemeId: Int) {
@@ -137,9 +130,9 @@ class DisplayData : AppCompatActivity() {
             chart.notifyDataSetChanged()
         } else {
             set1 = BarDataSet(values, "Weight in lbs")
-            if (colorSchemeId == 0) { colorStartId = resources.getColor(R.color.gray9);
-                colorEndId = resources.getColor(R.color.gray4)}
-            if (colorSchemeId == 1) { colorStartId = resources.getColor(R.color.blue9);
+            if (colorSchemeId == 0) { colorStartId = resources.getColor(R.color.gray9, theme);
+                colorEndId = resources.getColor(R.color.gray3, theme);}
+            if (colorSchemeId == 1) { colorStartId = resources.getColor(R.color.blue9, theme);
                 colorEndId = resources.getColor(R.color.blue4)}
             if (colorSchemeId == 2) { colorStartId = resources.getColor(R.color.indigo9);
                 colorEndId = resources.getColor(R.color.indigo4)}
@@ -159,7 +152,9 @@ class DisplayData : AppCompatActivity() {
                 colorEndId = resources.getColor(R.color.teal4)}
             if (colorSchemeId == 10) { colorStartId = resources.getColor(R.color.cyan9);
                 colorEndId = resources.getColor(R.color.cyan4)}
-            set1.setGradientColor(colorStartId, colorEndId)
+            val gradientFills: MutableList<GradientColor> = ArrayList()
+            gradientFills.add(GradientColor(colorStartId, colorEndId))
+            set1.setGradientColors(gradientFills)
             val dataSets = ArrayList<IBarDataSet>()
             dataSets.add(set1)
             val barData = BarData(dataSets)
@@ -183,6 +178,7 @@ class DisplayData : AppCompatActivity() {
             var colorSchemeId : Int = Random.nextInt(0,11)
             getSharedPreferences("data", MODE_PRIVATE).edit().putInt("colorSchemeId", colorSchemeId).commit()
             applyColorScheme(colorSchemeId)
+            recreateActivity()
             Toast.makeText(this, "Random color scheme ${colorSchemes[colorSchemeId]} applied", Toast.LENGTH_SHORT).show()
         } else if (item.itemId == R.id.menuMain) {
             val intent = Intent(this, MainActivity::class.java)
@@ -204,96 +200,24 @@ class DisplayData : AppCompatActivity() {
 
     fun applyColorScheme(colorSchemeId : Int = getSharedPreferences("data", MODE_PRIVATE).getInt("colorSchemeId", 1)) {
         when (colorSchemeId) {
-            0 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.gray7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.gray7)))
-                btnMain.background.setTint(resources.getColor(R.color.gray6))
-                btnEnterData.background.setTint(resources.getColor(R.color.gray6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.gray6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.gray9))
-            }
-            1 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.blue7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.blue7)))
-                chart.setBorderColor(resources.getColor(R.color.blue1))
-                btnMain.background.setTint(resources.getColor(R.color.blue6))
-                btnEnterData.background.setTint(resources.getColor(R.color.blue6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.blue6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.blue9))
-            }
-            2 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.indigo7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.indigo7)))
-                btnMain.background.setTint(resources.getColor(R.color.indigo6))
-                btnEnterData.background.setTint(resources.getColor(R.color.indigo6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.indigo6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.indigo9))
-            }
-            3 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.purple7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.purple7)))
-                btnMain.background.setTint(resources.getColor(R.color.purple6))
-                btnEnterData.background.setTint(resources.getColor(R.color.purple6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.purple6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.purple9))
-            }
-            4 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.pink7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.pink7)))
-                btnMain.background.setTint(resources.getColor(R.color.pink6))
-                btnEnterData.background.setTint(resources.getColor(R.color.pink6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.pink6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.pink9))
-            }
-            5 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.red7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.red7)))
-                btnMain.background.setTint(resources.getColor(R.color.red6))
-                btnEnterData.background.setTint(resources.getColor(R.color.red6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.red6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.red9))
-            }
-            6 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.orange7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.orange7)))
-                btnMain.background.setTint(resources.getColor(R.color.orange6))
-                btnEnterData.background.setTint(resources.getColor(R.color.orange6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.orange6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.orange9))
-            }
-            7 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.yellow7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.yellow7)))
-                btnMain.background.setTint(resources.getColor(R.color.yellow6))
-                btnEnterData.background.setTint(resources.getColor(R.color.yellow6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.yellow6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.yellow9))
-            }
-            8 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.green7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.green7)))
-                btnMain.background.setTint(resources.getColor(R.color.green6))
-                btnEnterData.background.setTint(resources.getColor(R.color.green6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.green6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.green9))
-            }
-            9 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.teal7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.teal7)))
-                btnMain.background.setTint(resources.getColor(R.color.teal6))
-                btnEnterData.background.setTint(resources.getColor(R.color.teal6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.teal6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.teal9))
-            }
-            10 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.cyan7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.cyan7)))
-                btnMain.background.setTint(resources.getColor(R.color.cyan6))
-                btnEnterData.background.setTint(resources.getColor(R.color.cyan6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.cyan6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.cyan9))
-            }
+            0 -> { setTheme(R.style.AppTheme_Gray) }
+            1 -> { setTheme(R.style.AppTheme_Blue) }
+            2 -> { setTheme(R.style.AppTheme_Indigo) }
+            3 -> { setTheme(R.style.AppTheme_Purple) }
+            4 -> { setTheme(R.style.AppTheme_Pink) }
+            5 -> { setTheme(R.style.AppTheme_Red) }
+            6 -> { setTheme(R.style.AppTheme_Orange) }
+            7 -> { setTheme(R.style.AppTheme_Yellow) }
+            8 -> { setTheme(R.style.AppTheme_Green) }
+            9 -> { setTheme(R.style.AppTheme_Teal) }
+            10 -> { setTheme(R.style.AppTheme_Cyan) }
         }
+    }
+    fun recreateActivity() {
+        val intent = Intent(this, this.javaClass)
+        this.startActivity(intent)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        this.finish()
     }
 
 

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
-    app:cardBackgroundColor="@color/gray6"
+    app:cardBackgroundColor="?attr/colorSurface"
     app:cardCornerRadius="12dp"
     app:cardElevation="3dp"
     app:contentPadding="4dp">
@@ -22,7 +22,7 @@
             android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:textColor="@color/gray1"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/item_Date"
@@ -34,7 +34,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:textColor="@color/gray1"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/item_Weight"
@@ -47,7 +47,7 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:textColor="@color/gray1"
+            android:textColor="?attr/colorOnSurface"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/item_delete"
@@ -64,7 +64,8 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/item_Weight"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baseline_delete_outline_32" />
+            app:srcCompat="@drawable/baseline_delete_outline_32"
+            app:tint="?attr/colorOnSurface" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

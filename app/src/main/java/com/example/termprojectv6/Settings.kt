@@ -31,6 +31,7 @@ class Settings : AppCompatActivity() {
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applyColorScheme()
         setContentView(R.layout.activity_settings)
 
         supportActionBar?.title = supportActionBar?.title.toString() + " - Settings"
@@ -87,6 +88,7 @@ class Settings : AppCompatActivity() {
             var colorSchemeId : Int = Random.nextInt(0,11)
             getSharedPreferences("data", MODE_PRIVATE).edit().putInt("colorSchemeId", colorSchemeId).commit()
             applyColorScheme(colorSchemeId)
+            recreateActivity()
             Toast.makeText(this, "Random color scheme ${colorSchemes[colorSchemeId]} applied", Toast.LENGTH_SHORT).show()
         } else if (item.itemId == R.id.menuMain) {
             val intent = Intent(this, MainActivity::class.java)
@@ -108,118 +110,23 @@ class Settings : AppCompatActivity() {
 
     fun applyColorScheme(colorSchemeId : Int = getSharedPreferences("data", MODE_PRIVATE).getInt("colorSchemeId", 1)) {
         when (colorSchemeId) {
-            0 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.gray7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.gray7)))
-                btnSaveSettings.background.setTint(resources.getColor(R.color.gray5))
-                btnSaveSettings.setTextColor(resources.getColor(R.color.black))
-                btnMain.background.setTint(resources.getColor(R.color.gray6))
-                btnEnterData.background.setTint(resources.getColor(R.color.gray6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.gray6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.gray9))
-            }
-            1 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.blue7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.blue7)))
-                btnSaveSettings.background.setTint(resources.getColor(R.color.blue5))
-                btnSaveSettings.setTextColor(resources.getColor(R.color.white))
-                btnMain.background.setTint(resources.getColor(R.color.blue6))
-                btnEnterData.background.setTint(resources.getColor(R.color.blue6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.blue6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.blue9))
-            }
-            2 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.indigo7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.indigo7)))
-                btnSaveSettings.background.setTint(resources.getColor(R.color.indigo5))
-                btnSaveSettings.setTextColor(resources.getColor(R.color.white))
-                btnMain.background.setTint(resources.getColor(R.color.indigo6))
-                btnEnterData.background.setTint(resources.getColor(R.color.indigo6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.indigo6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.indigo9))
-            }
-            3 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.purple7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.purple7)))
-                btnSaveSettings.background.setTint(resources.getColor(R.color.purple5))
-                btnSaveSettings.setTextColor(resources.getColor(R.color.white))
-                btnMain.background.setTint(resources.getColor(R.color.purple6))
-                btnEnterData.background.setTint(resources.getColor(R.color.purple6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.purple6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.purple9))
-            }
-            4 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.pink7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.pink7)))
-                btnSaveSettings.background.setTint(resources.getColor(R.color.pink5))
-                btnSaveSettings.setTextColor(resources.getColor(R.color.white))
-                btnMain.background.setTint(resources.getColor(R.color.pink6))
-                btnEnterData.background.setTint(resources.getColor(R.color.pink6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.pink6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.pink9))
-            }
-            5 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.red7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.red7)))
-                btnSaveSettings.background.setTint(resources.getColor(R.color.red5))
-                btnSaveSettings.setTextColor(resources.getColor(R.color.white))
-                btnMain.background.setTint(resources.getColor(R.color.red6))
-                btnEnterData.background.setTint(resources.getColor(R.color.red6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.red6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.red9))
-            }
-            6 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.orange7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.orange7)))
-                btnSaveSettings.background.setTint(resources.getColor(R.color.orange5))
-                btnSaveSettings.setTextColor(resources.getColor(R.color.black))
-                btnMain.background.setTint(resources.getColor(R.color.orange6))
-                btnEnterData.background.setTint(resources.getColor(R.color.orange6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.orange6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.orange9))
-            }
-            7 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.yellow7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.yellow7)))
-                btnSaveSettings.background.setTint(resources.getColor(R.color.yellow5))
-                btnSaveSettings.setTextColor(resources.getColor(R.color.black))
-                btnMain.background.setTint(resources.getColor(R.color.yellow6))
-                btnEnterData.background.setTint(resources.getColor(R.color.yellow6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.yellow6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.yellow9))
-            }
-            8 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.green7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.green7)))
-                btnSaveSettings.background.setTint(resources.getColor(R.color.green5))
-                btnSaveSettings.setTextColor(resources.getColor(R.color.white))
-                btnMain.background.setTint(resources.getColor(R.color.green6))
-                btnEnterData.background.setTint(resources.getColor(R.color.green6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.green6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.green9))
-            }
-            9 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.teal7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.teal7)))
-                btnSaveSettings.background.setTint(resources.getColor(R.color.teal5))
-                btnSaveSettings.setTextColor(resources.getColor(R.color.black))
-                btnMain.background.setTint(resources.getColor(R.color.teal6))
-                btnEnterData.background.setTint(resources.getColor(R.color.teal6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.teal6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.teal9))
-            }
-            10 -> {
-                window.setStatusBarColor(getResources().getColor(R.color.cyan7))
-                supportActionBar?.setBackgroundDrawable(ColorDrawable(ContextCompat.getColor(this, R.color.cyan7)))
-                btnSaveSettings.background.setTint(resources.getColor(R.color.cyan5))
-                btnSaveSettings.setTextColor(resources.getColor(R.color.black))
-
-                btnMain.background.setTint(resources.getColor(R.color.cyan6))
-                btnEnterData.background.setTint(resources.getColor(R.color.cyan6))
-                btnDisplayData.background.setTint(resources.getColor(R.color.cyan6))
-                linearLayoutBottom.background.setTint(resources.getColor(R.color.cyan9))
-            }
+            0 -> { setTheme(R.style.AppTheme_Gray) }
+            1 -> { setTheme(R.style.AppTheme_Blue) }
+            2 -> { setTheme(R.style.AppTheme_Indigo) }
+            3 -> { setTheme(R.style.AppTheme_Purple) }
+            4 -> { setTheme(R.style.AppTheme_Pink) }
+            5 -> { setTheme(R.style.AppTheme_Red) }
+            6 -> { setTheme(R.style.AppTheme_Orange) }
+            7 -> { setTheme(R.style.AppTheme_Yellow) }
+            8 -> { setTheme(R.style.AppTheme_Green) }
+            9 -> { setTheme(R.style.AppTheme_Teal) }
+            10 -> { setTheme(R.style.AppTheme_Cyan) }
         }
     }
-
+    fun recreateActivity() {
+        val intent = Intent(this, this.javaClass)
+        this.startActivity(intent)
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        this.finish()
+    }
 }
