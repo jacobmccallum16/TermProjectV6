@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        applyColorScheme()
+        Utils.applyColorScheme(this);
         setContentView(R.layout.activity_main)
 
         supportActionBar?.title = resources.getString(R.string.MainActivity_title)
@@ -169,11 +169,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, Settings::class.java)
             startActivity(intent)
         } else if (item.itemId == R.id.menuRandomTheme) {
-            var colorSchemeId : Int = Random.nextInt(0,11)
-            getSharedPreferences("data", MODE_PRIVATE).edit().putInt("colorSchemeId", colorSchemeId).commit()
-            applyColorScheme(colorSchemeId)
-            recreateActivity()
-            Toast.makeText(this, "Random color scheme ${colorSchemes[colorSchemeId]} applied", Toast.LENGTH_SHORT).show()
+            Utils.randomizeColorScheme(this)
         } else if (item.itemId == R.id.menuMain) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -190,28 +186,6 @@ class MainActivity : AppCompatActivity() {
             return super.onOptionsItemSelected(item)
         }
         return true
-    }
-
-    fun applyColorScheme(colorSchemeId : Int = getSharedPreferences("data", MODE_PRIVATE).getInt("colorSchemeId", 1)) {
-        when (colorSchemeId) {
-            0 -> { setTheme(R.style.AppTheme_Gray) }
-            1 -> { setTheme(R.style.AppTheme_Blue) }
-            2 -> { setTheme(R.style.AppTheme_Indigo) }
-            3 -> { setTheme(R.style.AppTheme_Purple) }
-            4 -> { setTheme(R.style.AppTheme_Pink) }
-            5 -> { setTheme(R.style.AppTheme_Red) }
-            6 -> { setTheme(R.style.AppTheme_Orange) }
-            7 -> { setTheme(R.style.AppTheme_Yellow) }
-            8 -> { setTheme(R.style.AppTheme_Green) }
-            9 -> { setTheme(R.style.AppTheme_Teal) }
-            10 -> { setTheme(R.style.AppTheme_Cyan) }
-        }
-    }
-    fun recreateActivity() {
-        val intent = Intent(this, MainActivity::class.java)
-        this.startActivity(intent)
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        this.finish()
     }
 
 

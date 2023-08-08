@@ -25,12 +25,10 @@ class EnterData : AppCompatActivity() {
     lateinit var btnEnterData : Button
     lateinit var btnDisplayData : Button
     lateinit var linearLayoutBottom : LinearLayout
-    val colorSchemes : Array<String> = arrayOf("Gray", "Blue", "Indigo", "Purple", "Pink",
-        "Red", "Orange", "Yellow", "Green", "Teal", "Cyan")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        applyColorScheme()
+        Utils.applyColorScheme(this);
         setContentView(R.layout.activity_enter_data)
 
         supportActionBar?.title = resources.getString(R.string.EnterData_title)
@@ -94,8 +92,6 @@ class EnterData : AppCompatActivity() {
             Toast.makeText(this, "Entry[${entryNum-1}] added", Toast.LENGTH_SHORT).show()
         }
 
-        applyColorScheme()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -109,11 +105,7 @@ class EnterData : AppCompatActivity() {
             val intent = Intent(this, Settings::class.java)
             startActivity(intent)
         } else if (item.itemId == R.id.menuRandomTheme) {
-            var colorSchemeId : Int = Random.nextInt(0,11)
-            getSharedPreferences("data", MODE_PRIVATE).edit().putInt("colorSchemeId", colorSchemeId).commit()
-            applyColorScheme(colorSchemeId)
-            recreateActivity()
-            Toast.makeText(this, "Random color scheme ${colorSchemes[colorSchemeId]} applied", Toast.LENGTH_SHORT).show()
+            Utils.randomizeColorScheme(this)
         } else if (item.itemId == R.id.menuMain) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -132,25 +124,4 @@ class EnterData : AppCompatActivity() {
         return true
     }
 
-    fun applyColorScheme(colorSchemeId : Int = getSharedPreferences("data", MODE_PRIVATE).getInt("colorSchemeId", 1)) {
-        when (colorSchemeId) {
-            0 -> { setTheme(R.style.AppTheme_Gray) }
-            1 -> { setTheme(R.style.AppTheme_Blue) }
-            2 -> { setTheme(R.style.AppTheme_Indigo) }
-            3 -> { setTheme(R.style.AppTheme_Purple) }
-            4 -> { setTheme(R.style.AppTheme_Pink) }
-            5 -> { setTheme(R.style.AppTheme_Red) }
-            6 -> { setTheme(R.style.AppTheme_Orange) }
-            7 -> { setTheme(R.style.AppTheme_Yellow) }
-            8 -> { setTheme(R.style.AppTheme_Green) }
-            9 -> { setTheme(R.style.AppTheme_Teal) }
-            10 -> { setTheme(R.style.AppTheme_Cyan) }
-        }
-    }
-    fun recreateActivity() {
-        val intent = Intent(this, this.javaClass)
-        this.startActivity(intent)
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        this.finish()
-    }
 }

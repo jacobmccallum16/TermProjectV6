@@ -42,7 +42,7 @@ class DisplayData : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        applyColorScheme()
+        Utils.applyColorScheme(this);
         setContentView(R.layout.activity_display_data)
 
         supportActionBar?.title = resources.getString(R.string.DisplayData_title)
@@ -130,30 +130,8 @@ class DisplayData : AppCompatActivity() {
             chart.notifyDataSetChanged()
         } else {
             set1 = BarDataSet(values, "Weight in lbs")
-            if (colorSchemeId == 0) { colorStartId = resources.getColor(R.color.gray9, theme);
-                colorEndId = resources.getColor(R.color.gray3, theme);}
-            if (colorSchemeId == 1) { colorStartId = resources.getColor(R.color.blue9, theme);
-                colorEndId = resources.getColor(R.color.blue4, theme)}
-            if (colorSchemeId == 2) { colorStartId = resources.getColor(R.color.indigo9, theme);
-                colorEndId = resources.getColor(R.color.indigo4, theme)}
-            if (colorSchemeId == 3) { colorStartId = resources.getColor(R.color.purple9, theme);
-                colorEndId = resources.getColor(R.color.purple4, theme)}
-            if (colorSchemeId == 4) { colorStartId = resources.getColor(R.color.pink9, theme);
-                colorEndId = resources.getColor(R.color.pink4, theme)}
-            if (colorSchemeId == 5) { colorStartId = resources.getColor(R.color.red9, theme);
-                colorEndId = resources.getColor(R.color.red4, theme)}
-            if (colorSchemeId == 6) { colorStartId = resources.getColor(R.color.orange9, theme);
-                colorEndId = resources.getColor(R.color.orange4, theme)}
-            if (colorSchemeId == 7) { colorStartId = resources.getColor(R.color.yellow9, theme);
-                colorEndId = resources.getColor(R.color.yellow4, theme)}
-            if (colorSchemeId == 8) { colorStartId = resources.getColor(R.color.green9, theme);
-                colorEndId = resources.getColor(R.color.green4, theme)}
-            if (colorSchemeId == 9) { colorStartId = resources.getColor(R.color.teal9, theme);
-                colorEndId = resources.getColor(R.color.teal4, theme)}
-            if (colorSchemeId == 10) { colorStartId = resources.getColor(R.color.cyan9, theme);
-                colorEndId = resources.getColor(R.color.cyan4, theme)}
             val gradientFills: MutableList<GradientColor> = ArrayList()
-            gradientFills.add(GradientColor(colorStartId, colorEndId))
+            gradientFills.add(GradientColor(Utils.getColor9(this), Utils.getColor4(this)))
             set1.setGradientColors(gradientFills)
             val dataSets = ArrayList<IBarDataSet>()
             dataSets.add(set1)
@@ -175,11 +153,7 @@ class DisplayData : AppCompatActivity() {
             val intent = Intent(this, Settings::class.java)
             startActivity(intent)
         } else if (item.itemId == R.id.menuRandomTheme) {
-            var colorSchemeId : Int = Random.nextInt(0,11)
-            getSharedPreferences("data", MODE_PRIVATE).edit().putInt("colorSchemeId", colorSchemeId).commit()
-            applyColorScheme(colorSchemeId)
-            recreateActivity()
-            Toast.makeText(this, "Random color scheme ${colorSchemes[colorSchemeId]} applied", Toast.LENGTH_SHORT).show()
+            Utils.randomizeColorScheme(this)
         } else if (item.itemId == R.id.menuMain) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
@@ -197,28 +171,5 @@ class DisplayData : AppCompatActivity() {
         }
         return true
     }
-
-    fun applyColorScheme(colorSchemeId : Int = getSharedPreferences("data", MODE_PRIVATE).getInt("colorSchemeId", 1)) {
-        when (colorSchemeId) {
-            0 -> { setTheme(R.style.AppTheme_Gray) }
-            1 -> { setTheme(R.style.AppTheme_Blue) }
-            2 -> { setTheme(R.style.AppTheme_Indigo) }
-            3 -> { setTheme(R.style.AppTheme_Purple) }
-            4 -> { setTheme(R.style.AppTheme_Pink) }
-            5 -> { setTheme(R.style.AppTheme_Red) }
-            6 -> { setTheme(R.style.AppTheme_Orange) }
-            7 -> { setTheme(R.style.AppTheme_Yellow) }
-            8 -> { setTheme(R.style.AppTheme_Green) }
-            9 -> { setTheme(R.style.AppTheme_Teal) }
-            10 -> { setTheme(R.style.AppTheme_Cyan) }
-        }
-    }
-    fun recreateActivity() {
-        val intent = Intent(this, this.javaClass)
-        this.startActivity(intent)
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        this.finish()
-    }
-
 
 }
