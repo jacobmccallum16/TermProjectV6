@@ -133,25 +133,25 @@ class DisplayData : AppCompatActivity() {
             if (colorSchemeId == 0) { colorStartId = resources.getColor(R.color.gray9, theme);
                 colorEndId = resources.getColor(R.color.gray3, theme);}
             if (colorSchemeId == 1) { colorStartId = resources.getColor(R.color.blue9, theme);
-                colorEndId = resources.getColor(R.color.blue4)}
-            if (colorSchemeId == 2) { colorStartId = resources.getColor(R.color.indigo9);
-                colorEndId = resources.getColor(R.color.indigo4)}
-            if (colorSchemeId == 3) { colorStartId = resources.getColor(R.color.purple9);
-                colorEndId = resources.getColor(R.color.purple4)}
-            if (colorSchemeId == 4) { colorStartId = resources.getColor(R.color.pink9);
-                colorEndId = resources.getColor(R.color.pink4)}
-            if (colorSchemeId == 5) { colorStartId = resources.getColor(R.color.red9);
-                colorEndId = resources.getColor(R.color.red4)}
-            if (colorSchemeId == 6) { colorStartId = resources.getColor(R.color.orange9);
-                colorEndId = resources.getColor(R.color.orange4)}
-            if (colorSchemeId == 7) { colorStartId = resources.getColor(R.color.yellow9);
-                colorEndId = resources.getColor(R.color.yellow4)}
-            if (colorSchemeId == 8) { colorStartId = resources.getColor(R.color.green9);
-                colorEndId = resources.getColor(R.color.green4)}
-            if (colorSchemeId == 9) { colorStartId = resources.getColor(R.color.teal9);
-                colorEndId = resources.getColor(R.color.teal4)}
-            if (colorSchemeId == 10) { colorStartId = resources.getColor(R.color.cyan9);
-                colorEndId = resources.getColor(R.color.cyan4)}
+                colorEndId = resources.getColor(R.color.blue4, theme)}
+            if (colorSchemeId == 2) { colorStartId = resources.getColor(R.color.indigo9, theme);
+                colorEndId = resources.getColor(R.color.indigo4, theme)}
+            if (colorSchemeId == 3) { colorStartId = resources.getColor(R.color.purple9, theme);
+                colorEndId = resources.getColor(R.color.purple4, theme)}
+            if (colorSchemeId == 4) { colorStartId = resources.getColor(R.color.pink9, theme);
+                colorEndId = resources.getColor(R.color.pink4, theme)}
+            if (colorSchemeId == 5) { colorStartId = resources.getColor(R.color.red9, theme);
+                colorEndId = resources.getColor(R.color.red4, theme)}
+            if (colorSchemeId == 6) { colorStartId = resources.getColor(R.color.orange9, theme);
+                colorEndId = resources.getColor(R.color.orange4, theme)}
+            if (colorSchemeId == 7) { colorStartId = resources.getColor(R.color.yellow9, theme);
+                colorEndId = resources.getColor(R.color.yellow4, theme)}
+            if (colorSchemeId == 8) { colorStartId = resources.getColor(R.color.green9, theme);
+                colorEndId = resources.getColor(R.color.green4, theme)}
+            if (colorSchemeId == 9) { colorStartId = resources.getColor(R.color.teal9, theme);
+                colorEndId = resources.getColor(R.color.teal4, theme)}
+            if (colorSchemeId == 10) { colorStartId = resources.getColor(R.color.cyan9, theme);
+                colorEndId = resources.getColor(R.color.cyan4, theme)}
             val gradientFills: MutableList<GradientColor> = ArrayList()
             gradientFills.add(GradientColor(colorStartId, colorEndId))
             set1.setGradientColors(gradientFills)
