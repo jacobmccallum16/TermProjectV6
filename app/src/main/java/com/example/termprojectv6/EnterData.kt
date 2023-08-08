@@ -33,7 +33,7 @@ class EnterData : AppCompatActivity() {
         applyColorScheme()
         setContentView(R.layout.activity_enter_data)
 
-        supportActionBar?.title = supportActionBar?.title.toString() + " - Enter Data"
+        supportActionBar?.title = resources.getString(R.string.EnterData_title)
 
         val etDate : EditText = findViewById(R.id.etDate)
         val etWeight : EditText = findViewById(R.id.etWeight)
