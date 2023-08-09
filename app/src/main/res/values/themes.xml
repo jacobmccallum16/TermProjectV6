@@ -32,6 +32,7 @@
         <item name="colorPrimaryVariant">@color/blue6</item>
         <item name="colorSecondary">@color/blue7</item>        <item name="colorOnSecondary">@color/blue1</item>
         <item name="colorSecondaryVariant">@color/blue8</item>
+        <item name="colorPrimaryDark">@color/blue9</item>
     </style>
     <style name="AppTheme.Indigo" parent="Base.Theme.TermProjectV6" >
         <item name="colorSurface">@color/indigo1</item>          <item name="colorOnSurface">@color/indigo8</item>
@@ -40,6 +41,7 @@
         <item name="colorPrimaryVariant">@color/indigo6</item>
         <item name="colorSecondary">@color/indigo7</item>        <item name="colorOnSecondary">@color/indigo1</item>
         <item name="colorSecondaryVariant">@color/indigo8</item>
+        <item name="colorPrimaryDark">@color/indigo9</item>
     </style>
     <style name="AppTheme.Purple" parent="Base.Theme.TermProjectV6" >
         <item name="colorSurface">@color/purple1</item>          <item name="colorOnSurface">@color/purple8</item>
@@ -48,15 +50,16 @@
         <item name="colorPrimaryVariant">@color/purple6</item>
         <item name="colorSecondary">@color/purple7</item>        <item name="colorOnSecondary">@color/purple1</item>
         <item name="colorSecondaryVariant">@color/purple8</item>
+        <item name="colorPrimaryDark">@color/purple9</item>
     </style>
     <style name="AppTheme.Pink" parent="Base.Theme.TermProjectV6" >
         <item name="colorSurface">@color/pink1</item>          <item name="colorOnSurface">@color/pink8</item>
         <item name="colorPrimarySurface">@color/pink2</item>   <item name="colorOnPrimarySurface">@color/pink9</item>
         <item name="colorPrimary">@color/pink5</item>          <item name="colorOnPrimary">@color/white</item>
-        <item name="colorPrimaryDark">@color/pink8</item>
         <item name="colorPrimaryVariant">@color/pink6</item>
         <item name="colorSecondary">@color/pink7</item>        <item name="colorOnSecondary">@color/pink1</item>
         <item name="colorSecondaryVariant">@color/pink8</item>
+        <item name="colorPrimaryDark">@color/pink9</item>
     </style>
     <style name="AppTheme.Red" parent="Base.Theme.TermProjectV6" >
         <item name="colorSurface">@color/red1</item>          <item name="colorOnSurface">@color/red8</item>
@@ -65,6 +68,7 @@
         <item name="colorPrimaryVariant">@color/red6</item>
         <item name="colorSecondary">@color/red7</item>        <item name="colorOnSecondary">@color/red1</item>
         <item name="colorSecondaryVariant">@color/red8</item>
+        <item name="colorPrimaryDark">@color/red9</item>
     </style>
     <style name="AppTheme.Orange" parent="Base.Theme.TermProjectV6" >
         <item name="colorSurface">@color/orange1</item>          <item name="colorOnSurface">@color/orange8</item>
@@ -73,6 +77,7 @@
         <item name="colorPrimaryVariant">@color/orange6</item>
         <item name="colorSecondary">@color/orange7</item>        <item name="colorOnSecondary">@color/orange1</item>
         <item name="colorSecondaryVariant">@color/orange8</item>
+        <item name="colorPrimaryDark">@color/orange9</item>
     </style>
     <style name="AppTheme.Yellow" parent="Base.Theme.TermProjectV6" >
         <item name="colorSurface">@color/yellow1</item>          <item name="colorOnSurface">@color/yellow8</item>
@@ -81,6 +86,7 @@
         <item name="colorPrimaryVariant">@color/yellow6</item>
         <item name="colorSecondary">@color/yellow7</item>        <item name="colorOnSecondary">@color/yellow1</item>
         <item name="colorSecondaryVariant">@color/yellow8</item>
+        <item name="colorPrimaryDark">@color/yellow9</item>
     </style>
     <style name="AppTheme.Green" parent="Base.Theme.TermProjectV6" >
         <item name="colorSurface">@color/green1</item>          <item name="colorOnSurface">@color/green8</item>
@@ -89,6 +95,7 @@
         <item name="colorPrimaryVariant">@color/green6</item>
         <item name="colorSecondary">@color/green7</item>        <item name="colorOnSecondary">@color/green1</item>
         <item name="colorSecondaryVariant">@color/green8</item>
+        <item name="colorPrimaryDark">@color/green9</item>
     </style>
     <style name="AppTheme.Teal" parent="Base.Theme.TermProjectV6" >
         <item name="colorSurface">@color/teal1</item>          <item name="colorOnSurface">@color/teal8</item>
@@ -97,6 +104,7 @@
         <item name="colorPrimaryVariant">@color/teal6</item>
         <item name="colorSecondary">@color/teal7</item>        <item name="colorOnSecondary">@color/teal1</item>
         <item name="colorSecondaryVariant">@color/teal8</item>
+        <item name="colorPrimaryDark">@color/teal9</item>
     </style>
     <style name="AppTheme.Cyan" parent="Base.Theme.TermProjectV6" >
         <item name="colorSurface">@color/cyan1</item>          <item name="colorOnSurface">@color/cyan8</item>
@@ -105,6 +113,7 @@
         <item name="colorPrimaryVariant">@color/cyan6</item>
         <item name="colorSecondary">@color/cyan7</item>        <item name="colorOnSecondary">@color/cyan1</item>
         <item name="colorSecondaryVariant">@color/cyan8</item>
+        <item name="colorPrimaryDark">@color/cyan9</item>
     </style>
     <style name="AppTheme.Gray" parent="Base.Theme.TermProjectV6" >
         <item name="colorSurface">@color/gray1</item>          <item name="colorOnSurface">@color/gray8</item>
@@ -113,6 +122,7 @@
         <item name="colorPrimaryVariant">@color/gray6</item>
         <item name="colorSecondary">@color/gray7</item>        <item name="colorOnSecondary">@color/gray1</item>
         <item name="colorSecondaryVariant">@color/gray8</item>
+        <item name="colorPrimaryDark">@color/gray9</item>
     </style>
 
 </resources>

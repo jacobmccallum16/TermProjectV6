@@ -1,74 +1,35 @@
 package com.example.termprojectv6
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
 import android.widget.Toast
-import androidx.annotation.ColorInt
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import kotlin.random.Random
+import com.example.termprojectv6.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var etDate : EditText
-    lateinit var etWeight : EditText
-    lateinit var btnSubmit : Button
-    lateinit var tvFeedback : TextView
-    lateinit var tvIds : TextView
-    lateinit var tvDates : TextView
-    lateinit var tvWeights : TextView
-    lateinit var btnDeleteAllEntries : Button
-    lateinit var btnRemoveLastEntry : Button
-    lateinit var btnMain : Button
-    lateinit var btnEnterData : Button
-    lateinit var btnDisplayData : Button
-    lateinit var linearLayoutBottom : LinearLayout
+    private lateinit var binding: ActivityMainBinding
     var entryNum = 0
     var displayIds = "ID:"
     var displayDates = "Date:"
     var displayWeights = "Weight:"
-    val colorSchemes : Array<String> = arrayOf("Gray", "Blue", "Indigo", "Purple", "Pink",
-        "Red", "Orange", "Yellow", "Green", "Teal", "Cyan")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Utils.applyColorScheme(this);
-        setContentView(R.layout.activity_main)
+        Utils.applyColorScheme(this)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         supportActionBar?.title = resources.getString(R.string.MainActivity_title)
-        etDate = findViewById(R.id.etDate)
-        etWeight = findViewById(R.id.etWeight)
-        btnSubmit = findViewById(R.id.btnSubmit)
-        tvFeedback = findViewById(R.id.tvFeedback)
-        tvIds = findViewById(R.id.tvColorScheme)
-        tvDates = findViewById(R.id.tvDates)
-        tvWeights  = findViewById(R.id.tvWeights)
-        btnDeleteAllEntries = findViewById(R.id.btnDeleteAllEntries)
-        btnRemoveLastEntry= findViewById(R.id.btnRemoveLastEntry)
-        // navigation
-        btnMain = findViewById(R.id.btnMain)
-        btnMain.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-        }
-        btnEnterData = findViewById(R.id.btnEnterData)
-        btnEnterData.setOnClickListener {
-            val i = Intent(this, EnterData::class.java)
-            startActivity(i)
-        }
-        btnDisplayData = findViewById(R.id.btnDisplayData)
-        btnDisplayData.setOnClickListener {
-            val intent = Intent(this, DisplayData::class.java)
-            startActivity(intent)
-        }
-        linearLayoutBottom = findViewById(R.id.linearLayoutBottom)
-
+        val btnMain : Button = findViewById(R.id.btnMain)
+        btnMain.setOnClickListener { Utils.openMain(this) }
+        val btnEnterData : Button = findViewById(R.id.btnEnterData)
+        btnEnterData.setOnClickListener { Utils.openEnterData(this) }
+        val btnDisplayData : Button = findViewById(R.id.btnDisplayData)
+        btnDisplayData.setOnClickListener { Utils.openDisplayData(this) }
 
         // get data
         val data = getSharedPreferences("data", MODE_PRIVATE) // getter
@@ -84,15 +45,15 @@ class MainActivity : AppCompatActivity() {
             displayWeights += "\n${entries[i].weight}"
         }
         // Display Data Start
-        tvIds.text = displayIds
-        tvDates.text = displayDates
-        tvWeights.text = displayWeights
+        binding.tvIds.text = displayIds
+        binding.tvDates.text = displayDates
+        binding.tvWeights.text = displayWeights
         // Display Data End
 
         // add data
-        btnSubmit.setOnClickListener {
+        binding.btnSubmit.setOnClickListener {
             try {
-                entries.add(Entry(entryNum, etDate.text.toString(), etWeight.text.toString().toFloat()))
+                entries.add(Entry(entryNum, binding.etDate.text.toString(), binding.etWeight.text.toString().toFloat()))
                 editor.putInt("id-$entryNum", entries[entryNum].id).apply()
                 displayIds += "\n${entries[entryNum].id}"
                 editor.putString("date-$entryNum", entries[entryNum].date).apply()
@@ -102,17 +63,17 @@ class MainActivity : AppCompatActivity() {
                 entryNum++
                 editor.putInt("entries", entryNum).apply()
             } catch (e: NumberFormatException) {
-                tvFeedback.text = "Please enter a valid weight and date"
+                binding.tvFeedback.text = "Please enter a valid weight and date"
                 return@setOnClickListener
             }
-            tvFeedback.text = ""
+            binding.tvFeedback.text = ""
             Toast.makeText(this, "Entry[${entryNum-1}] added", Toast.LENGTH_SHORT).show()
-            tvIds.text = displayIds
-            tvDates.text = displayDates
-            tvWeights.text = displayWeights
+            binding.tvIds.text = displayIds
+            binding.tvDates.text = displayDates
+            binding.tvWeights.text = displayWeights
         }
         // removeLastEntry
-        btnRemoveLastEntry.setOnClickListener {
+        binding.btnRemoveLastEntry.setOnClickListener {
             entryNum--
             editor.remove("id-$entryNum")
             editor.remove("date-$entryNum")
@@ -129,14 +90,14 @@ class MainActivity : AppCompatActivity() {
                 displayDates += "\n${i.date}"
                 displayWeights += "\n${i.weight}"
             }
-            tvFeedback.text = ""
-            tvIds.text = displayIds
-            tvDates.text = displayDates
-            tvWeights.text = displayWeights
+            binding.tvFeedback.text = ""
+            binding.tvIds.text = displayIds
+            binding.tvDates.text = displayDates
+            binding.tvWeights.text = displayWeights
             Toast.makeText(this, "Entry[$entryNum] deleted", Toast.LENGTH_SHORT).show()
         }
         // deleteAllEntries
-        btnDeleteAllEntries.setOnClickListener {
+        binding.btnDeleteAllEntries.setOnClickListener {
             while (entries.size > 0) {
                 entryNum--
                 editor.remove("id-$entryNum")
@@ -150,11 +111,11 @@ class MainActivity : AppCompatActivity() {
             displayIds = "ID:"
             displayDates = "Date:"
             displayWeights = "Weight:"
-            tvFeedback.text = ""
+            binding.tvFeedback.text = ""
             Toast.makeText(this, "All entries deleted", Toast.LENGTH_SHORT).show()
-            tvIds.text = displayIds
-            tvDates.text = displayDates
-            tvWeights.text = displayWeights
+            binding.tvIds.text = displayIds
+            binding.tvDates.text = displayDates
+            binding.tvWeights.text = displayWeights
         }
     }
 
@@ -164,29 +125,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_settings) {
-            Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, Settings::class.java)
-            startActivity(intent)
-        } else if (item.itemId == R.id.menuRandomTheme) {
-            Utils.randomizeColorScheme(this)
-        } else if (item.itemId == R.id.menuMain) {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            Toast.makeText(this, "Main", Toast.LENGTH_SHORT).show()
-        } else if (item.itemId == R.id.menuEnterData) {
-            val intent = Intent(this, EnterData::class.java)
-            startActivity(intent)
-            Toast.makeText(this, "Enter Data", Toast.LENGTH_SHORT).show()
-        } else if (item.itemId == R.id.menuDisplayData) {
-            val intent = Intent(this, DisplayData::class.java)
-            startActivity(intent)
-            Toast.makeText(this, "Display Data", Toast.LENGTH_SHORT).show()
-        } else {
-            return super.onOptionsItemSelected(item)
+        if (item.itemId == R.id.menu_settings) { Utils.openSettings(this)
+        } else if (item.itemId == R.id.menuRandomTheme) { Utils.randomizeColorScheme(this)
+        } else if (item.itemId == R.id.menuMain) { Utils.openMain(this)
+        } else if (item.itemId == R.id.menuEnterData) { Utils.openEnterData(this)
+        } else if (item.itemId == R.id.menuDisplayData) { Utils.openDisplayData(this)
+        } else { return super.onOptionsItemSelected(item)
         }
         return true
     }
-
 
 }
