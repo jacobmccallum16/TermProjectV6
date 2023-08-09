@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_view"
+    android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
@@ -18,51 +18,50 @@
         android:padding="8dp">
 
         <TextView
-            android:id="@+id/item_ID"
-            android:layout_width="60dp"
+            android:id="@+id/itemDate"
+            android:layout_width="160dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textColor="?attr/colorOnPrimarySurface"
-            android:textSize="24sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/item_Date"
+            app:layout_constraintEnd_toStartOf="@+id/itemWeight"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/item_Date"
-            android:layout_width="120dp"
+            android:id="@+id/itemWeight"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textColor="?attr/colorOnPrimarySurface"
-            android:textSize="24sp"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/item_Weight"
+            app:layout_constraintEnd_toStartOf="@+id/itemEdit"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/item_ID"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/item_Weight"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:textColor="?attr/colorOnPrimarySurface"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/item_delete"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/item_Date"
+            app:layout_constraintStart_toEndOf="@+id/itemDate"
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/item_delete"
+            android:id="@+id/itemEdit"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/itemDelete"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/itemWeight"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_edit_32"
+            app:tint="?attr/colorOnPrimarySurface" />
+
+        <ImageView
+            android:id="@+id/itemDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/item_Weight"
+            app:layout_constraintStart_toEndOf="@+id/itemEdit"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/baseline_delete_outline_32"
             app:tint="?attr/colorOnPrimarySurface" />

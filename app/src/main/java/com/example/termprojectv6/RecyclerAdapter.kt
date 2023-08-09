@@ -1,17 +1,27 @@
 package com.example.termprojectv6
 
-import android.content.Context
-import android.content.Context.MODE_PRIVATE
-import android.content.SharedPreferences
-import android.graphics.Color
+import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.termprojectv6.databinding.ActivityEnterDataBinding
 
-class RecyclerAdapter(val colorSchemeId : Int, val entries : ArrayList<Entry>) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+interface EntryItemClickListener {
+    fun onDeleteClick(entryId: Int)
+}
+
+class RecyclerAdapter(val entries : ArrayList<Entry2>, private val onDeleteClickListener: EntryItemClickListener) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+
+    val days = arrayOf("", "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th",
+        "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th",
+        "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th", "29th", "30th")
+    val months = arrayOf("","January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December")
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.card_layout, parent, false)
@@ -19,9 +29,12 @@ class RecyclerAdapter(val colorSchemeId : Int, val entries : ArrayList<Entry>) :
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        viewHolder.item_ID.text = entries[i].id.toString()
-        viewHolder.item_Date.text = entries[i].date
-        viewHolder.item_Weight.text = entries[i].weight.toString()
+        var entry = entries.get(i)
+        viewHolder.itemDate.text = "[${entry.id}] ${months[entry.month]} ${days[entry.day]}, ${entry.year}"
+        viewHolder.itemWeight.text = entries[i].weight.toString() + " lbs"
+        viewHolder.itemDelete.setOnClickListener {
+            onDeleteClickListener.onDeleteClick(entry.id)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -29,16 +42,18 @@ class RecyclerAdapter(val colorSchemeId : Int, val entries : ArrayList<Entry>) :
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        lateinit var card_view: CardView
-        var item_ID: TextView
-        var item_Date: TextView
-        var item_Weight: TextView
+        var cardView: CardView
+        var itemDate: TextView
+        var itemWeight: TextView
+        var itemEdit: ImageView
+        var itemDelete: ImageView
 
         init {
-            card_view = itemView.findViewById(R.id.card_view)
-            item_ID = itemView.findViewById(R.id.item_ID)
-            item_Date = itemView.findViewById(R.id.item_Date)
-            item_Weight = itemView.findViewById(R.id.item_Weight)
+            cardView = itemView.findViewById(R.id.cardView)
+            itemDate = itemView.findViewById(R.id.itemDate)
+            itemWeight = itemView.findViewById(R.id.itemWeight)
+            itemEdit = itemView.findViewById(R.id.itemEdit)
+            itemDelete = itemView.findViewById(R.id.itemDelete)
         }
     }
 }

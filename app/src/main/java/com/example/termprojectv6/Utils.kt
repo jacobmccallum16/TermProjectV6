@@ -1,6 +1,7 @@
 package com.example.termprojectv6
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.util.TypedValue
 import android.widget.Toast
@@ -36,7 +37,11 @@ object Utils {
         Toast.makeText(activity, "Color scheme changed to: ${colorSchemes[colorSchemeId]}", Toast.LENGTH_SHORT).show()
     }
     fun randomizeColorScheme(activity : Activity) {
-        val colorSchemeId : Int = Random.nextInt(0,11)
+        val currentColorSchemeId = getColorScheme(activity)
+        var colorSchemeId= Random.nextInt(0,11)
+        while (colorSchemeId == currentColorSchemeId) {
+            colorSchemeId = Random.nextInt(0,11)
+        }
         saveColorScheme(activity, colorSchemeId)
         applyColorScheme(activity)
         recreateActivity(activity)
@@ -95,6 +100,7 @@ object Utils {
         }
         Toast.makeText(activity, "Second Activity", Toast.LENGTH_SHORT).show()
     }
+
 
     fun getColorScheme(activity: Activity) : Int {
         val colorSchemeId = activity.getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE).getInt("colorSchemeId", 1)

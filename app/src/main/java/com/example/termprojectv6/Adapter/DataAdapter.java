@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.termprojectv6.MainActivity;
 import com.example.termprojectv6.Model.DataModel;
 import com.example.termprojectv6.R;
 import com.example.termprojectv6.SecondActivity;
@@ -102,11 +99,10 @@ public class DataAdapter  extends RecyclerView.Adapter<DataAdapter.MyViewHolder>
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            cardView = itemView.findViewById(R.id.card_view);
-            itemID = itemView.findViewById(R.id.item_ID);
-            itemDate = itemView.findViewById(R.id.item_Date);
-            itemWeight = itemView.findViewById(R.id.item_Weight);
-            itemDelete = itemView.findViewById(R.id.item_delete);
+            cardView = itemView.findViewById(R.id.cardView);
+            itemDate = itemView.findViewById(R.id.itemDate);
+            itemWeight = itemView.findViewById(R.id.itemWeight);
+            itemDelete = itemView.findViewById(R.id.itemDelete);
         }
     }
 }

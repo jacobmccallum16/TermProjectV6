@@ -44,14 +44,9 @@ class DisplayData : AppCompatActivity() {
         btnDisplayData.setOnClickListener { Utils.openDisplayData(this) }
 
         // get data
-        val data = getSharedPreferences("data", MODE_PRIVATE) // getter
-        val editor = data.edit() // setter
-        entryNum = data.getInt("entries", 0)
-        entries = ArrayList()
+        val entries = Entries.getEntries(this)
+        entryNum = Entries.getEntryNum(this)
         for (i in 0 until entryNum) {
-            entries.add(Entry(data.getInt("id-$i", 0),
-                data.getString("date-$i", "n/a").toString(),
-                data.getFloat("weight-$i", 0f)))
             axisMax = max(axisMax, entries[i].weight)
         }
         var axisMin = entries[0].weight
@@ -95,7 +90,7 @@ class DisplayData : AppCompatActivity() {
         chart.axisRight.isEnabled = false
     }
 
-    fun passData(entries: ArrayList<Entry>) {
+    fun passData(entries: ArrayList<Entry2>) {
         val values = ArrayList<BarEntry>()
         for (i in 0 until entries.size) {
             values.add(BarEntry(i.toFloat(), entries[i].weight))
