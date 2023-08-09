@@ -134,6 +134,7 @@ class DisplayData : AppCompatActivity() {
         } else if (item.itemId == R.id.menuMain) { Utils.openMain(this)
         } else if (item.itemId == R.id.menuEnterData) { Utils.openEnterData(this)
         } else if (item.itemId == R.id.menuDisplayData) { Utils.openDisplayData(this)
+        } else if (item.itemId == R.id.menuSecondActivity) { Utils.openSecondActivity(this)
         } else { return super.onOptionsItemSelected(item)
         }
         return true

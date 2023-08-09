@@ -59,7 +59,7 @@ class EnterData : AppCompatActivity() {
                 entryNum++
                 editor.putInt("entries", entryNum).apply()
             } catch (e: NumberFormatException) {
-                binding.tvFeedback.text = "Please enter a valid weight and date"
+                binding.tvFeedback.text = getString(R.string.invalid_weight_or_date)
                 return@setOnClickListener
             }
             binding.tvFeedback.text = ""
@@ -79,6 +79,7 @@ class EnterData : AppCompatActivity() {
         } else if (item.itemId == R.id.menuMain) { Utils.openMain(this)
         } else if (item.itemId == R.id.menuEnterData) { Utils.openEnterData(this)
         } else if (item.itemId == R.id.menuDisplayData) { Utils.openDisplayData(this)
+        } else if (item.itemId == R.id.menuSecondActivity) { Utils.openSecondActivity(this)
         } else { return super.onOptionsItemSelected(item)
         }
         return true

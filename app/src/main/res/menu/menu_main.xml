@@ -27,5 +27,10 @@
         android:orderInCategory="5"
         app:showAsAction="never"/>
 
+    <item android:id="@+id/menuSecondActivity"
+        android:title="@string/menu_second_activity"
+        android:orderInCategory="3"
+        app:showAsAction="never"/>
+
 
 </menu>

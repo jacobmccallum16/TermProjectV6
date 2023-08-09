@@ -3,8 +3,16 @@
     <!--    header-->
     <string name="tvTitle">Term Project</string>
     <string name="EnterData_tvTitle">Enter Data</string>
-    <!-- Main Activity -->
+
+    <!-- Action Bar Titles -->
     <string name="MainActivity_title">Term Project - Main</string>
+    <string name="EnterData_title">Term Project - Enter Data</string>
+    <string name="DisplayData_title">Term Project - Display Data</string>
+    <string name="Settings_title">Term Project - Settings</string>
+    <string name="SecondActivity_title">Term Project - Second Activity</string>
+
+
+    <!-- Main Activity -->
     <string name="btnDeleteAllEntries">Delete All Entries</string>
     <string name="btnRemoveLastEntry">Remove Last Entry</string>
     <!-- Enter Data -->
@@ -13,9 +21,7 @@
     <string name="btnSubmit">Submit</string>
     <string name="tvFeedback"> </string>
     <!-- EnterData Activity -->
-    <string name="EnterData_title">Term Project - Enter Data</string>
     <!-- DisplayData Activity -->
-    <string name="DisplayData_title">Term Project - Display Data</string>
     <!--    old display format start-->
     <string name="tvIDs_start">ID:</string>
     <string name="tvDates_start">Date:</string>
@@ -58,9 +64,9 @@
     <string name="menu_main_activity">Main</string>
     <string name="menu_enter_data_activity">Enter Data</string>
     <string name="menu_display_data_activity">Display</string>
+    <string name="menu_second_activity">Second Activity</string>
 
     <!-- Settings Activity -->
-    <string name="Settings_title">Term Project - Settings</string>
     <string name="Settings_tvTitle">Settings</string>
     <string name="tvColorScheme">Color Scheme:</string>
     <string-array name="txtColorScheme">
@@ -77,4 +83,5 @@
         <item>Cyan</item>
     </string-array>
     <string name="btnSaveSettings">Save</string>
+    <string name="invalid_weight_or_date">Please enter a valid weight and date</string>
 </resources>

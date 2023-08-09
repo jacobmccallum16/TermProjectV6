@@ -3,10 +3,8 @@ package com.example.termprojectv6
 import android.app.Activity
 import android.content.Intent
 import android.util.TypedValue
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.graphics.toColor
 import kotlin.random.Random
 
 object Utils {
@@ -87,6 +85,15 @@ object Utils {
             recreateActivity(activity)
         }
         Toast.makeText(activity, "Settings", Toast.LENGTH_SHORT).show()
+    }
+    fun openSecondActivity(activity: Activity) {
+        if (activity::class.java != SecondActivity::class.java) {
+            val intent = Intent(activity, SecondActivity::class.java)
+            activity.startActivity(intent)
+        } else {
+            recreateActivity(activity)
+        }
+        Toast.makeText(activity, "Second Activity", Toast.LENGTH_SHORT).show()
     }
 
     fun getColorScheme(activity: Activity) : Int {
