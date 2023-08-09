@@ -84,4 +84,7 @@
     </string-array>
     <string name="btnSaveSettings">Save</string>
     <string name="invalid_weight_or_date">Please enter a valid weight and date</string>
+
+    <!-- Second Activity -->
+    <string name="tvDatabase">Database</string>
 </resources>

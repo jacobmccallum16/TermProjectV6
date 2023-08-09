@@ -1,20 +1,29 @@
 package com.example.termprojectv6
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.termprojectv6.Adapter.DataAdapter
+import com.example.termprojectv6.Model.DataModel
+import com.example.termprojectv6.Utilility.DatabaseHelper
 import com.example.termprojectv6.databinding.ActivitySecondBinding
+import java.util.Collections
+import java.util.Collections.reverse
 
 class SecondActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySecondBinding
-    var entryNum = 0
-    var displayIds = "ID:"
-    var displayDates = "Date:"
-    var displayWeights = "Weight:"
+    lateinit var recyclerView: RecyclerView
+    lateinit var db: DatabaseHelper
+    lateinit var dataList: List<DataModel>
+    lateinit var adapter: DataAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,99 +33,38 @@ class SecondActivity : AppCompatActivity() {
         setContentView(view)
 
         supportActionBar?.title = resources.getString(R.string.SecondActivity_title)
-        val btnMain : Button = findViewById(R.id.btnMain)
+        val btnMain: Button = findViewById(R.id.btnMain)
         btnMain.setOnClickListener { Utils.openMain(this) }
-        val btnEnterData : Button = findViewById(R.id.btnEnterData)
+        val btnEnterData: Button = findViewById(R.id.btnEnterData)
         btnEnterData.setOnClickListener { Utils.openEnterData(this) }
-        val btnDisplayData : Button = findViewById(R.id.btnDisplayData)
+        val btnDisplayData: Button = findViewById(R.id.btnDisplayData)
         btnDisplayData.setOnClickListener { Utils.openDisplayData(this) }
 
         // get data
-        val data = getSharedPreferences("data", MODE_PRIVATE) // getter
-        val editor = data.edit() // setter
-        entryNum = data.getInt("entries", 0)
-        val entries : ArrayList<Entry> = ArrayList()
-        for (i in 0 until entryNum) {
-            entries.add(Entry(data.getInt("id-$i", 0),
-                data.getString("date-$i", "n/a").toString(),
-                data.getFloat("weight-$i", 0f)))
-            displayIds += "\n${entries[i].id}"
-            displayDates += "\n${entries[i].date}"
-            displayWeights += "\n${entries[i].weight}"
-        }
-        // Display Data Start
-        binding.tvIds.text = displayIds
-        binding.tvDates.text = displayDates
-        binding.tvWeights.text = displayWeights
-        // Display Data End
+        recyclerView = findViewById(R.id.recycler_view)
+        db = DatabaseHelper(this@SecondActivity)
+        dataList = java.util.ArrayList<DataModel>()
+        adapter = DataAdapter(db, this@SecondActivity)
 
-        // add data
-        binding.btnSubmit.setOnClickListener {
-            try {
-                entries.add(Entry(entryNum, binding.etDate.text.toString(), binding.etWeight.text.toString().toFloat()))
-                editor.putInt("id-$entryNum", entries[entryNum].id).apply()
-                displayIds += "\n${entries[entryNum].id}"
-                editor.putString("date-$entryNum", entries[entryNum].date).apply()
-                displayDates += "\n${entries[entryNum].date}"
-                editor.putFloat("weight-$entryNum", entries[entryNum].weight).apply()
-                displayWeights += "\n${entries[entryNum].weight}"
-                entryNum++
-                editor.putInt("entries", entryNum).apply()
-            } catch (e: NumberFormatException) {
-                binding.tvFeedback.text = getString(R.string.invalid_weight_or_date)
-                return@setOnClickListener
-            }
-            binding.tvFeedback.text = ""
-            Toast.makeText(this, "Entry[${entryNum-1}] added", Toast.LENGTH_SHORT).show()
-            binding.tvIds.text = displayIds
-            binding.tvDates.text = displayDates
-            binding.tvWeights.text = displayWeights
-        }
-        // removeLastEntry
-        binding.btnRemoveLastEntry.setOnClickListener {
-            entryNum--
-            editor.remove("id-$entryNum")
-            editor.remove("date-$entryNum")
-            editor.remove("weight-$entryNum")
-            editor.putInt("entries", entryNum)
-            editor.commit()
-            entries.removeAt(entryNum)
-            // reset display
-            displayIds = "ID:"
-            displayDates = "Date:"
-            displayWeights = "Weight:"
-            for (i in entries) {
-                displayIds += "\n${i.id}"
-                displayDates += "\n${i.date}"
-                displayWeights += "\n${i.weight}"
-            }
-            binding.tvFeedback.text = ""
-            binding.tvIds.text = displayIds
-            binding.tvDates.text = displayDates
-            binding.tvWeights.text = displayWeights
-            Toast.makeText(this, "Entry[$entryNum] deleted", Toast.LENGTH_SHORT).show()
-        }
-        // deleteAllEntries
-        binding.btnDeleteAllEntries.setOnClickListener {
-            while (entries.size > 0) {
-                entryNum--
-                editor.remove("id-$entryNum")
-                editor.remove("date-$entryNum")
-                editor.remove("weight-$entryNum")
-                editor.putInt("entries", entryNum)
-                editor.commit()
-                entries.removeAt(entryNum)
-            }
-            // reset display
-            displayIds = "ID:"
-            displayDates = "Date:"
-            displayWeights = "Weight:"
-            binding.tvFeedback.text = ""
-            Toast.makeText(this, "All entries deleted", Toast.LENGTH_SHORT).show()
-            binding.tvIds.text = displayIds
-            binding.tvDates.text = displayDates
-            binding.tvWeights.text = displayWeights
-        }
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.adapter = this.adapter
+
+        dataList = db.allEntries
+        reverse(dataList)
+        adapter.setEntries(dataList)
+
+        val etDate : EditText = findViewById(R.id.etDate)
+        val etWeight : EditText = findViewById(R.id.etWeight)
+
+        binding.btnSubmit.setOnClickListener({
+            val item = DataModel()
+            item.date = binding.etDate.text.toString()
+            item.weight = binding.etWeight.text.toString().toFloat()
+            db.insertEntry(item)
+            Utils.recreateActivity(this)
+            Toast.makeText(this, "Entry added to database", Toast.LENGTH_SHORT).show()
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
