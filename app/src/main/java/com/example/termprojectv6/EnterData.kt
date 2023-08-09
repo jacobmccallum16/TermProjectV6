@@ -1,5 +1,6 @@
 package com.example.termprojectv6
 
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.Menu
@@ -11,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.termprojectv6.databinding.ActivityEnterDataBinding
 
-class EnterData : AppCompatActivity() {
+class EnterData : AppCompatActivity(), EntryItemClickListener {
 
     private lateinit var binding: ActivityEnterDataBinding
 
@@ -35,35 +36,27 @@ class EnterData : AppCompatActivity() {
         val adapter: RecyclerView.Adapter<*>
         val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
         // get data
-        val data = getSharedPreferences("data", Context.MODE_PRIVATE)
-        val editor = data.edit() // setter
-        var entryNum = data.getInt("entries", 0)
-        val entries : ArrayList<Entry> = ArrayList()
-        for (i in 0 until entryNum) {
-            entries.add(Entry(data.getInt("id-$i", 0),
-                data.getString("date-$i", "n/a").toString(),
-                data.getFloat("weight-$i", 0f)))
-        }
+        val data = Entries.data(this)
+        var entryNum = Entries.getEntryNum(this)
+        binding.tvFeedback.text = "${entryNum} entries"
+        var entries2 = Entries.getEntries(this)
         // finish layout
         layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        adapter = RecyclerAdapter(data.getInt("colorSchemeId", 1), entries)
+        adapter = RecyclerAdapter(entries2, this)
         recyclerView.adapter = adapter
 
         binding.btnSubmit.setOnClickListener{
             try {
-                entries.add(Entry(entryNum, binding.etDate.text.toString(), binding.etWeight.text.toString().toFloat()))
-                editor.putInt("id-$entryNum", entries[entryNum].id).apply()
-                editor.putString("date-$entryNum", entries[entryNum].date).apply()
-                editor.putFloat("weight-$entryNum", entries[entryNum].weight).apply()
+                entries2 = Entries.createEntry(this, entries2, binding.etDate.text.toString(), binding.etWeight.text.toString().toFloat())
                 entryNum++
-                editor.putInt("entries", entryNum).apply()
+                binding.tvFeedback.text = ""
+                Utils.recreateActivity(this)
+                Toast.makeText(this, "Entry[${entryNum-1}] added", Toast.LENGTH_SHORT).show()
             } catch (e: NumberFormatException) {
                 binding.tvFeedback.text = getString(R.string.invalid_weight_or_date)
                 return@setOnClickListener
             }
-            binding.tvFeedback.text = ""
-            Toast.makeText(this, "Entry[${entryNum-1}] added", Toast.LENGTH_SHORT).show()
         }
 
     }
@@ -83,6 +76,23 @@ class EnterData : AppCompatActivity() {
         } else { return super.onOptionsItemSelected(item)
         }
         return true
+    }
+
+    override fun onDeleteClick(entryId: Int) {
+        deleteEntry(entryId)
+    }
+    fun deleteEntry(id: Int) {
+        val data = Entries.data(this)
+        val entryNum = Entries.getEntryNum(this)
+        data.edit().remove("id2-$id").commit()
+        data.edit().remove("date2-$id").commit()
+        data.edit().remove("weight2-$id").commit()
+        data.edit().remove("year2-$id").commit()
+        data.edit().remove("month2-$id").commit()
+        data.edit().remove("day2-$id").commit()
+        data.edit().putInt("entries2", entryNum - 1).commit()
+        Utils.recreateActivity(this)
+        Toast.makeText(this, "Entry[${id}] deleted", Toast.LENGTH_SHORT).show()
     }
 
 }
