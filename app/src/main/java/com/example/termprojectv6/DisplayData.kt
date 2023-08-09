@@ -1,14 +1,12 @@
 package com.example.termprojectv6
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.termprojectv6.databinding.ActivityDisplayDataBinding
 import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
@@ -19,56 +17,36 @@ import kotlin.math.ceil
 import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min
-import kotlin.random.Random
-
 
 class DisplayData : AppCompatActivity() {
 
-    lateinit var btnMain : Button
-    lateinit var btnEnterData : Button
-    lateinit var btnDisplayData : Button
-    lateinit var linearLayoutBottom : LinearLayout
     lateinit var entries : ArrayList<Entry>
+    private lateinit var binding: ActivityDisplayDataBinding
     var entryNum = 0
-    var colorSchemeId = 0
-    var colorStartId = 0
-    var colorEndId = 0
     var axisMax = 0f
-    val colorSchemes : Array<String> = arrayOf("Gray", "Blue", "Indigo", "Purple", "Pink",
-        "Red", "Orange", "Yellow", "Green", "Teal", "Cyan")
 
     // chart
     lateinit var chart : BarChart
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        applyColorScheme()
-        setContentView(R.layout.activity_display_data)
+        Utils.applyColorScheme(this)
+        binding = ActivityDisplayDataBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         supportActionBar?.title = resources.getString(R.string.DisplayData_title)
-        // navigation
-        btnMain = findViewById(R.id.btnMain)
-        btnMain.setOnClickListener {
-            val i = Intent(this, MainActivity::class.java)
-            startActivity(i)
-        }
-        btnEnterData = findViewById(R.id.btnEnterData)
-        btnEnterData.setOnClickListener {
-            val i = Intent(this, EnterData::class.java)
-            startActivity(i)
-        }
-        btnDisplayData = findViewById(R.id.btnDisplayData)
-        btnDisplayData.setOnClickListener {
-            val intent = Intent(this, DisplayData::class.java)
-            startActivity(intent)
-        }
-        linearLayoutBottom = findViewById(R.id.linearLayoutBottom)
+        val btnMain : Button = findViewById(R.id.btnMain)
+        btnMain.setOnClickListener { Utils.openMain(this) }
+        val btnEnterData : Button = findViewById(R.id.btnEnterData)
+        btnEnterData.setOnClickListener { Utils.openEnterData(this) }
+        val btnDisplayData : Button = findViewById(R.id.btnDisplayData)
+        btnDisplayData.setOnClickListener { Utils.openDisplayData(this) }
 
         // get data
         val data = getSharedPreferences("data", MODE_PRIVATE) // getter
         val editor = data.edit() // setter
         entryNum = data.getInt("entries", 0)
-        colorSchemeId = data.getInt("colorSchemeId", 0)
         entries = ArrayList()
         for (i in 0 until entryNum) {
             entries.add(Entry(data.getInt("id-$i", 0),
@@ -110,14 +88,14 @@ class DisplayData : AppCompatActivity() {
         chart.axisLeft.axisMaximum = axisMax
         chart.xAxis.granularity = 1f
 //        chart.animateY(1000)
-        passData(entries, colorSchemeId);
+        passData(entries)
         chart.setBackgroundColor(Color.WHITE)
         chart.legend.isEnabled = false
         chart.axisLeft.isEnabled = false
         chart.axisRight.isEnabled = false
     }
 
-    fun passData(entries: ArrayList<Entry>, colorSchemeId: Int) {
+    fun passData(entries: ArrayList<Entry>) {
         val values = ArrayList<BarEntry>()
         for (i in 0 until entries.size) {
             values.add(BarEntry(i.toFloat(), entries[i].weight))
@@ -130,30 +108,11 @@ class DisplayData : AppCompatActivity() {
             chart.notifyDataSetChanged()
         } else {
             set1 = BarDataSet(values, "Weight in lbs")
-            if (colorSchemeId == 0) { colorStartId = resources.getColor(R.color.gray9, theme);
-                colorEndId = resources.getColor(R.color.gray3, theme);}
-            if (colorSchemeId == 1) { colorStartId = resources.getColor(R.color.blue9, theme);
-                colorEndId = resources.getColor(R.color.blue4)}
-            if (colorSchemeId == 2) { colorStartId = resources.getColor(R.color.indigo9);
-                colorEndId = resources.getColor(R.color.indigo4)}
-            if (colorSchemeId == 3) { colorStartId = resources.getColor(R.color.purple9);
-                colorEndId = resources.getColor(R.color.purple4)}
-            if (colorSchemeId == 4) { colorStartId = resources.getColor(R.color.pink9);
-                colorEndId = resources.getColor(R.color.pink4)}
-            if (colorSchemeId == 5) { colorStartId = resources.getColor(R.color.red9);
-                colorEndId = resources.getColor(R.color.red4)}
-            if (colorSchemeId == 6) { colorStartId = resources.getColor(R.color.orange9);
-                colorEndId = resources.getColor(R.color.orange4)}
-            if (colorSchemeId == 7) { colorStartId = resources.getColor(R.color.yellow9);
-                colorEndId = resources.getColor(R.color.yellow4)}
-            if (colorSchemeId == 8) { colorStartId = resources.getColor(R.color.green9);
-                colorEndId = resources.getColor(R.color.green4)}
-            if (colorSchemeId == 9) { colorStartId = resources.getColor(R.color.teal9);
-                colorEndId = resources.getColor(R.color.teal4)}
-            if (colorSchemeId == 10) { colorStartId = resources.getColor(R.color.cyan9);
-                colorEndId = resources.getColor(R.color.cyan4)}
             val gradientFills: MutableList<GradientColor> = ArrayList()
-            gradientFills.add(GradientColor(colorStartId, colorEndId))
+            gradientFills.add(GradientColor(Utils.getColor(this,10), Utils.getColor(this, 5)))
+            gradientFills.add(GradientColor(Utils.getColor(this,9), Utils.getColor(this, 4)))
+            gradientFills.add(GradientColor(Utils.getColor(this,8), Utils.getColor(this, 3)))
+            gradientFills.add(GradientColor(Utils.getColor(this,9), Utils.getColor(this, 4)))
             set1.setGradientColors(gradientFills)
             val dataSets = ArrayList<IBarDataSet>()
             dataSets.add(set1)
@@ -170,55 +129,15 @@ class DisplayData : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_settings) {
-            Toast.makeText(this, "Settings", Toast.LENGTH_SHORT).show()
-            val intent = Intent(this, Settings::class.java)
-            startActivity(intent)
-        } else if (item.itemId == R.id.menuRandomTheme) {
-            var colorSchemeId : Int = Random.nextInt(0,11)
-            getSharedPreferences("data", MODE_PRIVATE).edit().putInt("colorSchemeId", colorSchemeId).commit()
-            applyColorScheme(colorSchemeId)
-            recreateActivity()
-            Toast.makeText(this, "Random color scheme ${colorSchemes[colorSchemeId]} applied", Toast.LENGTH_SHORT).show()
-        } else if (item.itemId == R.id.menuMain) {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            Toast.makeText(this, "Main", Toast.LENGTH_SHORT).show()
-        } else if (item.itemId == R.id.menuEnterData) {
-            val intent = Intent(this, EnterData::class.java)
-            startActivity(intent)
-            Toast.makeText(this, "Enter Data", Toast.LENGTH_SHORT).show()
-        } else if (item.itemId == R.id.menuDisplayData) {
-            val intent = Intent(this, DisplayData::class.java)
-            startActivity(intent)
-            Toast.makeText(this, "Display Data", Toast.LENGTH_SHORT).show()
-        } else {
-            return super.onOptionsItemSelected(item)
+        if (item.itemId == R.id.menu_settings) { Utils.openSettings(this)
+        } else if (item.itemId == R.id.menuRandomTheme) { Utils.randomizeColorScheme(this)
+        } else if (item.itemId == R.id.menuMain) { Utils.openMain(this)
+        } else if (item.itemId == R.id.menuEnterData) { Utils.openEnterData(this)
+        } else if (item.itemId == R.id.menuDisplayData) { Utils.openDisplayData(this)
+        } else if (item.itemId == R.id.menuSecondActivity) { Utils.openSecondActivity(this)
+        } else { return super.onOptionsItemSelected(item)
         }
         return true
     }
-
-    fun applyColorScheme(colorSchemeId : Int = getSharedPreferences("data", MODE_PRIVATE).getInt("colorSchemeId", 1)) {
-        when (colorSchemeId) {
-            0 -> { setTheme(R.style.AppTheme_Gray) }
-            1 -> { setTheme(R.style.AppTheme_Blue) }
-            2 -> { setTheme(R.style.AppTheme_Indigo) }
-            3 -> { setTheme(R.style.AppTheme_Purple) }
-            4 -> { setTheme(R.style.AppTheme_Pink) }
-            5 -> { setTheme(R.style.AppTheme_Red) }
-            6 -> { setTheme(R.style.AppTheme_Orange) }
-            7 -> { setTheme(R.style.AppTheme_Yellow) }
-            8 -> { setTheme(R.style.AppTheme_Green) }
-            9 -> { setTheme(R.style.AppTheme_Teal) }
-            10 -> { setTheme(R.style.AppTheme_Cyan) }
-        }
-    }
-    fun recreateActivity() {
-        val intent = Intent(this, this.javaClass)
-        this.startActivity(intent)
-        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-        this.finish()
-    }
-
 
 }

@@ -1,16 +1,16 @@
 package com.example.termprojectv6
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.example.termprojectv6.databinding.ActivityMainBinding
+import com.example.termprojectv6.databinding.ActivitySecondBinding
 
-class MainActivity : AppCompatActivity() {
+class SecondActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivitySecondBinding
     var entryNum = 0
     var displayIds = "ID:"
     var displayDates = "Date:"
@@ -19,11 +19,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utils.applyColorScheme(this)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivitySecondBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
-        supportActionBar?.title = resources.getString(R.string.MainActivity_title)
+        supportActionBar?.title = resources.getString(R.string.SecondActivity_title)
         val btnMain : Button = findViewById(R.id.btnMain)
         btnMain.setOnClickListener { Utils.openMain(this) }
         val btnEnterData : Button = findViewById(R.id.btnEnterData)
@@ -135,5 +135,4 @@ class MainActivity : AppCompatActivity() {
         }
         return true
     }
-
 }
