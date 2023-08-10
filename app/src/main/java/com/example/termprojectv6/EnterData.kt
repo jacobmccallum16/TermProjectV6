@@ -39,7 +39,7 @@ class EnterData : AppCompatActivity(), EntryItemClickListener {
         val data = Entries.data(this)
         var entryNum = Entries.getEntryNum(this)
         binding.tvFeedback.text = "${entryNum} entries"
-        var entries2 = Entries.getEntries(this)
+        var entries2 = Entries.getEntriesReversed(this)
         // finish layout
         layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.widget.Toast
+import java.util.Objects
 
 object Entries {
     val mon = arrayOf("","jan", "feb", "mar", "apr", "may", "jun",
@@ -31,6 +32,21 @@ object Entries {
                 data.getInt("day2-$i", 1)))
         }
         entries.sort()
+        return entries
+    }
+    fun getEntriesReversed(activity: Activity) : ArrayList<Entry2> {
+        val data = data(activity)
+        val entryNum = getEntryNum(activity)
+        val entries : ArrayList<Entry2> = ArrayList()
+        for (i in 0 until entryNum) {
+            entries.add(Entry2(data.getInt("id2-$i", 0),
+                data.getString("date2-$i", "n/a").toString(),
+                data.getFloat("weight2-$i", 0f),
+                data.getInt("year2-$i", 2023),
+                data.getInt("month2-$i", 1),
+                data.getInt("day2-$i", 1)))
+        }
+        entries.reverse()
         return entries
     }
     fun newEntry(activity: Activity, id: Int, date: String, weight: Float) : Entry2 {
@@ -123,5 +139,38 @@ object Entries {
         val entries = getEntries(activity)
         entries.sort()
         return entries
+    }
+
+    fun getByMonthYear(activity: Activity, month: Int, year: Int) : EntryGroup {
+        val data = data(activity)
+        val entryNum = getEntryNum(activity)
+        val entries : ArrayList<Entry2> = ArrayList()
+        for (i in 0 until entryNum) {
+            if (data.getInt("month2-$i", 0) == month) {
+                if (data.getInt("year2-$i", 0) == year) {
+                    entries.add(Entry2(data.getInt("id2-$i", 0),
+                        data.getString("date2-$i", "n/a").toString(),
+                        data.getFloat("weight2-$i", 0f),
+                        data.getInt("year2-$i", 2023),
+                        data.getInt("month2-$i", 1),
+                        data.getInt("day2-$i", 1)))
+                }
+            }
+        }
+        val entryGroup = EntryGroup(entries, month, year)
+        return entryGroup
+    }
+
+    fun groupByMonth(activity: Activity) : ArrayList<EntryGroup> {
+        // Returns an array list of array lists
+        // hardcoding it for now to be 9 months starting from Dec 2022
+        var ENTRIES = ArrayList<EntryGroup>()
+        // dec 2022
+        ENTRIES.add(getByMonthYear(activity, 12, 2022))
+        ENTRIES.add(getByMonthYear(activity, 1, 2023))
+        ENTRIES.add(getByMonthYear(activity, 2, 2023))
+        ENTRIES.add(getByMonthYear(activity, 3, 2023))
+        ENTRIES.add(getByMonthYear(activity, 4, 2023))
+        return ENTRIES
     }
 }

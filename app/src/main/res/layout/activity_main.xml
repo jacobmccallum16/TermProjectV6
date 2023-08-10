@@ -7,22 +7,8 @@
     android:background="?android:attr/colorBackground"
     tools:context=".MainActivity">
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/tvTitle"-->
-    <!--        android:layout_width="0dp"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:background="@color/pink9"-->
-    <!--        android:padding="8dp"-->
-    <!--        android:text="@string/tvTitle"-->
-    <!--        android:textAlignment="center"-->
-    <!--        android:textColor="@color/white"-->
-    <!--        android:textSize="34sp"-->
-    <!--        android:textStyle="bold"-->
-    <!--        app:layout_constraintEnd_toEndOf="parent"-->
-    <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="parent" />-->
-
     <include
+        android:id="@+id/include"
         layout="@layout/navbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -85,76 +71,85 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
-        android:id="@+id/tvIds"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/tvIDs_start"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/tvDates"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFeedback"
-        app:layout_constraintWidth_percent=".1" />
-
-    <TextView
         android:id="@+id/tvDates"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/tvDates_start"
-        android:textSize="24sp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/include"
         app:layout_constraintEnd_toStartOf="@+id/tvWeights"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvIds"
-        app:layout_constraintTop_toBottomOf="@+id/tvFeedback"
-        app:layout_constraintWidth_percent=".3" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent=".5" />
 
     <TextView
         android:id="@+id/tvWeights"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/tvWeights_start"
-        android:textSize="24sp"
+        android:textAlignment="textStart"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/include"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/tvDates"
-        app:layout_constraintTop_toBottomOf="@+id/tvFeedback"
-        app:layout_constraintWidth_percent=".3" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintWidth_percent=".35" />
 
-    <Button
-        android:id="@+id/btnDeleteAllEntries"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:backgroundTint="?attr/colorError"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:text="@string/btnDeleteAllEntries"
-        android:textColor="?attr/colorOnError"
-        app:layout_constraintEnd_toStartOf="@+id/btnRemoveLastEntry"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvDates" />
-
-    <Button
-        android:id="@+id/btnRemoveLastEntry"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="?attr/colorSecondary"
-        android:paddingLeft="12dp"
-        android:paddingRight="12dp"
-        android:text="@string/btnRemoveLastEntry"
-        android:textColor="?attr/colorOnSecondary"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnDeleteAllEntries"
-        app:layout_constraintTop_toBottomOf="@+id/tvDates" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvFeedback">
+
+        <Button
+            android:id="@+id/btnOldest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oldest"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnMonthly"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btnMonthly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="?attr/colorSecondary"
+            android:text="Monthly"
+            android:textColor="?attr/colorOnSecondary"
+            app:layout_constraintBottom_toBottomOf="@+id/btnOldest"
+            app:layout_constraintEnd_toStartOf="@+id/btnNewest"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnOldest"
+            app:layout_constraintTop_toTopOf="@+id/btnOldest" />
+
+        <Button
+            android:id="@+id/btnNewest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Newest"
+            app:layout_constraintBottom_toBottomOf="@+id/btnMonthly"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btnMonthly"
+            app:layout_constraintTop_toTopOf="@+id/btnMonthly" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
