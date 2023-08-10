@@ -171,6 +171,21 @@ object Entries {
         ENTRIES.add(getByMonthYear(activity, 2, 2023))
         ENTRIES.add(getByMonthYear(activity, 3, 2023))
         ENTRIES.add(getByMonthYear(activity, 4, 2023))
+        ENTRIES.add(getByMonthYear(activity, 5, 2023))
+        ENTRIES.add(getByMonthYear(activity, 6, 2023))
+        ENTRIES.add(getByMonthYear(activity, 7, 2023))
+        ENTRIES.add(getByMonthYear(activity, 8, 2023))
         return ENTRIES
     }
+
+    fun setDisplayPreference(activity: Activity, displayPreference: String) {
+        val data = data(activity)
+        data.edit().putString("displayPreference", displayPreference).commit()
+    }
+    fun getDisplayPreference(activity: Activity) : String {
+        val data = data(activity)
+        return data.getString("displayPreference", "Monthly").toString()
+    }
+
+
 }
