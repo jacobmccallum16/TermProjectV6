@@ -21,8 +21,8 @@
         android:id="@+id/constraintLayoutFilter"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayoutBottom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -30,39 +30,52 @@
         app:layout_constraintTop_toBottomOf="@+id/chart">
 
         <Button
-            android:id="@+id/btnAll"
+            android:id="@+id/btnDisplayAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="All"
+            android:backgroundTint="?attr/colorPrimaryVariant"
+            android:insetTop="8dp"
+            android:insetBottom="8dp"
+            android:text="@string/btnDisplayAll"
+            android:textAllCaps="true"
+            android:textColor="?attr/colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnMonthly"
+            app:layout_constraintEnd_toStartOf="@id/btnDisplayMonthly"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btnMonthly"
+            android:id="@+id/btnDisplayMonthly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="?attr/colorSecondary"
-            android:text="Monthly"
-            android:textColor="?attr/colorOnSecondary"
-            app:layout_constraintBottom_toBottomOf="@+id/btnAll"
-            app:layout_constraintEnd_toStartOf="@+id/btnDaily"
+            android:backgroundTint="?attr/colorPrimaryVariant"
+            android:insetTop="8dp"
+            android:insetBottom="8dp"
+            android:text="@string/btnDisplayMonthly"
+            android:textAllCaps="true"
+            android:textColor="?attr/colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnDisplayFuture"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnAll"
-            app:layout_constraintTop_toTopOf="@+id/btnAll" />
+            app:layout_constraintStart_toEndOf="@id/btnDisplayAll"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btnDaily"
+            android:id="@+id/btnDisplayFuture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Daily"
-            app:layout_constraintBottom_toBottomOf="@+id/btnMonthly"
+            android:backgroundTint="?attr/colorPrimaryVariant"
+            android:insetTop="8dp"
+            android:insetBottom="8dp"
+            android:text="@string/btnDisplayFuture"
+            android:textAllCaps="true"
+            android:textColor="?attr/colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnMonthly"
-            app:layout_constraintTop_toTopOf="@+id/btnMonthly" />
+            app:layout_constraintStart_toEndOf="@id/btnDisplayMonthly"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include

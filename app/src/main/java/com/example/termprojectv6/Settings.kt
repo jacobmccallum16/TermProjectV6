@@ -7,15 +7,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.termprojectv6.databinding.ActivitySettingsBinding
 
 class Settings : AppCompatActivity() {
-
-    val colorSchemes : Array<String> = arrayOf("Gray", "Blue", "Indigo", "Purple", "Pink",
-        "Red", "Orange", "Yellow", "Green", "Teal", "Cyan")
 
     @SuppressLint("ResourceAsColor")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +34,9 @@ class Settings : AppCompatActivity() {
         binding.spinnerColorScheme.setSelection(colorSchemeId)
         binding.spinnerColorMode.setSelection(data.getInt("colorModeId", 0))
         binding.spinnerLanguage.setSelection(data.getInt("languageId", 0))
-        binding.tvFeedback.text = "Current color scheme: ${colorSchemes[colorSchemeId]}"
+        val colorSchemes = resources.getStringArray(R.array.txtColorScheme)
+        val currentColorSchemeFormat = resources.getString(R.string.currentColourScheme)
+        binding.tvFeedback.text = String.format(currentColorSchemeFormat, colorSchemes[colorSchemeId])
 
         binding.btnSaveSettings.setOnClickListener {
             Utils.updateSettings(this, binding.spinnerColorScheme.selectedItemPosition,
@@ -47,13 +45,13 @@ class Settings : AppCompatActivity() {
 
         binding.btnDeleteAllEntries.setOnClickListener {
             val builder = AlertDialog.Builder(this)
-            builder.setTitle("Delete All Entries")
-            builder.setMessage("Are you sure you want to delete all entries?")
-            builder.setPositiveButton("Delete") { _, _ ->
+            builder.setTitle(resources.getString(R.string.alertDeleteAllTitle))
+            builder.setMessage(resources.getString(R.string.alertDeleteAllMessage))
+            builder.setPositiveButton(resources.getString(R.string.alertDeleteAllPositive)) { _, _ ->
                 Entries.deleteAllEntries(this)
             }
-            builder.setNegativeButton("Cancel") { _, _ ->
-                Toast.makeText(this, "Cancel deletion", Toast.LENGTH_SHORT).show()
+            builder.setNegativeButton(resources.getString(R.string.alertDeleteAllNegative)) { _, _ ->
+                Toast.makeText(this, resources.getString(R.string.alertDeleteAllNegativeToast), Toast.LENGTH_SHORT).show()
             }
             builder.show()
         }
@@ -67,9 +65,6 @@ class Settings : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_settings) { Utils.openSettings(this)
         } else if (item.itemId == R.id.menuRandomTheme) { Utils.randomizeColorScheme(this)
-        } else if (item.itemId == R.id.menuMain) { Utils.openMain(this)
-        } else if (item.itemId == R.id.menuEnterData) { Utils.openEnterData(this)
-        } else if (item.itemId == R.id.menuDisplayData) { Utils.openDisplayData(this)
         } else { return super.onOptionsItemSelected(item)
         }
         return true

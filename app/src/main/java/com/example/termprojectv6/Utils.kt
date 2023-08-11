@@ -1,5 +1,6 @@
 package com.example.termprojectv6
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -15,9 +16,6 @@ import java.util.Locale
 import kotlin.random.Random
 
 object Utils {
-    val colorSchemes : Array<String> = arrayOf("Gray", "Blue", "Indigo", "Purple", "Pink",
-        "Red", "Orange", "Yellow", "Green", "Teal", "Cyan")
-
     fun applyColorScheme(activity : Activity) {
         processNightMode(activity)
         processLanguage(activity)
@@ -35,14 +33,17 @@ object Utils {
             10 -> { activity.setTheme(R.style.AppTheme_Cyan) }
         }
     }
-    fun saveColorScheme(activity: Activity, colorSchemeId: Int) {
+    @SuppressLint("ApplySharedPref")
+    private fun saveColorScheme(activity: Activity, colorSchemeId: Int) {
         activity.getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE).edit().putInt("colorSchemeId", colorSchemeId).commit()
     }
     fun updateColorScheme(activity : Activity, colorSchemeId : Int) {
         saveColorScheme(activity, colorSchemeId)
         applyColorScheme(activity)
         recreateActivity(activity)
-        Toast.makeText(activity, "Color scheme changed to: ${colorSchemes[colorSchemeId]}", Toast.LENGTH_SHORT).show()
+        val colorSchemeArray = activity.resources.getStringArray(R.array.txtColorScheme)
+        val colorSchemeChangedFormat = activity.resources.getString(R.string.colorSchemeChanged)
+        Toast.makeText(activity, String.format(colorSchemeChangedFormat, colorSchemeArray[colorSchemeId]), Toast.LENGTH_SHORT).show()
     }
     fun randomizeColorScheme(activity : Activity) {
         val currentColorSchemeId = getColorScheme(activity)
@@ -53,14 +54,16 @@ object Utils {
         saveColorScheme(activity, colorSchemeId)
         applyColorScheme(activity)
         recreateActivity(activity)
-        Toast.makeText(activity, "Color scheme randomly set to: ${colorSchemes[colorSchemeId]}", Toast.LENGTH_SHORT).show()
+        val colorSchemeArray = activity.resources.getStringArray(R.array.txtColorScheme)
+        val randomColorSchemeToastFormat = activity.resources.getString(R.string.randomColorSchemeToast)
+        Toast.makeText(activity, String.format(randomColorSchemeToastFormat, colorSchemeArray[colorSchemeId]), Toast.LENGTH_SHORT).show()
     }
 
-    fun saveColorMode(activity: Activity, colorModeId: Int) {
+    private fun saveColorMode(activity: Activity, colorModeId: Int) {
         val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
         data.edit().putInt("colorModeId", colorModeId).apply()
     }
-    fun processNightMode(activity: Activity) {
+    private fun processNightMode(activity: Activity) {
         val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
         when (data.getInt("colorModeId", 0)) {
             1 -> AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
@@ -68,7 +71,7 @@ object Utils {
             else -> AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
         }
     }
-    fun processLanguage(activity: Activity) {
+    private fun processLanguage(activity: Activity) {
         val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
         val locale = when (data.getInt("languageId", 0)) {
             1 -> Locale.ENGLISH
@@ -87,7 +90,7 @@ object Utils {
             else -> Locale.getDefault()
         }
     }
-    fun saveLanguage(activity: Activity, languageId: Int) {
+    private fun saveLanguage(activity: Activity, languageId: Int) {
         val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
         data.edit().putInt("languageId", languageId).apply()
     }
@@ -96,7 +99,8 @@ object Utils {
         saveColorMode(activity, colorModeId)
         saveLanguage(activity, languageId)
         recreateActivity(activity)
-        Toast.makeText(activity, "Settings updated", Toast.LENGTH_SHORT).show()
+        val settingsUpdatedToast = activity.resources.getString(R.string.settingsUpdatedToast)
+        Toast.makeText(activity, settingsUpdatedToast, Toast.LENGTH_SHORT).show()
     }
 
 
@@ -115,7 +119,8 @@ object Utils {
         } else {
             recreateActivity(activity)
         }
-        Toast.makeText(activity, "Main", Toast.LENGTH_SHORT).show()
+        val mainToast = activity.resources.getString(R.string.mainToast)
+        Toast.makeText(activity, mainToast, Toast.LENGTH_SHORT).show()
     }
     fun openEnterData(activity: Activity) {
         if (activity::class.java != EnterData::class.java) {
@@ -124,7 +129,8 @@ object Utils {
         } else {
             recreateActivity(activity)
         }
-        Toast.makeText(activity, "Enter Data", Toast.LENGTH_SHORT).show()
+        val enterDataToast = activity.resources.getString(R.string.enterDataToast)
+        Toast.makeText(activity, enterDataToast, Toast.LENGTH_SHORT).show()
     }
     fun openDisplayData(activity: Activity) {
         if (activity::class.java != DisplayData::class.java) {
@@ -133,7 +139,8 @@ object Utils {
         } else {
             recreateActivity(activity)
         }
-        Toast.makeText(activity, "Display Data", Toast.LENGTH_SHORT).show()
+        val displayDataToast = activity.resources.getString(R.string.displayDataToast)
+        Toast.makeText(activity, displayDataToast, Toast.LENGTH_SHORT).show()
     }
     fun openSettings(activity: Activity) {
         if (activity::class.java != Settings::class.java) {
@@ -142,22 +149,14 @@ object Utils {
         } else {
             recreateActivity(activity)
         }
-        Toast.makeText(activity, "Settings", Toast.LENGTH_SHORT).show()
-    }
-    fun openSecondActivity(activity: Activity) {
-        if (activity::class.java != SecondActivity::class.java) {
-            val intent = Intent(activity, SecondActivity::class.java)
-            activity.startActivity(intent)
-        } else {
-            recreateActivity(activity)
-        }
-        Toast.makeText(activity, "Second Activity", Toast.LENGTH_SHORT).show()
+        val settingsToast = activity.resources.getString(R.string.settingsToast)
+        Toast.makeText(activity, settingsToast, Toast.LENGTH_SHORT).show()
     }
 
 
-    fun getColorScheme(activity: Activity) : Int {
-        val colorSchemeId = activity.getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE).getInt("colorSchemeId", 1)
-        return colorSchemeId
+    fun getColorScheme(activity: Activity): Int {
+        return activity.getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE)
+            .getInt("colorSchemeId", 1)
     }
 
     fun getThemeColor(activity: Activity, choice: String = "colorPrimary") : Int {
@@ -178,7 +177,7 @@ object Utils {
         return typedValue.data
     }
     fun getColor(activity: Activity, shade: Int = 5, color : Int = activity.getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE)
-        .getInt("colorSchemeId", 0)) : Int {
+        .getInt("colorSchemeId", 1)) : Int {
         return when (shade) {
             0 -> activity.resources.getColor(R.color.white, activity.theme)
             1 -> when (color) {

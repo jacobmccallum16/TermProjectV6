@@ -1,5 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+<resources>
     <style name="Base.Theme.TermProjectV6" parent="Theme.Material3.Dark">
         <item name="colorError">@color/red5</item>          <item name="colorOnError">@color/black</item>
         <item name="android:colorBackground">@color/gray9</item>
@@ -56,7 +55,7 @@
     </style>
     <style name="AppTheme.Orange" parent="Base.Theme.TermProjectV6" >
         <item name="colorSurface">@color/orange7</item>
-        <item name="colorPrimarySurface">@color/orange2</item>   <item name="colorOnPrimarySurface">@color/orange2</item>
+        <item name="colorPrimarySurface">@color/orange2</item>   <item name="colorOnPrimarySurface">@color/orange9</item>
         <item name="colorPrimary">@color/orange5</item>          <item name="colorOnPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/orange6</item>
         <item name="colorSecondary">@color/orange3</item>        <item name="colorOnSecondary">@color/orange8</item>
@@ -64,7 +63,7 @@
     </style>
     <style name="AppTheme.Yellow" parent="Base.Theme.TermProjectV6" >
         <item name="colorSurface">@color/yellow7</item>
-        <item name="colorPrimarySurface">@color/yellow2</item>   <item name="colorOnPrimarySurface">@color/yellow2</item>
+        <item name="colorPrimarySurface">@color/yellow2</item>   <item name="colorOnPrimarySurface">@color/yellow9</item>
         <item name="colorPrimary">@color/yellow5</item>          <item name="colorOnPrimary">@color/black</item>
         <item name="colorPrimaryVariant">@color/yellow6</item>
         <item name="colorSecondary">@color/yellow3</item>        <item name="colorOnSecondary">@color/yellow8</item>

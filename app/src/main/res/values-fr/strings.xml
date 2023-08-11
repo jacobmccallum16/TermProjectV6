@@ -2,26 +2,30 @@
 <resources>
     <string name="app_name">TermProjectV6</string>
     <string name="MainActivity_title">Projet - Page d\'accueil</string>
-    <string name="EnterData_title">Projet - Entrer les données</string>
+    <string name="EnterData_title">Projet - Saisir les données</string>
     <string name="DisplayData_title">Projet - Graphique</string>
     <string name="Settings_title">Projet - Paramètres</string>
     <string name="etDate_hint">Date</string>
     <string name="tvIDs_start">ID:</string>
     <string name="tvDates_start">Date:</string>
     <string name="btnMain">Accueil</string>
-    <string name="btnEnterData">Entrer</string>
-    <string name="btnDisplayData">Afficher</string>
+    <string name="btnEnterData">Données</string>
+    <string name="btnDisplayData">Graphique</string>
     <string name="menu_settings">Paramètres</string>
-    <string name="menuRandomTheme">Theme randomisé</string>
+    <string name="menuRandomTheme">Thème randomisé</string>
     <string name="menu_one">Un</string>
     <string name="menu_two">Deux</string>
     <string name="menu_activity_one">Activité Un</string>
     <string name="menu_activity_two">Activité Deux</string>
+    <string name="delete">Supprimer</string>
+    <string name="search">Rechercher</string>
     <string name="settings">Paramètres</string>
     <!--  Paramètres -->
+    <string name="edit">Editer</string>
+    <string name="exit">Quitter</string>
     <string name="menu_main_activity">Accueil</string>
-    <string name="menu_enter_data_activity">Entrer</string>
-    <string name="menu_display_data_activity">Afficher</string>
+    <string name="menu_enter_data_activity">Données</string>
+    <string name="menu_display_data_activity">Graphiques</string>
     <string name="tvColorScheme">Couleurs :</string>
     <string-array name="txtColorScheme">
         <item>Gris</item>
@@ -49,4 +53,112 @@
         <item>Français</item>
     </string-array>
     <string name="btnSaveSettings">Sauvegarder</string>
+
+    <string name="deleteContentDescription">Supprimer</string>
+    <string name="date_format_month_year">%2$s %1$d</string>
+    <string name="date_format_full">%3$s %2$s, %1$d</string>
+    <string-array name="months">
+        <item> </item>
+        <item>janvier</item>
+        <item>février</item>
+        <item>mars</item>
+        <item>avril</item>
+        <item>mai</item>
+        <item>juin</item>
+        <item>juillet</item>
+        <item>août</item>
+        <item>septembre</item>
+        <item>octobre</item>
+        <item>novembre</item>
+        <item>décembre</item>
+    </string-array>
+    <string-array name="MON">
+        <item> </item>
+        <item>JAN</item>
+        <item>FÉV</item>
+        <item>MAR</item>
+        <item>AVR</item>
+        <item>MAI</item>
+        <item>JUN</item>
+        <item>JUL</item>
+        <item>AOÛ</item>
+        <item>SEP</item>
+        <item>OCT</item>
+        <item>NOV</item>
+        <item>DÉC</item>
+    </string-array>
+    <string-array name="days">
+        <item> </item>
+        <item>1er</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+        <item>24</item>
+        <item>25</item>
+        <item>26</item>
+        <item>27</item>
+        <item>28</item>
+        <item>29</item>
+        <item>30</item>
+        <item>31</item>
+    </string-array>
+    <string name="tvTitle">Projet</string>
+    <string name="EnterData_tvTitle">Saisir les données</string>
+    <string name="SecondActivity_title">Projet - 2e activité</string>
+    <string name="btnDeleteAllEntries">Supprimer tout</string>
+    <string name="btnRemoveLastEntry">Supprimer la dernière</string>
+    <string name="etWeight_hint">Poids en lbs</string>
+    <string name="btnSubmit">Soumettre</string>
+    <string name="tvWeights_start">Poids moyen :</string>
+    <string name="btnSortByOld">Anciens</string>
+    <string name="btnSortByRecent">Récents</string>
+    <string name="btnSortByNew">Nouveaux</string>
+    <string name="menu_second_activity">2e activité</string>
+    <string name="invalid_weight_or_date">Veuillez saisir un poids et une date valides</string>
+    <string name="tvDatabase">Base de données</string>
+    <string name="num_of_entries_0">%1$d donnée</string>
+    <string name="num_of_entries_1">%1$d donnée</string>
+    <string name="num_of_entries_plural">%1$d données</string>
+    <string name="tv_weight">%1$.1f lbs</string>
+    <string name="tv_avg_weight">%1$.1f lbs</string>
+    <string name="tv_min_max_weight">%1$.1f - %2$.1f</string>
+    <string name="btnDisplayAll">Toutes</string>
+    <string name="btnDisplayMonthly">Mensuelles</string>
+    <string name="btnDisplayFuture">Futures</string>
+    <string name="invalidDateInput">Date invalide</string>
+    <string name="currentColourScheme">Thème actuel : %1$s</string>
+    <string name="colorSchemeChanged">Passage au thème %1$s</string>
+    <string name="randomColorSchemeToast">Passage aléatoire au thème %1$s</string>
+    <string name="settingsUpdatedToast">Paramètres actualisés</string>
+    <string name="alertDeleteAllTitle">Supprimer toutes les données</string>
+    <string name="alertDeleteAllMessage">Êtes-vous sûr de vouloir supprimer toutes les données ?</string>
+    <string name="alertDeleteAllPositive">Supprimer</string>
+    <string name="alertDeleteAllPositiveToast">Toutes les données supprimées</string>
+    <string name="alertDeleteAllNegative">Annuler</string>
+    <string name="alertDeleteAllNegativeToast">Suppression annulée</string>
+    <string name="enterDataToast">Saisir les données</string>
+    <string name="mainToast">Page d\'accueil</string>
+    <string name="displayDataToast">Afficher les données</string>
+    <string name="settingsToast">Paramètres</string>
+    <string name="entryDeletedToast">Donnée supprimée</string>
+    <string name="entryAddedToast">Donnée ajoutée</string>
 </resources>

@@ -16,10 +16,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/include"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutSorting" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/linearLayoutEnterData"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="16dp"
@@ -30,31 +43,43 @@
 
         <EditText
             android:id="@+id/etDate"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:ems="10"
             android:hint="@string/etDate_hint"
-            android:inputType="text" />
+            android:inputType="text"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/etWeight"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextFields"
+            android:importantForAutofill="no" />
 
         <EditText
             android:id="@+id/etWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:ems="10"
             android:hint="@string/etWeight_hint"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnSubmit"
+            app:layout_constraintStart_toEndOf="@+id/etDate"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.6"
+            android:importantForAutofill="no" />
 
         <Button
             android:id="@+id/btnSubmit"
-            android:layout_width="160dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:backgroundTint="?attr/colorPrimary"
             android:text="@string/btnSubmit"
-            android:textColor="?attr/colorOnPrimary" />
-    </LinearLayout>
+            android:textColor="?attr/colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/tvFeedback"
@@ -62,7 +87,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/tvFeedback"
         android:textAlignment="center"
         android:textColor="?android:attr/textColorTertiary"
         app:layout_constraintEnd_toEndOf="parent"
@@ -70,86 +94,46 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutEnterData"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <TextView
-        android:id="@+id/tvDates"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/tvDates_start"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/include"
-        app:layout_constraintEnd_toStartOf="@+id/tvWeights"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintWidth_percent=".5" />
-
-    <TextView
-        android:id="@+id/tvWeights"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/tvWeights_start"
-        android:textAlignment="textStart"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/include"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvDates"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.0"
-        app:layout_constraintWidth_percent=".35" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/constraintLayoutSorting"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvFeedback">
 
         <Button
-            android:id="@+id/btnAll"
+            android:id="@+id/btnSortByNew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Oldest"
+            android:backgroundTint="?attr/colorPrimaryVariant"
+            android:insetTop="8dp"
+            android:insetBottom="8dp"
+            android:text="@string/btnSortByNew"
+            android:textAllCaps="true"
+            android:textColor="?attr/colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnMonthly"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnSortByOld"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btnMonthly"
+            android:id="@+id/btnSortByOld"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="?attr/colorSecondary"
-            android:text="Monthly"
-            android:textColor="?attr/colorOnSecondary"
-            app:layout_constraintBottom_toBottomOf="@+id/btnAll"
-            app:layout_constraintEnd_toStartOf="@+id/btnDaily"
+            android:backgroundTint="?attr/colorPrimaryVariant"
+            android:insetTop="8dp"
+            android:insetBottom="8dp"
+            android:text="@string/btnSortByOld"
+            android:textAllCaps="true"
+            android:textColor="?attr/colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnSortByNew"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnAll"
-            app:layout_constraintTop_toTopOf="@+id/btnAll" />
-
-        <Button
-            android:id="@+id/btnDaily"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Newest"
-            app:layout_constraintBottom_toBottomOf="@+id/btnMonthly"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnMonthly"
-            app:layout_constraintTop_toTopOf="@+id/btnMonthly" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
