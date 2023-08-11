@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,9 +12,6 @@ import com.example.termprojectv6.Adapter.EntryGroupRecyclerAdapter
 import com.example.termprojectv6.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-
-    val months = arrayOf("","January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +40,13 @@ class MainActivity : AppCompatActivity() {
             else -> String.format(numOfEntriesPlural, entryNum)
         }
         var entries = Entries.groupByMonth(this)
-        // finish layout
+        var sortBy = Entries.getMainSortBy(this)
+        if (sortBy == "New") {
+            entries.reverse()
+            binding.btnSortByNew.background.setTint(Utils.getColor(this, 5))
+        } else {
+            binding.btnSortByOld.background.setTint(Utils.getColor(this, 5))
+        }
         try {
             val layoutManager: RecyclerView.LayoutManager
             val adapter: RecyclerView.Adapter<*>
@@ -55,26 +59,35 @@ class MainActivity : AppCompatActivity() {
 
         }
 
-//        binding.btnSubmit.setOnClickListener {
-//            try {
-//                entries.add(Entry(entryNum, binding.etDate.text.toString(), binding.etWeight.text.toString().toFloat()))
-//                editor.putInt("id-$entryNum", entries[entryNum].id).apply()
-//                displayIds += "\n${entries[entryNum].id}"
-//                editor.putString("date-$entryNum", entries[entryNum].date).apply()
-//                displayDates += "\n${entries[entryNum].date}"
-//                editor.putFloat("weight-$entryNum", entries[entryNum].weight).apply()
-//                displayWeights += "\n${entries[entryNum].weight}"
-//                entryNum++
-//                editor.putInt("entries", entryNum).apply()
-//            } catch (e: NumberFormatException) {
-//                binding.tvFeedback.text = getString(R.string.invalid_weight_or_date)
-//                return@setOnClickListener
-//            }
-//            binding.tvFeedback.text = ""
-//            Toast.makeText(this, "Entry[${entryNum-1}] added", Toast.LENGTH_SHORT).show()
-//            binding.tvDates.text = displayDates
-//            binding.tvWeights.text = displayWeights
-//        }
+        binding.btnSubmit.setOnClickListener{
+            try {
+                var created : Boolean = Entries.createEntry(this, binding.etDate.text.toString(), binding.etWeight.text.toString().toFloat())
+                if (created) {
+                    entryNum = Entries.getEntryNum(this)
+                    binding.tvFeedback.text = ""
+                    Toast.makeText(this, "Entry[${entryNum-1}] added", Toast.LENGTH_SHORT).show()
+                } else {
+                    binding.tvFeedback.text = "Invalid date input"
+                }
+                Utils.recreateActivity(this)
+            } catch (e: NumberFormatException) {
+                binding.tvFeedback.text = getString(R.string.invalid_weight_or_date)
+                return@setOnClickListener
+            } catch (e: Exception) {
+                binding.tvFeedback.text = getString(R.string.invalid_weight_or_date)
+                return@setOnClickListener
+            }
+        }
+
+        binding.btnSortByOld.setOnClickListener {
+            Entries.setMainSortBy(this, "Old")
+            Utils.recreateActivity(this)
+        }
+        binding.btnSortByNew.setOnClickListener {
+            Entries.setMainSortBy(this, "New")
+            Utils.recreateActivity(this)
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

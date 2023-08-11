@@ -35,8 +35,11 @@ class EnterData : AppCompatActivity(), EntryItemClickListener {
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
 
         var entryNum = Entries.getEntryNum(this)
-        binding.tvFeedback.text = "${entryNum} entries"
-        val data = Entries.data(this)
+        binding.tvFeedback.text = when (entryNum) {
+            0 -> String.format(resources.getString(R.string.num_of_entries_0), entryNum)
+            1 -> String.format(resources.getString(R.string.num_of_entries_1), entryNum)
+            else -> String.format(resources.getString(R.string.num_of_entries_plural), entryNum)
+        }
         var entries : ArrayList<Entry>
         var sortBy = Entries.getEnterDataSortBy(this)
         if (sortBy == "New") {

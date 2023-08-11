@@ -21,7 +21,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/include"
@@ -96,46 +96,42 @@
         android:id="@+id/constraintLayoutSorting"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvFeedback">
 
         <Button
-            android:id="@+id/btnOldestFirst"
+            android:id="@+id/btnSortByNew"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Oldest"
+            android:backgroundTint="?attr/colorPrimaryVariant"
+            android:insetTop="8dp"
+            android:insetBottom="8dp"
+            android:text="@string/btnSortByNew"
+            android:textAllCaps="true"
+            android:textColor="?attr/colorOnPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnMonthly"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnSortByOld"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/btnMonthly"
+            android:id="@+id/btnSortByOld"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="?attr/colorSecondary"
-            android:text="Monthly"
-            android:textColor="?attr/colorOnSecondary"
-            app:layout_constraintBottom_toBottomOf="@+id/btnOldestFirst"
-            app:layout_constraintEnd_toStartOf="@+id/btnNewestFirst"
+            android:backgroundTint="?attr/colorPrimaryVariant"
+            android:insetTop="8dp"
+            android:insetBottom="8dp"
+            android:text="@string/btnSortByOld"
+            android:textAllCaps="true"
+            android:textColor="?attr/colorOnPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnSortByNew"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnOldestFirst"
-            app:layout_constraintTop_toTopOf="@+id/btnOldestFirst" />
-
-        <Button
-            android:id="@+id/btnNewestFirst"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Newest"
-            app:layout_constraintBottom_toBottomOf="@+id/btnMonthly"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnMonthly"
-            app:layout_constraintTop_toTopOf="@+id/btnMonthly" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

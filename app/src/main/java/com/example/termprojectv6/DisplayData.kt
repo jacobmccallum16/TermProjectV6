@@ -63,10 +63,15 @@ class DisplayData : AppCompatActivity() {
         chart.axisLeft.setStartAtZero(false)
         chart.xAxis.granularity = 1f
 //        chart.animateY(1000)
-        if (Entries.getDisplayPreference(this) == "Monthly") {
+        if (Entries.getDisplayPreference(this) == "Future") {
+            displayFutureData()
+            binding.btnDisplayFuture.background.setTint(Utils.getColor(this, 5))
+        } else if (Entries.getDisplayPreference(this) == "Monthly") {
             displayMonthlyData()
+            binding.btnDisplayMonthly.background.setTint(Utils.getColor(this, 5))
         } else {
             displayAllData()
+            binding.btnDisplayAll.background.setTint(Utils.getColor(this, 5))
         }
         chart.setBackgroundColor(Color.WHITE)
         chart.legend.isEnabled = true
@@ -74,11 +79,14 @@ class DisplayData : AppCompatActivity() {
         chart.axisRight.isEnabled = false
 
 
-        binding.btnAll.setOnClickListener {
+        binding.btnDisplayAll.setOnClickListener {
             selectAllData()
         }
-        binding.btnMonthly.setOnClickListener {
+        binding.btnDisplayMonthly.setOnClickListener {
             selectMonthlyData()
+        }
+        binding.btnDisplayFuture.setOnClickListener {
+            selectFutureData()
         }
 
     }
@@ -162,9 +170,13 @@ class DisplayData : AppCompatActivity() {
         Entries.setDisplayPreference(this, "Monthly")
         Utils.recreateActivity(this)
     }
+    fun selectFutureData() {
+        Entries.setDisplayPreference(this, "Future")
+        Utils.recreateActivity(this)
+    }
 
     fun displayAllData() {
-        val entries = Entries.getEntries(this)
+        val entries = Entries.getEntriesSortByOld(this)
         var axisMin = entries[0].weight
         var axisMax = entries[0].weight
         for (i in 0 until entries.size) {
@@ -180,7 +192,22 @@ class DisplayData : AppCompatActivity() {
     }
     fun displayMonthlyData() {
         var entries = Entries.groupByMonth(this)
-        entries = Entries.predictionSimple(this, entries)
+        var axisMin = entries[0].minWeight
+        var axisMax = entries[0].maxWeight
+        for (i in 0 until entries.size) {
+            axisMin = min(axisMin, entries[i].minWeight)
+            axisMax = max(axisMax, entries[i].maxWeight)
+        }
+        axisMin = floor((axisMin-2.5f)/5) * 5
+        axisMax = ceil((axisMax+2.5f)/5) * 5
+        chart.axisLeft.axisMinimum = axisMin
+        chart.axisLeft.axisMaximum = axisMax
+        passMonthlyData(entries)
+        Toast.makeText(this, "Displaying Monthly Data", Toast.LENGTH_SHORT).show()
+    }
+    fun displayFutureData() {
+        var entries = Entries.groupByMonth(this)
+        entries = Entries.predictionComplex(this, entries)
         var axisMin = entries[0].minWeight
         var axisMax = entries[0].maxWeight
         for (i in 0 until entries.size) {

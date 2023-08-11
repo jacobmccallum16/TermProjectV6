@@ -163,6 +163,16 @@ object Entries {
             return false
         }
     }
+    fun createEntry(activity: Activity, date: String, weight: Float) : Boolean {
+        val nextId = getNextId(activity)
+        val newEntry = newEntry(activity, nextId, date, weight)
+        if (newEntry != null) {
+            saveNewEntry(activity, newEntry)
+            return true
+        } else {
+            return false
+        }
+    }
     fun saveNewEntry(activity: Activity, entry: Entry) : Entry {
         val data = data(activity)
         val entryNum = getEntryNum(activity)
@@ -205,31 +215,65 @@ object Entries {
         val entryGroup = EntryGroup(entries, month, year)
         return entryGroup
     }
+    fun getOldestMonth(activity: Activity) : Int {
+        var entries = getEntriesSortByOld(activity)
+        return entries[0].month
+    }
+    fun getOldestYear(activity: Activity) : Int {
+        var entries = getEntriesSortByOld(activity)
+        return entries[0].year
+    }
+    fun getNewestMonth(activity: Activity) : Int {
+        var entries = getEntriesSortByNew(activity)
+        return entries[0].month
+    }
+    fun getNewestYear(activity: Activity) : Int {
+        var entries = getEntriesSortByNew(activity)
+        return entries[0].year
+    }
 
     fun groupByMonth(activity: Activity) : ArrayList<EntryGroup> {
         // Returns an array list of array lists
-        // hardcoding it for now to be 9 months starting from Dec 2022
-        var ENTRIES = ArrayList<EntryGroup>()
+        var oldestMonth = getOldestMonth(activity)
+        var oldestYear = getOldestYear(activity)
+        var newestMonth = getNewestMonth(activity)
+        var newestYear = getNewestYear(activity)
+        var entries = ArrayList<EntryGroup>()
         // dec 2022
-        ENTRIES.add(getByMonthYear(activity, 12, 2022))
-        ENTRIES.add(getByMonthYear(activity, 1, 2023))
-        ENTRIES.add(getByMonthYear(activity, 2, 2023))
-        ENTRIES.add(getByMonthYear(activity, 3, 2023))
-        ENTRIES.add(getByMonthYear(activity, 4, 2023))
-        ENTRIES.add(getByMonthYear(activity, 5, 2023))
-        ENTRIES.add(getByMonthYear(activity, 6, 2023))
-        ENTRIES.add(getByMonthYear(activity, 7, 2023))
-        ENTRIES.add(getByMonthYear(activity, 8, 2023))
-        return ENTRIES
+        if (oldestYear == newestYear) {
+            for (month in oldestMonth .. newestMonth) {
+                entries.add(getByMonthYear(activity, month, oldestYear))
+            }
+        } else if (oldestYear == newestYear -1) {
+            for (month in oldestMonth .. 12) {
+                entries.add(getByMonthYear(activity, month, oldestYear))
+            }
+            for (month in 1 .. newestMonth) {
+                entries.add(getByMonthYear(activity, month, newestYear))
+            }
+        } else {
+            for (month in oldestMonth .. 12) {
+                entries.add(getByMonthYear(activity, month, oldestYear))
+            }
+            for (year in (oldestYear + 1) until newestYear) {
+                for (month in 1 .. 12) {
+                    entries.add(getByMonthYear(activity, month, year))
+                }
+            }
+            for (month in 1 .. newestMonth) {
+                entries.add(getByMonthYear(activity, month, newestYear))
+            }
+        }
+        return entries
     }
 
-    fun setDisplayPreference(activity: Activity, displayPreference: String) {
+    fun setMainSortBy(activity: Activity, sort: String) {
         val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
-        data.edit().putString("displayPreference", displayPreference).commit()
+        data.edit().putString("mainSortBy", sort).commit()
     }
-    fun getDisplayPreference(activity: Activity) : String {
+    fun getMainSortBy(activity: Activity) : String {
         val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
-        return data.getString("displayPreference", "Monthly").toString()
+        return data.getString("mainSortBy", "old").toString()
     }
     fun setEnterDataSortBy(activity: Activity, sort: String) {
         val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
@@ -238,6 +282,14 @@ object Entries {
     fun getEnterDataSortBy(activity: Activity) : String {
         val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
         return data.getString("enterDataSortBy", "id").toString()
+    }
+    fun setDisplayPreference(activity: Activity, displayPreference: String) {
+        val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
+        data.edit().putString("displayPreference", displayPreference).commit()
+    }
+    fun getDisplayPreference(activity: Activity) : String {
+        val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
+        return data.getString("displayPreference", "Monthly").toString()
     }
 
 
@@ -259,6 +311,8 @@ object Entries {
         var slopeMinWeight = (lastEntry.minWeight - firstEntry.minWeight) / (duration)
         var slopeAvgWeight = (lastEntry.avgWeight - firstEntry.avgWeight) / (duration)
         var slopeMaxWeight = (lastEntry.maxWeight - firstEntry.maxWeight) / (duration)
+        // linear forecast
+
         // add 8 months
         for (i in 1 .. 8) {
             var predictedMonth : Int = lastEntry.month + i
@@ -276,6 +330,53 @@ object Entries {
         }
         return entries
     }
-
+    fun predictionComplex(activity: Activity, entries: ArrayList<EntryGroup>) : ArrayList<EntryGroup> {
+        var size = entries.size
+        var duration = size - 1
+        var firstEntry = entries[1]
+        var lastEntry = entries[duration]
+        // Since linear regression forecasts are a lot harder here than in excel, I'm simplifying it
+        // Hopefully the math still half-checks out
+        var minWeightOld : Float = 0f
+        var minWeightNew : Float = 0f
+        var avgWeightOld : Float = 0f
+        var avgWeightNew : Float = 0f
+        var maxWeightOld : Float = 0f
+        var maxWeightNew : Float = 0f
+        var divisor : Int = 0;
+        var divisor2 : Int = 0;
+        for (i in 0 .. duration) {
+            divisor += (i + 1)
+            divisor2 += (i * 2 + 1)
+        }
+        for (i in 0 .. duration) {
+            minWeightOld += entries[i].minWeight * (duration - i + 1) / divisor
+            minWeightNew += entries[i].minWeight * ((i * 2) + 1) / divisor2
+            avgWeightOld += entries[i].avgWeight * (duration - i + 1) / divisor
+            avgWeightNew += entries[i].avgWeight * ((i * 2) + 1) / divisor2
+            maxWeightOld += entries[i].maxWeight * (duration - i + 1) / divisor
+            maxWeightNew += entries[i].maxWeight * ((i * 2) + 1) / divisor2
+        }
+        var slopeMinWeight = (maxWeightNew - minWeightOld) / (duration)
+        var slopeAvgWeight = (avgWeightNew - avgWeightOld) / (duration)
+        var slopeMaxWeight = (minWeightNew - maxWeightOld) / (duration)
+        // add 8 months
+        var time = 0
+        for (i in 1 .. 8) {
+            var predictedMonth : Int = lastEntry.month + i
+            var predictedYear : Int = lastEntry.year
+            while (predictedMonth > 12) {
+                predictedMonth -= 12
+                predictedYear += 1
+            }
+            var predictedMinWeight : Float = minWeightNew + ((slopeMinWeight - 1) * time)
+            var predictedAvgWeight : Float = avgWeightNew + (slopeAvgWeight * time)
+            var predictedMaxWeight : Float = maxWeightNew + ((slopeMaxWeight + 1) * time)
+            var prediction = EntryGroup(predictedMonth, predictedYear, predictedMinWeight, predictedAvgWeight, predictedMaxWeight)
+            entries.add(prediction)
+            time += 1
+        }
+        return entries
+    }
 
 }

@@ -29,6 +29,9 @@
     <string name="tvFeedback" translatable="false"> </string>
     <!-- EnterData Activity -->
     <!-- DisplayData Activity -->
+    <string name="btnDisplayAll">All</string>
+    <string name="btnDisplayMonthly">Monthly</string>
+    <string name="btnDisplayFuture">Future</string>
     <!--    old display format start-->
     <string name="tvIDs_start">ID:</string>
     <string name="tvDates_start">Date:</string>

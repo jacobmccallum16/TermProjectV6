@@ -139,4 +139,7 @@
     <string name="num_of_entries_plural">%1$d données</string>
     <string name="tv_avg_weight">%1$.1f lbs</string>
     <string name="tv_min_max_weight">%1$.1f - %2$.1f</string>
+    <string name="btnDisplayAll">Toutes</string>
+    <string name="btnDisplayMonthly">Mensuelles</string>
+    <string name="btnDisplayFuture">Futures</string>
 </resources>
