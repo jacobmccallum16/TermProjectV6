@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toTopOf="@+id/include"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutSorting" />
 
     <LinearLayout
         android:id="@+id/linearLayoutEnterData"
@@ -84,7 +84,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
+        android:id="@+id/constraintLayoutSorting"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -94,7 +94,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tvFeedback">
 
         <Button
-            android:id="@+id/btnAll"
+            android:id="@+id/btnOldestFirst"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Oldest"
@@ -111,14 +111,14 @@
             android:backgroundTint="?attr/colorSecondary"
             android:text="Monthly"
             android:textColor="?attr/colorOnSecondary"
-            app:layout_constraintBottom_toBottomOf="@+id/btnAll"
-            app:layout_constraintEnd_toStartOf="@+id/btnDaily"
+            app:layout_constraintBottom_toBottomOf="@+id/btnOldestFirst"
+            app:layout_constraintEnd_toStartOf="@+id/btnNewestFirst"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/btnAll"
-            app:layout_constraintTop_toTopOf="@+id/btnAll" />
+            app:layout_constraintStart_toEndOf="@+id/btnOldestFirst"
+            app:layout_constraintTop_toTopOf="@+id/btnOldestFirst" />
 
         <Button
-            android:id="@+id/btnDaily"
+            android:id="@+id/btnNewestFirst"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Newest"

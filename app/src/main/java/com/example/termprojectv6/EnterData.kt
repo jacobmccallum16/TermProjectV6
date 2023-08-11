@@ -28,33 +28,65 @@ class EnterData : AppCompatActivity(), EntryItemClickListener {
         btnEnterData.setOnClickListener { Utils.openEnterData(this) }
         val btnDisplayData : Button = findViewById(R.id.btnDisplayData)
         btnDisplayData.setOnClickListener { Utils.openDisplayData(this) }
-        // other
-        // recycler view code
+
+
         val layoutManager: RecyclerView.LayoutManager
         val adapter: RecyclerView.Adapter<*>
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-        // get data
-        val data = Entries.data(this)
+
         var entryNum = Entries.getEntryNum(this)
         binding.tvFeedback.text = "${entryNum} entries"
-        var entries = Entries.getEntriesReversed(this)
-        // finish layout
+        val data = Entries.data(this)
+        var entries : ArrayList<Entry>
+        var sortBy = Entries.getEnterDataSortBy(this)
+        if (sortBy == "New") {
+            entries = Entries.getEntriesSortByNew(this)
+            binding.btnSortByNew.background.setTint(Utils.getColor(this, 5))
+        } else if (sortBy == "Old") {
+            entries = Entries.getEntriesSortByOld(this)
+            binding.btnSortByOld.background.setTint(Utils.getColor(this, 5))
+        } else {
+            entries = Entries.getEntries(this)
+            entries.sortWith(compareByDescending { it.id })
+            binding.btnSortByRecent.background.setTint(Utils.getColor(this, 5))
+        }
+
         layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        adapter = RecyclerAdapter(entries, this)
+        adapter = RecyclerAdapter(entries, this, this)
         recyclerView.adapter = adapter
 
         binding.btnSubmit.setOnClickListener{
             try {
-                entries = Entries.createEntry(this, entries, binding.etDate.text.toString(), binding.etWeight.text.toString().toFloat())
-                entryNum++
-                binding.tvFeedback.text = ""
+                var created : Boolean = Entries.createEntry(this, entries, binding.etDate.text.toString(), binding.etWeight.text.toString().toFloat())
+                if (created) {
+                    entryNum = Entries.getEntryNum(this)
+                    binding.tvFeedback.text = ""
+                    Toast.makeText(this, "Entry[${entryNum-1}] added", Toast.LENGTH_SHORT).show()
+                } else {
+                    binding.tvFeedback.text = "Invalid date input"
+                }
                 Utils.recreateActivity(this)
-                Toast.makeText(this, "Entry[${entryNum-1}] added", Toast.LENGTH_SHORT).show()
             } catch (e: NumberFormatException) {
                 binding.tvFeedback.text = getString(R.string.invalid_weight_or_date)
                 return@setOnClickListener
+            } catch (e: Exception) {
+                binding.tvFeedback.text = getString(R.string.invalid_weight_or_date)
+                return@setOnClickListener
             }
+        }
+
+        binding.btnSortByOld.setOnClickListener {
+            Entries.setEnterDataSortBy(this, "Old")
+            Utils.recreateActivity(this)
+        }
+        binding.btnSortByRecent.setOnClickListener {
+            Entries.setEnterDataSortBy(this, "ID")
+            Utils.recreateActivity(this)
+        }
+        binding.btnSortByNew.setOnClickListener {
+            Entries.setEnterDataSortBy(this, "New")
+            Utils.recreateActivity(this)
         }
 
     }

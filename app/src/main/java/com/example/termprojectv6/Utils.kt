@@ -178,7 +178,7 @@ object Utils {
         return typedValue.data
     }
     fun getColor(activity: Activity, shade: Int = 5, color : Int = activity.getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE)
-        .getInt("colorSchemeId", 0)) : Int {
+        .getInt("colorSchemeId", 1)) : Int {
         return when (shade) {
             0 -> activity.resources.getColor(R.color.white, activity.theme)
             1 -> when (color) {

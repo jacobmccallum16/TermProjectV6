@@ -1,20 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_margin="4dp"
     app:cardBackgroundColor="?attr/colorPrimarySurface"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="3dp"
+    app:cardCornerRadius="32dp"
+    app:cardElevation="2dp"
     app:contentPadding="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="4dp">
 
         <TextView
             android:id="@+id/itemDate"
@@ -22,7 +23,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textColor="?attr/colorOnPrimarySurface"
-            android:textSize="14sp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/itemAvgWeight"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,24 +35,12 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textColor="?attr/colorOnPrimarySurface"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/itemEdit"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/itemDate"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/itemEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="24dp"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/itemDelete"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/itemAvgWeight"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/baseline_edit_32"
-            app:tint="?attr/colorOnPrimarySurface" />
+            app:layout_constraintStart_toEndOf="@+id/itemDate"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/itemDelete"
@@ -60,7 +49,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/itemEdit"
+            app:layout_constraintStart_toEndOf="@+id/itemAvgWeight"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/baseline_delete_outline_32"
             app:tint="?attr/colorOnPrimarySurface" />
