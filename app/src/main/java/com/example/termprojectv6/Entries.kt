@@ -48,11 +48,12 @@ object Entries {
         return entries
     }
     fun newEntry(activity: Activity, id: Int, date: String, weight: Float) : Entry? {
-        val dateData : List<String> = date.split("-", " ", "/", ".", "_")
+        val simplifyDate = date.replace(Regex("[ _,.-/]"), "-").replace(Regex("-+"), "-")
+        val dateData : List<String> = simplifyDate.split("-")
         val patternInt: Int
 //        val patterns = arrayOf("","YYYY-MM-DD", "YYYY-Mon-DD", "YYYY-DD-Mon", // for reference only,
 //            "Mon-DD-YYYY", "DD-Mon-YYYY", "DD-MM-YYYY",                     // don't delete it though
-//            "YYYY-MM", "YYYY-Mon", "Mon-YYYY", "MM-YYYY", "Mon-DD", "DD-Mon")
+//            "YYYY-MM", "YYYY-Mon", "Mon-YYYY", "MM-YYYY", "Mon-DD", "DD-Mon", "Mon")
         if (dateData.size == 3) { // 1 through 6
             if (dateData[0].toIntOrNull() == null) { // 4
                 patternInt = 4 // Mon-DD-YYYY
@@ -89,6 +90,12 @@ object Entries {
             } else { // 10
                 patternInt = 10 // MM-YYYY
             }
+        } else if (dateData.size == 1) {
+            if (dateData[0].toIntOrNull() == null) {
+                patternInt = 13
+            } else {
+                patternInt = 0
+            }
         } else {
             patternInt = 0 // fail somehow idk
         }
@@ -110,7 +117,7 @@ object Entries {
         val month = when (patternInt) {
             10 -> dateData[0].take(2).toInt()
             1, 6, 7 -> dateData[1].take(2).toInt()
-            4, 9, 11 -> processMonth(dateData[0])
+            4, 9, 11, 13 -> processMonth(dateData[0])
             2, 5, 8, 12 -> processMonth(dateData[1])
             3 -> processMonth(dateData[2])
             else -> 0 // if it's failing t won't get this far anyway
@@ -358,9 +365,9 @@ object Entries {
             maxWeightOld += entries[i].maxWeight * (duration - i + 1) / divisor
             maxWeightNew += entries[i].maxWeight * ((i * 2) + 1) / divisor2
         }
-        val slopeMinWeight = (maxWeightNew - minWeightOld) / (duration)
+        val slopeMinWeight = (maxWeightNew - maxWeightOld) / (duration)
         val slopeAvgWeight = (avgWeightNew - avgWeightOld) / (duration)
-        val slopeMaxWeight = (minWeightNew - maxWeightOld) / (duration)
+        val slopeMaxWeight = (minWeightNew - minWeightOld) / (duration)
         // add 8 months
         var time = 1
         for (i in 1 .. 8) {

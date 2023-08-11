@@ -43,7 +43,7 @@ class Settings : AppCompatActivity() {
                 binding.spinnerColorMode.selectedItemPosition,
                 binding.spinnerLanguage.selectedItemPosition)}
 
-        binding.btnDeleteAllEntries.setOnClickListener {
+        binding.btnDeleteAllData.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             builder.setTitle(resources.getString(R.string.alertDeleteAllTitle))
             builder.setMessage(resources.getString(R.string.alertDeleteAllMessage))

@@ -130,14 +130,14 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/btnDeleteAllEntries"
+        android:id="@+id/btnDeleteAllData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:backgroundTint="?attr/colorError"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
-        android:text="@string/btnDeleteAllEntries"
+        android:text="@string/btnDeleteAllData"
         android:textColor="?attr/colorOnError"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

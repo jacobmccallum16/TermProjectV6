@@ -47,15 +47,15 @@ class DisplayData : AppCompatActivity() {
         chart.xAxis.granularity = 1f
         chart.animateX(250)
         try {
-            if (Entries.getDisplayPreference(this) == "Future") {
-                displayFutureData()
-                binding.btnDisplayFuture.background.setTint(Utils.getColor(this, 5))
+            if (Entries.getDisplayPreference(this) == "All") {
+                displayAllData()
+                binding.btnDisplayAll.background.setTint(Utils.getColor(this, 5))
             } else if (Entries.getDisplayPreference(this) == "Monthly") {
                 displayMonthlyData()
                 binding.btnDisplayMonthly.background.setTint(Utils.getColor(this, 5))
             } else {
-                displayAllData()
-                binding.btnDisplayAll.background.setTint(Utils.getColor(this, 5))
+                displayFutureData()
+                binding.btnDisplayFuture.background.setTint(Utils.getColor(this, 5))
             }
         }
         catch (_: Exception) {
@@ -91,7 +91,7 @@ class DisplayData : AppCompatActivity() {
             chart.data.notifyDataChanged()
             chart.notifyDataSetChanged()
         } else {
-            set1 = BarDataSet(values, "Weight in lbs")
+            set1 = BarDataSet(values, resources.getString(R.string.legendWeightInLbs))
             val gradientFills: MutableList<GradientColor> = ArrayList()
             gradientFills.add(GradientColor(Utils.getColor(this,10), Utils.getColor(this, 5)))
             gradientFills.add(GradientColor(Utils.getColor(this,9), Utils.getColor(this, 4)))
@@ -116,9 +116,9 @@ class DisplayData : AppCompatActivity() {
             valuesAvg.add(BarEntry(i.toFloat(), entries[i].avgWeight))
             valuesHigh.add(BarEntry(i.toFloat(), entries[i].maxWeight))
         }
-        val set1 = BarDataSet(valuesLow, "Lowest weight")
-        val set2 = BarDataSet(valuesAvg, "Average Weight")
-        val set3 = BarDataSet(valuesHigh, "Highest Weight")
+        val set1 = BarDataSet(valuesLow, resources.getString(R.string.legendLowestWeight))
+        val set2 = BarDataSet(valuesAvg, resources.getString(R.string.legendAverageWeight))
+        val set3 = BarDataSet(valuesHigh, resources.getString(R.string.legendHighestWeight))
         val gradientFills1: MutableList<GradientColor> = ArrayList()
         val gradientFills2: MutableList<GradientColor> = ArrayList()
         val gradientFills3: MutableList<GradientColor> = ArrayList()

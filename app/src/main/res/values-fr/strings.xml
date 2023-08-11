@@ -124,7 +124,7 @@
     <string name="tvTitle">Viz du poids</string>
     <string name="EnterData_tvTitle">Saisir les données</string>
     <string name="SecondActivity_title">Viz du poids - 2e activité</string>
-    <string name="btnDeleteAllEntries">Supprimer tout</string>
+    <string name="btnDeleteAllData">Supprimer tout</string>
     <string name="btnRemoveLastEntry">Supprimer la dernière</string>
     <string name="etWeight_hint">Poids en lbs</string>
     <string name="btnSubmit">Soumettre</string>
@@ -141,6 +141,9 @@
     <string name="tv_weight">%1$.1f lbs</string>
     <string name="tv_avg_weight">%1$.1f lbs</string>
     <string name="tv_min_max_weight">%1$.1f - %2$.1f</string>
+    <string name="legendWeightInLbs">Poids en lbs</string>
+    <string name="legendHighestWeight">Poids maximum</string>
+    <string name="legendAverageWeight">Poids moyen</string>
     <string name="btnDisplayAll">Toutes</string>
     <string name="btnDisplayMonthly">Mensuelles</string>
     <string name="btnDisplayFuture">Futures</string>
@@ -161,4 +164,5 @@
     <string name="settingsToast">Paramètres</string>
     <string name="entryDeletedToast">Donnée supprimée</string>
     <string name="entryAddedToast">Donnée ajoutée</string>
+    <string name="legendLowestWeight">Poids minimum</string>
 </resources>

@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
             1 -> String.format(numOfEntries1, entryNum)
             else -> String.format(numOfEntriesPlural, entryNum)
         }
+
         try {
             val entries = Entries.groupByMonth(this)
             val sortBy = Entries.getMainSortBy(this)

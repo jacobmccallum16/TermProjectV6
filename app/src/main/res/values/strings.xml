@@ -13,7 +13,7 @@
 
 
     <!-- Main Activity -->
-    <string name="btnDeleteAllEntries">Delete All Entries</string>
+    <string name="btnDeleteAllData">Delete All Data</string>
     <string name="btnRemoveLastEntry">Remove Last Entry</string>
     <string name="num_of_entries_0">%1$d Entries</string>
     <string name="num_of_entries_1">%1$d Entry</string>
@@ -30,6 +30,10 @@
     <string name="btnSubmit">Submit</string>
     <!-- EnterData Activity -->
     <!-- DisplayData Activity -->
+    <string name="legendWeightInLbs">Weight in lbs</string>
+    <string name="legendHighestWeight">Highest Weight</string>
+    <string name="legendAverageWeight">Average Weight</string>
+    <string name="legendLowestWeight">Lowest Weight</string>
     <string name="btnDisplayAll">All</string>
     <string name="btnDisplayMonthly">Monthly</string>
     <string name="btnDisplayFuture">Future</string>
@@ -107,10 +111,10 @@
     <string name="settingsToast">Settings</string>
 
     <!-- Delete All Entries Warning -->
-    <string name="alertDeleteAllTitle">Delete All Entries</string>
-    <string name="alertDeleteAllMessage">Are you sure you want to delete all entries?</string>
+    <string name="alertDeleteAllTitle">Delete All Data</string>
+    <string name="alertDeleteAllMessage">Are you sure you want to delete all data?</string>
     <string name="alertDeleteAllPositive">Delete</string>
-    <string name="alertDeleteAllPositiveToast">All Entries deleted</string>
+    <string name="alertDeleteAllPositiveToast">All data deleted</string>
     <string name="alertDeleteAllNegative">Cancel</string>
     <string name="alertDeleteAllNegativeToast">Cancel deletion</string>
 
