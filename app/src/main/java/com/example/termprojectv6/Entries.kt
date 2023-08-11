@@ -362,7 +362,7 @@ object Entries {
         val slopeAvgWeight = (avgWeightNew - avgWeightOld) / (duration)
         val slopeMaxWeight = (minWeightNew - maxWeightOld) / (duration)
         // add 8 months
-        var time = 0
+        var time = 1
         for (i in 1 .. 8) {
             var predictedMonth : Int = lastEntry.month + i
             var predictedYear : Int = lastEntry.year
@@ -370,9 +370,9 @@ object Entries {
                 predictedMonth -= 12
                 predictedYear += 1
             }
-            val predictedMinWeight : Float = minWeightNew + ((slopeMinWeight - 1) * time)
-            val predictedAvgWeight : Float = avgWeightNew + (slopeAvgWeight * time)
-            val predictedMaxWeight : Float = maxWeightNew + ((slopeMaxWeight + 1) * time)
+            val predictedMinWeight : Float = entries[duration].minWeight + ((slopeMinWeight - 1) * time)
+            val predictedAvgWeight : Float = entries[duration].avgWeight + (slopeAvgWeight * time)
+            val predictedMaxWeight : Float = entries[duration].maxWeight + ((slopeMaxWeight + 1) * time)
             val prediction = EntryGroup(predictedMonth, predictedYear, predictedMinWeight, predictedAvgWeight, predictedMaxWeight)
             entries.add(prediction)
             time += 1

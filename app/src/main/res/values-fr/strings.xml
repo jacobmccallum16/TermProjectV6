@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TermProjectV6</string>
-    <string name="MainActivity_title">Projet - Page d\'accueil</string>
-    <string name="EnterData_title">Projet - Saisir les données</string>
-    <string name="DisplayData_title">Projet - Graphique</string>
-    <string name="Settings_title">Projet - Paramètres</string>
+    <string name="app_name">VizDuPoids</string>
+    <string name="MainActivity_title">Viz du poids - Page d\'accueil</string>
+    <string name="EnterData_title">Viz du poids - Saisir les données</string>
+    <string name="DisplayData_title">Viz du poids - Viz Graphique</string>
+    <string name="Settings_title">Viz du poids - Paramètres</string>
     <string name="etDate_hint">Date</string>
     <string name="tvIDs_start">ID:</string>
     <string name="tvDates_start">Date:</string>
@@ -121,9 +121,9 @@
         <item>30</item>
         <item>31</item>
     </string-array>
-    <string name="tvTitle">Projet</string>
+    <string name="tvTitle">Viz du poids</string>
     <string name="EnterData_tvTitle">Saisir les données</string>
-    <string name="SecondActivity_title">Projet - 2e activité</string>
+    <string name="SecondActivity_title">Viz du poids - 2e activité</string>
     <string name="btnDeleteAllEntries">Supprimer tout</string>
     <string name="btnRemoveLastEntry">Supprimer la dernière</string>
     <string name="etWeight_hint">Poids en lbs</string>

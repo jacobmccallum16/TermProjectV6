@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">TermProjectV6</string>
+    <string name="app_name">WeightViz</string>
     <!--    header-->
-    <string name="tvTitle">Term Project</string>
+    <string name="tvTitle">Weight Viz</string>
     <string name="EnterData_tvTitle">Enter Data</string>
 
     <!-- Action Bar Titles -->
-    <string name="MainActivity_title">Term Project - Main</string>
-    <string name="EnterData_title">Term Project - Enter Data</string>
-    <string name="DisplayData_title">Term Project - Display Data</string>
-    <string name="Settings_title">Term Project - Settings</string>
-    <string name="SecondActivity_title">Term Project - Second Activity</string>
+    <string name="MainActivity_title">Weight Viz - Main</string>
+    <string name="EnterData_title">Weight Viz - Enter Data</string>
+    <string name="DisplayData_title">Weight Viz - Display Data</string>
+    <string name="Settings_title">Weight Viz - Settings</string>
+    <string name="SecondActivity_title">Weight Viz - Second Activity</string>
 
 
     <!-- Main Activity -->
