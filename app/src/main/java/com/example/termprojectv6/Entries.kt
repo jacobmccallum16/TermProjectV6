@@ -100,18 +100,18 @@ object Entries {
     fun processMonth(month: String) : Int {
         return when (month.lowercase()) {
             "jan" -> 1
-            "feb" -> 2
+            "feb", "fév", "fev" -> 2
             "mar" -> 3
-            "apr" -> 4
-            "may" -> 5
-            "jun" -> 6
-            "jul" -> 7
-            "aug" -> 8
+            "apr", "avr" -> 4
+            "may", "mai" -> 5
+            "jun", "juin" -> 6
+            "jul", "juil" -> 7
+            "aug", "aou", "aoû" -> 8
             "sep" -> 9
             "oct" -> 10
             "nov" -> 11
-            "dec" -> 12
-            else -> 1
+            "dec", "déc" -> 12
+            else -> 12
         }
     }
     fun createEntry(activity: Activity, entries : ArrayList<Entry2>, date: String, weight: Float) : ArrayList<Entry2> {
@@ -188,7 +188,11 @@ object Entries {
     }
 
     fun deleteAllEntries(activity: Activity) {
-        Toast.makeText(activity, "Entries will be deleted later", Toast.LENGTH_SHORT).show()
+        val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
+        data.edit().clear().commit()
+        data.edit().putInt("nextId", 0).commit()
+        data.edit().putInt("entryNum", 0).commit()
+        Toast.makeText(activity, "All Entries Deleted", Toast.LENGTH_SHORT).show()
     }
 
 

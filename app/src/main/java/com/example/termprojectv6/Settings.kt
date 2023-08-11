@@ -1,12 +1,15 @@
 package com.example.termprojectv6
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.Spinner
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.termprojectv6.databinding.ActivitySettingsBinding
 
 class Settings : AppCompatActivity() {
@@ -30,19 +33,29 @@ class Settings : AppCompatActivity() {
         val btnDisplayData : Button = findViewById(R.id.btnDisplayData)
         btnDisplayData.setOnClickListener { Utils.openDisplayData(this) }
 
+        val data = getSharedPreferences("data", Context.MODE_PRIVATE)
         val colorSchemeId = Utils.getColorScheme(this)
         binding.spinnerColorScheme.setSelection(colorSchemeId)
-        binding.spinnerColorMode.setSelection(0)
-        binding.spinnerLanguage.setSelection(0)
+        binding.spinnerColorMode.setSelection(data.getInt("colorModeId", 0))
+        binding.spinnerLanguage.setSelection(data.getInt("languageId", 0))
         binding.tvFeedback.text = "Current color scheme: ${colorSchemes[colorSchemeId]}"
 
         binding.btnSaveSettings.setOnClickListener {
-            Utils.saveSettings(this, binding.spinnerColorScheme.selectedItemPosition,
+            Utils.updateSettings(this, binding.spinnerColorScheme.selectedItemPosition,
                 binding.spinnerColorMode.selectedItemPosition,
                 binding.spinnerLanguage.selectedItemPosition)}
 
         binding.btnDeleteAllEntries.setOnClickListener {
-            Entries.deleteAllEntries(this)
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Delete All Entries")
+            builder.setMessage("Are you sure you want to delete all entries?")
+            builder.setPositiveButton("Delete") { _, _ ->
+                Entries.deleteAllEntries(this)
+            }
+            builder.setNegativeButton("Cancel") { _, _ ->
+                Toast.makeText(this, "Cancel deletion", Toast.LENGTH_SHORT).show()
+            }
+            builder.show()
         }
     }
 

@@ -76,6 +76,7 @@
                 android:layout_height="48dp"
                 android:layout_gravity="center_vertical|end"
                 android:entries="@array/txtColorScheme"
+                android:gravity="end"
                 android:spinnerMode="dropdown" />
 
             <Spinner
@@ -85,6 +86,7 @@
                 android:layout_gravity="center_vertical|end"
                 android:layout_marginTop="16dp"
                 android:entries="@array/txtColorMode"
+                android:gravity="end"
                 android:spinnerMode="dropdown" />
 
             <Spinner
@@ -94,6 +96,7 @@
                 android:layout_gravity="center_vertical|end"
                 android:layout_marginTop="16dp"
                 android:entries="@array/txtLanguage"
+                android:gravity="end"
                 android:spinnerMode="dropdown" />
 
         </LinearLayout>
