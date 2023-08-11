@@ -51,7 +51,9 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/etWeight"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextFields"
+            android:importantForAutofill="no" />
 
         <EditText
             android:id="@+id/etWeight"
@@ -64,7 +66,8 @@
             app:layout_constraintEnd_toStartOf="@+id/btnSubmit"
             app:layout_constraintStart_toEndOf="@+id/etDate"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.6" />
+            app:layout_constraintVertical_bias="0.6"
+            android:importantForAutofill="no" />
 
         <Button
             android:id="@+id/btnSubmit"
@@ -84,7 +87,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/tvFeedback"
         android:textAlignment="center"
         android:textColor="?android:attr/textColorTertiary"
         app:layout_constraintEnd_toEndOf="parent"

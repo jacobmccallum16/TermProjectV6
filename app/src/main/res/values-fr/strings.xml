@@ -54,6 +54,7 @@
     </string-array>
     <string name="btnSaveSettings">Sauvegarder</string>
 
+    <string name="deleteContentDescription">Supprimer</string>
     <string name="date_format_month_year">%2$s %1$d</string>
     <string name="date_format_full">%3$s %2$s, %1$d</string>
     <string-array name="months">
@@ -68,7 +69,7 @@
         <item>août</item>
         <item>septembre</item>
         <item>octobre</item>
-        <item>vovembre</item>
+        <item>novembre</item>
         <item>décembre</item>
     </string-array>
     <string-array name="MON">
@@ -137,9 +138,27 @@
     <string name="num_of_entries_0">%1$d donnée</string>
     <string name="num_of_entries_1">%1$d donnée</string>
     <string name="num_of_entries_plural">%1$d données</string>
+    <string name="tv_weight">%1$.1f lbs</string>
     <string name="tv_avg_weight">%1$.1f lbs</string>
     <string name="tv_min_max_weight">%1$.1f - %2$.1f</string>
     <string name="btnDisplayAll">Toutes</string>
     <string name="btnDisplayMonthly">Mensuelles</string>
     <string name="btnDisplayFuture">Futures</string>
+    <string name="invalidDateInput">Date invalide</string>
+    <string name="currentColourScheme">Thème actuel : %1$s</string>
+    <string name="colorSchemeChanged">Passage au thème %1$s</string>
+    <string name="randomColorSchemeToast">Passage aléatoire au thème %1$s</string>
+    <string name="settingsUpdatedToast">Paramètres actualisés</string>
+    <string name="alertDeleteAllTitle">Supprimer toutes les données</string>
+    <string name="alertDeleteAllMessage">Êtes-vous sûr de vouloir supprimer toutes les données ?</string>
+    <string name="alertDeleteAllPositive">Supprimer</string>
+    <string name="alertDeleteAllPositiveToast">Toutes les données supprimées</string>
+    <string name="alertDeleteAllNegative">Annuler</string>
+    <string name="alertDeleteAllNegativeToast">Suppression annulée</string>
+    <string name="enterDataToast">Saisir les données</string>
+    <string name="mainToast">Page d\'accueil</string>
+    <string name="displayDataToast">Afficher les données</string>
+    <string name="settingsToast">Paramètres</string>
+    <string name="entryDeletedToast">Donnée supprimée</string>
+    <string name="entryAddedToast">Donnée ajoutée</string>
 </resources>

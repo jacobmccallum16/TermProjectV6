@@ -2,35 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/menu_settings"
+    <item
+        android:id="@+id/menu_settings"
+        android:orderInCategory="1"
         android:title="@string/menu_settings"
-        app:showAsAction="never"
-        android:orderInCategory="1"/>
+        app:showAsAction="never" />
 
     <item android:id="@+id/menuRandomTheme"
         android:title="@string/menuRandomTheme"
         app:showAsAction="never"
         android:orderInCategory="2"/>
-
-    <item android:id="@+id/menuMain"
-        android:title="@string/menu_main_activity"
-        android:orderInCategory="3"
-        app:showAsAction="never"/>
-
-    <item android:id="@+id/menuEnterData"
-        android:title="@string/menu_enter_data_activity"
-        android:orderInCategory="4"
-        app:showAsAction="never"/>
-
-    <item android:id="@+id/menuDisplayData"
-        android:title="@string/menu_display_data_activity"
-        android:orderInCategory="5"
-        app:showAsAction="never"/>
-
-    <item android:id="@+id/menuSecondActivity"
-        android:title="@string/menu_second_activity"
-        android:orderInCategory="3"
-        app:showAsAction="never"/>
-
-
 </menu>

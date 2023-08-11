@@ -23,7 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:backgroundTint="?attr/colorPrimaryVariant"
-        android:onClick="openMain"
         android:text="@string/btnMain"
         android:textColor="?attr/colorOnPrimary" />
 
@@ -38,7 +37,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:backgroundTint="?attr/colorPrimaryVariant"
-        android:onClick="openEnterData"
         android:text="@string/btnEnterData"
         android:textColor="?attr/colorOnPrimary" />
 
@@ -53,7 +51,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:backgroundTint="?attr/colorPrimaryVariant"
-        android:onClick="openDisplayData"
         android:text="@string/btnDisplayData"
         android:textColor="?attr/colorOnPrimary" />
 

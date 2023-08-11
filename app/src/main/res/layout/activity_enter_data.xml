@@ -49,7 +49,9 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/etDate_hint"
-            android:inputType="text" />
+            android:inputType="text"
+            tools:ignore="TextFields"
+            android:importantForAutofill="no" />
 
         <EditText
             android:id="@+id/etWeight"
@@ -58,7 +60,8 @@
             android:layout_weight="1"
             android:ems="10"
             android:hint="@string/etWeight_hint"
-            android:inputType="numberDecimal" />
+            android:inputType="numberDecimal"
+            android:importantForAutofill="no" />
 
         <Button
             android:id="@+id/btnSubmit"
@@ -76,7 +79,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/tvFeedback"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

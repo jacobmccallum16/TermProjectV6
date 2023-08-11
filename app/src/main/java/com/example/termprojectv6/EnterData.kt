@@ -1,5 +1,6 @@
 package com.example.termprojectv6
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -40,8 +41,8 @@ class EnterData : AppCompatActivity(), EntryItemClickListener {
             1 -> String.format(resources.getString(R.string.num_of_entries_1), entryNum)
             else -> String.format(resources.getString(R.string.num_of_entries_plural), entryNum)
         }
-        var entries : ArrayList<Entry>
-        var sortBy = Entries.getEnterDataSortBy(this)
+        val entries : ArrayList<Entry>
+        val sortBy = Entries.getEnterDataSortBy(this)
         if (sortBy == "New") {
             entries = Entries.getEntriesSortByNew(this)
             binding.btnSortByNew.background.setTint(Utils.getColor(this, 5))
@@ -61,13 +62,13 @@ class EnterData : AppCompatActivity(), EntryItemClickListener {
 
         binding.btnSubmit.setOnClickListener{
             try {
-                var created : Boolean = Entries.createEntry(this, entries, binding.etDate.text.toString(), binding.etWeight.text.toString().toFloat())
+                val created : Boolean = Entries.createEntry(this, entries, binding.etDate.text.toString(), binding.etWeight.text.toString().toFloat())
                 if (created) {
                     entryNum = Entries.getEntryNum(this)
                     binding.tvFeedback.text = ""
-                    Toast.makeText(this, "Entry[${entryNum-1}] added", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, resources.getString(R.string.entryAddedToast), Toast.LENGTH_SHORT).show()
                 } else {
-                    binding.tvFeedback.text = "Invalid date input"
+                    binding.tvFeedback.text = getString(R.string.invalidDateInput)
                 }
                 Utils.recreateActivity(this)
             } catch (e: NumberFormatException) {
@@ -102,10 +103,6 @@ class EnterData : AppCompatActivity(), EntryItemClickListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.menu_settings) { Utils.openSettings(this)
         } else if (item.itemId == R.id.menuRandomTheme) { Utils.randomizeColorScheme(this)
-        } else if (item.itemId == R.id.menuMain) { Utils.openMain(this)
-        } else if (item.itemId == R.id.menuEnterData) { Utils.openEnterData(this)
-        } else if (item.itemId == R.id.menuDisplayData) { Utils.openDisplayData(this)
-        } else if (item.itemId == R.id.menuSecondActivity) { Utils.openSecondActivity(this)
         } else { return super.onOptionsItemSelected(item)
         }
         return true
@@ -114,6 +111,7 @@ class EnterData : AppCompatActivity(), EntryItemClickListener {
     override fun onDeleteClick(entryId: Int) {
         deleteEntry(entryId)
     }
+    @SuppressLint("ApplySharedPref")
     fun deleteEntry(id: Int) {
         val data = Entries.data(this)
         val entryNum = Entries.getEntryNum(this)
@@ -125,7 +123,7 @@ class EnterData : AppCompatActivity(), EntryItemClickListener {
         data.edit().remove("day-$id").commit()
         data.edit().putInt("entryNum", entryNum - 1).commit()
         Utils.recreateActivity(this)
-        Toast.makeText(this, "Entry[${id}] deleted", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, resources.getString(R.string.entryDeletedToast), Toast.LENGTH_SHORT).show()
     }
 
 }

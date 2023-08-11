@@ -18,15 +18,16 @@
     <string name="num_of_entries_0">%1$d Entries</string>
     <string name="num_of_entries_1">%1$d Entry</string>
     <string name="num_of_entries_plural">%1$d Entries</string>
+    <string name="tv_weight">%1$.1f lbs</string>
     <string name="tv_avg_weight">%1$.1f lbs</string>
     <string name="tv_min_max_weight">%1$.1f - %2$.1f</string>
 
+    <string name="invalidDateInput">Invalid Date Input</string>
 
     <!-- Enter Data -->
     <string name="etDate_hint">Date</string>
     <string name="etWeight_hint">Weight in lbs</string>
     <string name="btnSubmit">Submit</string>
-    <string name="tvFeedback" translatable="false"> </string>
     <!-- EnterData Activity -->
     <!-- DisplayData Activity -->
     <string name="btnDisplayAll">All</string>
@@ -41,9 +42,6 @@
     <string name="btnEnterData">Enter Data</string>
     <string name="btnDisplayData">Display Data</string>
     <!--    display tab bar-->
-    <string name="btnBarChart" translatable="false">Bar Chart</string>
-    <string name="btnLineChart" translatable="false">Line Chart</string>
-    <string name="btnOtherChart" translatable="false">Other Chart</string>
 
     <!-- Sorting -->
     <string name="btnSortByOld">Oldest</string>
@@ -98,9 +96,28 @@
         <item>French</item>
     </string-array>
     <string name="btnSaveSettings">Save</string>
+    <string name="currentColourScheme">Current colour scheme: %1$s</string>
+    <string name="colorSchemeChanged">Colour scheme change to: %1$s</string>
+    <string name="randomColorSchemeToast">Colour randomly set to: %1$s</string>
 
-    <!-- Second Activity -->
-    <string name="tvDatabase">Database</string>
+    <string name="settingsUpdatedToast">Settings updated</string>
+    <string name="mainToast">Main</string>
+    <string name="enterDataToast">Enter Data</string>
+    <string name="displayDataToast">Display Data</string>
+    <string name="settingsToast">Settings</string>
+
+    <!-- Delete All Entries Warning -->
+    <string name="alertDeleteAllTitle">Delete All Entries</string>
+    <string name="alertDeleteAllMessage">Are you sure you want to delete all entries?</string>
+    <string name="alertDeleteAllPositive">Delete</string>
+    <string name="alertDeleteAllPositiveToast">All Entries deleted</string>
+    <string name="alertDeleteAllNegative">Cancel</string>
+    <string name="alertDeleteAllNegativeToast">Cancel deletion</string>
+
+    <string name="entryAddedToast">Entry added</string>
+    <string name="entryDeletedToast">Entry deleted</string>
+
+    <string name="deleteContentDescription">Delete</string>
 
     <string name="date_format_month_year">%2$s %1$d</string>
     <string name="date_format_full">%2$s %3$s, %1$d</string>
@@ -168,5 +185,6 @@
         <item>30th</item>
         <item>31st</item>
     </string-array>
+    <string name="tvDatabase">Database</string>
 
 </resources>

@@ -13,12 +13,13 @@ interface EntryItemClickListener {
     fun onDeleteClick(entryId: Int)
 }
 
-class RecyclerAdapter(val entries : ArrayList<Entry>, private val onDeleteClickListener: EntryItemClickListener, context: Context) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter(private val entries : ArrayList<Entry>, private val onDeleteClickListener: EntryItemClickListener, context: Context) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
-    val days = context.resources.getStringArray(R.array.days)
-    val months = context.resources.getStringArray(R.array.months)
-    val dateFormatFull = context.resources.getString(R.string.date_format_full)
-    val dateFormatMonthYear = context.resources.getString(R.string.date_format_month_year)
+    private val days = context.resources.getStringArray(R.array.days)
+    private val months = context.resources.getStringArray(R.array.months)
+    private val dateFormatFull = context.resources.getString(R.string.date_format_full)
+    private val dateFormatMonthYear = context.resources.getString(R.string.date_format_month_year)
+    private val weightFormat = context.resources.getString(R.string.tv_weight)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.card_layout, parent, false)
@@ -26,13 +27,13 @@ class RecyclerAdapter(val entries : ArrayList<Entry>, private val onDeleteClickL
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
-        var entry = entries.get(i)
+        val entry = entries[i]
         if (entry.day > 0) {
             viewHolder.itemDate.text = String.format(dateFormatFull, entry.year, months[entry.month], days[entry.day])
         } else {
             viewHolder.itemDate.text = String.format(dateFormatMonthYear, entry.year, months[entry.month])
         }
-        viewHolder.itemWeight.text = entries[i].weight.toString() + " lbs"
+        viewHolder.itemWeight.text = String.format(weightFormat, entry.weight)
         viewHolder.itemDelete.setOnClickListener {
             onDeleteClickListener.onDeleteClick(entry.id)
         }
@@ -43,7 +44,7 @@ class RecyclerAdapter(val entries : ArrayList<Entry>, private val onDeleteClickL
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var cardView: CardView
+        private var cardView: CardView
         var itemDate: TextView
         var itemWeight: TextView
         var itemDelete: ImageView
