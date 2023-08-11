@@ -1,6 +1,9 @@
 package com.example.termprojectv6;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class EntryGroup {
     private int size;
@@ -10,7 +13,7 @@ public class EntryGroup {
     private float avgWeight;
     private float maxWeight;
 
-    public EntryGroup(ArrayList<Entry2> entries, int month, int year) {
+    public EntryGroup(ArrayList<Entry> entries, int month, int year) {
         size = entries.size();
         this.month = month;
         this.year = year;
@@ -31,9 +34,11 @@ public class EntryGroup {
             avgWeight = total / (float) size;
         }
     }
-    public EntryGroup(ArrayList<Entry2> entries) {
+    public EntryGroup(ArrayList<Entry> entries) {
         size = entries.size();
         if (size > 0) {
+            SimpleDateFormat dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            Date date = Date.parse(entries.get(0).getDate().toString());
             this.month = entries.get(0).getMonth();
             this.year = entries.get(0).getYear();
             minWeight = entries.get(0).getWeight();

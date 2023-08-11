@@ -3,57 +3,56 @@ package com.example.termprojectv6
 import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
+import android.icu.text.SimpleDateFormat
 import android.widget.Toast
+import java.util.Locale
 import java.util.Objects
 
 object Entries {
     val mon = arrayOf("","jan", "feb", "mar", "apr", "may", "jun",
         "jul", "aug", "sep", "oct", "nov", "dec")
+    var sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
     fun data(activity: Activity) : SharedPreferences {
         return activity.getSharedPreferences("data", Context.MODE_PRIVATE)
     }
     fun getEntryNum(activity: Activity) : Int {
-        return data(activity).getInt("entries2", 0)
+        return data(activity).getInt("entryNum", 0)
     }
     fun getNextId(activity: Activity) : Int {
         return data(activity).getInt("nextId", 0)
     }
-    fun getEntries(activity: Activity) : ArrayList<Entry2> {
+    fun getEntries(activity: Activity) : ArrayList<Entry> {
         val data = data(activity)
-        val entryNum = getEntryNum(activity)
-        val entries : ArrayList<Entry2> = ArrayList()
-        for (i in 0 until entryNum) {
-            entries.add(Entry2(data.getInt("id2-$i", 0),
-                data.getString("date2-$i", "n/a").toString(),
-                data.getFloat("weight2-$i", 0f),
-                data.getInt("year2-$i", 2023),
-                data.getInt("month2-$i", 1),
-                data.getInt("day2-$i", 1)))
+        val nextId = getNextId(activity)
+        val entries : ArrayList<Entry> = ArrayList()
+        for (i in 0 until nextId) {
+            if (data.contains("id-$i")) {
+                entries.add(Entry(data.getInt("id-$i", -1),
+                    data.getFloat("weight-$i", 0f),
+                    sdf.parse(data.getString("date-$i", "2023-12-12"))))
+            }
         }
         entries.sort()
         return entries
     }
-    fun getEntriesReversed(activity: Activity) : ArrayList<Entry2> {
+    fun getEntriesReversed(activity: Activity) : ArrayList<Entry> {
         val data = data(activity)
         val entryNum = getEntryNum(activity)
-        val entries : ArrayList<Entry2> = ArrayList()
+        val entries : ArrayList<Entry> = ArrayList()
         for (i in 0 until entryNum) {
-            entries.add(Entry2(data.getInt("id2-$i", 0),
-                data.getString("date2-$i", "n/a").toString(),
-                data.getFloat("weight2-$i", 0f),
-                data.getInt("year2-$i", 2023),
-                data.getInt("month2-$i", 1),
-                data.getInt("day2-$i", 1)))
+            entries.add(Entry(data.getInt("id-$i", 0),
+                data.getFloat("weight-$i", 0f),
+                sdf.parse(data.getString("date-$i", "2023-12-12").toString())))
         }
         entries.reverse()
         return entries
     }
-    fun newEntry(activity: Activity, id: Int, date: String, weight: Float) : Entry2 {
-        var dateData : List<String> = date.split("-", " ", "/")
+    fun newEntry(activity: Activity, id: Int, weight: Float, date: String) : Entry {
+        var dateData : List<String> = date.split("-", " ", "/", ".")
         var year : Int = 2023
         var month : Int = 1
-        var day : Int = 1
+        var day : Int = 15
         var patternInt = 0
         val patterns = arrayOf("","YYYY-MM-DD", "YYYY-Mon-DD", "YYYY-DD-Mon",
             "Mon-DD-YYYY", "DD-Mon-YYYY", "DD-MM-YYYY", "Mon-DD", "DD-Mon")
@@ -95,7 +94,7 @@ object Entries {
             month = processMonth(dateData.get(2))
         }
         Toast.makeText(activity, "ID: $id, Y: $year, M: $month, D: $day, W: $weight", Toast.LENGTH_SHORT).show()
-        return Entry2(id, date, weight, year, month, day)
+        return Entry(id, weight, sdf.parse("$year-$month-$day"))
     }
     fun processMonth(month: String) : Int {
         return when (month.lowercase()) {
@@ -114,27 +113,24 @@ object Entries {
             else -> 12
         }
     }
-    fun createEntry(activity: Activity, entries : ArrayList<Entry2>, date: String, weight: Float) : ArrayList<Entry2> {
+    fun createEntry(activity: Activity, entries : ArrayList<Entry>, weight: Float, date: String) : ArrayList<Entry2> {
         val entryNum = getEntryNum(activity)
         val nextId = getNextId(activity)
         entries.add(saveNewEntry(activity, newEntry(activity, nextId, date, weight)))
         return entries
     }
-    fun saveNewEntry(activity: Activity, entry: Entry2) : Entry2 {
+    fun saveNewEntry(activity: Activity, entry: Entry) : Entry {
         val data = data(activity)
         val entryNum = getEntryNum(activity)
         val nextId = getNextId(activity)
-        data.edit().putInt("id2-$nextId", entry.id).commit()
-        data.edit().putString("date2-$nextId", entry.date).commit()
-        data.edit().putFloat("weight2-$nextId", entry.weight).commit()
-        data.edit().putInt("year2-$nextId", entry.year).commit()
-        data.edit().putInt("month2-$nextId", entry.month).commit()
-        data.edit().putInt("day2-$nextId", entry.day).commit()
-        data.edit().putInt("entries2", nextId + 1).commit()
+        data.edit().putInt("id-$nextId", entry.id).commit()
+        data.edit().putFloat("weight-$nextId", entry.weight).commit()
+        data.edit().putString("date-$nextId", entry.date.toString()).commit()
+        data.edit().putInt("entryNum", nextId + 1).commit()
         data.edit().putInt("nextId", nextId + 1).commit()
         return entry
     }
-    fun sortEntries(activity: Activity) : ArrayList<Entry2> {
+    fun sortEntries(activity: Activity) : ArrayList<Entry> {
         val data = data(activity)
         val entries = getEntries(activity)
         entries.sort()
@@ -143,17 +139,17 @@ object Entries {
 
     fun getByMonthYear(activity: Activity, month: Int, year: Int) : EntryGroup {
         val data = data(activity)
-        val entryNum = getEntryNum(activity)
-        val entries : ArrayList<Entry2> = ArrayList()
-        for (i in 0 until entryNum) {
-            if (data.getInt("month2-$i", 0) == month) {
-                if (data.getInt("year2-$i", 0) == year) {
-                    entries.add(Entry2(data.getInt("id2-$i", 0),
-                        data.getString("date2-$i", "n/a").toString(),
-                        data.getFloat("weight2-$i", 0f),
-                        data.getInt("year2-$i", 2023),
-                        data.getInt("month2-$i", 1),
-                        data.getInt("day2-$i", 1)))
+        val nextId = getNextId(activity)
+        val entries : ArrayList<Entry> = ArrayList()
+        for (i in 0 until nextId) {
+            var date = sdf.parse(data.getString("date-$i", "2023-12-12"))
+            var targetMonth = date.month + 1
+            var targetYear = date.year + 1900
+            if (data.contains("id-$i")) {
+                if (month == targetMonth && year == targetYear) {
+                    entries.add(Entry(data.getInt("id-$i", -1),
+                        data.getFloat("weight-$i", 0f),
+                        sdf.parse(data.getString("date-$i", "2023-12-12"))))
                 }
             }
         }
