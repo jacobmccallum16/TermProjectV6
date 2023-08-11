@@ -37,15 +37,15 @@ class MainActivity : AppCompatActivity() {
             1 -> String.format(numOfEntries1, entryNum)
             else -> String.format(numOfEntriesPlural, entryNum)
         }
-        val entries = Entries.groupByMonth(this)
-        val sortBy = Entries.getMainSortBy(this)
-        if (sortBy == "New") {
-            entries.reverse()
-            binding.btnSortByNew.background.setTint(Utils.getColor(this, 5))
-        } else {
-            binding.btnSortByOld.background.setTint(Utils.getColor(this, 5))
-        }
         try {
+            val entries = Entries.groupByMonth(this)
+            val sortBy = Entries.getMainSortBy(this)
+            if (sortBy == "New") {
+                entries.reverse()
+                binding.btnSortByNew.background.setTint(Utils.getColor(this, 5))
+            } else {
+                binding.btnSortByOld.background.setTint(Utils.getColor(this, 5))
+            }
             val layoutManager: RecyclerView.LayoutManager
             val adapter: RecyclerView.Adapter<*>
             val recyclerView: RecyclerView = findViewById(R.id.recyclerView)

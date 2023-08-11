@@ -46,15 +46,20 @@ class DisplayData : AppCompatActivity() {
         chart.setDrawGridBackground(false)
         chart.xAxis.granularity = 1f
         chart.animateX(250)
-        if (Entries.getDisplayPreference(this) == "Future") {
-            displayFutureData()
-            binding.btnDisplayFuture.background.setTint(Utils.getColor(this, 5))
-        } else if (Entries.getDisplayPreference(this) == "Monthly") {
-            displayMonthlyData()
-            binding.btnDisplayMonthly.background.setTint(Utils.getColor(this, 5))
-        } else {
-            displayAllData()
-            binding.btnDisplayAll.background.setTint(Utils.getColor(this, 5))
+        try {
+            if (Entries.getDisplayPreference(this) == "Future") {
+                displayFutureData()
+                binding.btnDisplayFuture.background.setTint(Utils.getColor(this, 5))
+            } else if (Entries.getDisplayPreference(this) == "Monthly") {
+                displayMonthlyData()
+                binding.btnDisplayMonthly.background.setTint(Utils.getColor(this, 5))
+            } else {
+                displayAllData()
+                binding.btnDisplayAll.background.setTint(Utils.getColor(this, 5))
+            }
+        }
+        catch (_: Exception) {
+
         }
         chart.setBackgroundColor(Color.WHITE)
         chart.legend.isEnabled = true
