@@ -101,7 +101,7 @@ public class DataAdapter  extends RecyclerView.Adapter<DataAdapter.MyViewHolder>
             super(itemView);
             cardView = itemView.findViewById(R.id.cardView);
             itemDate = itemView.findViewById(R.id.itemDate);
-            itemWeight = itemView.findViewById(R.id.itemWeight);
+            itemWeight = itemView.findViewById(R.id.itemAvgWeight);
             itemDelete = itemView.findViewById(R.id.itemDelete);
         }
     }

@@ -4,10 +4,11 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.termprojectv6.Adapter.EntryGroupRecyclerAdapter
 import com.example.termprojectv6.databinding.ActivityMainBinding
-import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,18 +32,22 @@ class MainActivity : AppCompatActivity() {
         btnDisplayData.setOnClickListener { Utils.openDisplayData(this) }
 
         // get data
+        val data = Entries.data(this)
+        var entryNum = Entries.getEntryNum(this)
+        binding.tvFeedback.text = "${entryNum} entries"
+        var entries = Entries.groupByMonth(this)
+        // finish layout
+        try {
+            val layoutManager: RecyclerView.LayoutManager
+            val adapter: RecyclerView.Adapter<*>
+            val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
+            layoutManager = LinearLayoutManager(this)
+            recyclerView.layoutManager = layoutManager
+            adapter = EntryGroupRecyclerAdapter(entries, Utils.getLocale(this))
+            recyclerView.adapter = adapter
+        } catch (e: Exception) {
 
-        val entryGroups = Entries.groupByMonth(this)
-        var displayDates = "Date:"
-        var displayWeights = "Avg Weight:"
-        for (i in 0 until entryGroups.size) {
-            displayDates += "\n${months[entryGroups[i].month]} ${entryGroups[i].year}"
-            displayWeights += "\n${entryGroups[i].avgWeight} lbs"
         }
-        // Display Data Start
-        binding.tvDates.text = displayDates
-        binding.tvWeights.text = displayWeights
-        // Display Data End
 
 //        binding.btnSubmit.setOnClickListener {
 //            try {

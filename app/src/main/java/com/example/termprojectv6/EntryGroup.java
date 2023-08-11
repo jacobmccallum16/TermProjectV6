@@ -10,7 +10,7 @@ public class EntryGroup {
     private float avgWeight;
     private float maxWeight;
 
-    public EntryGroup(ArrayList<Entry2> entries, int month, int year) {
+    public EntryGroup(ArrayList<Entry> entries, int month, int year) {
         size = entries.size();
         this.month = month;
         this.year = year;
@@ -31,7 +31,7 @@ public class EntryGroup {
             avgWeight = total / (float) size;
         }
     }
-    public EntryGroup(ArrayList<Entry2> entries) {
+    public EntryGroup(ArrayList<Entry> entries) {
         size = entries.size();
         if (size > 0) {
             this.month = entries.get(0).getMonth();

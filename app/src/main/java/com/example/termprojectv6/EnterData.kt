@@ -1,7 +1,5 @@
 package com.example.termprojectv6
 
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -34,21 +32,21 @@ class EnterData : AppCompatActivity(), EntryItemClickListener {
         // recycler view code
         val layoutManager: RecyclerView.LayoutManager
         val adapter: RecyclerView.Adapter<*>
-        val recyclerView: RecyclerView = findViewById(R.id.recycler_view)
+        val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         // get data
         val data = Entries.data(this)
         var entryNum = Entries.getEntryNum(this)
         binding.tvFeedback.text = "${entryNum} entries"
-        var entries2 = Entries.getEntriesReversed(this)
+        var entries = Entries.getEntriesReversed(this)
         // finish layout
         layoutManager = LinearLayoutManager(this)
         recyclerView.layoutManager = layoutManager
-        adapter = RecyclerAdapter(entries2, this)
+        adapter = RecyclerAdapter(entries, this)
         recyclerView.adapter = adapter
 
         binding.btnSubmit.setOnClickListener{
             try {
-                entries2 = Entries.createEntry(this, entries2, binding.etDate.text.toString(), binding.etWeight.text.toString().toFloat())
+                entries = Entries.createEntry(this, entries, binding.etDate.text.toString(), binding.etWeight.text.toString().toFloat())
                 entryNum++
                 binding.tvFeedback.text = ""
                 Utils.recreateActivity(this)
@@ -82,30 +80,17 @@ class EnterData : AppCompatActivity(), EntryItemClickListener {
         deleteEntry(entryId)
     }
     fun deleteEntry(id: Int) {
-        val thisId = id
         val data = Entries.data(this)
         val entryNum = Entries.getEntryNum(this)
-        var deleteMsg : String = "Entry "
-        deleteMsg += "{ "
-        deleteMsg += "\n['id2-$id': ${data.getInt("id2-$id", 0)}"
-        deleteMsg += "\n['date2-$id': ${data.getString("date2-$id", "null")}"
-        deleteMsg += "\n['weight2-$id': ${data.getFloat("weight2-$id", 0f)}"
-        deleteMsg += "\n['year2-$id': ${data.getInt("year2-$id", 0)}"
-        deleteMsg += "\n['month2-$id': ${data.getInt("month2-$id", 0)}"
-        deleteMsg += "\n['day2-$id': ${data.getInt("day2-$id", 0)}"
-        deleteMsg += "\n } deleted"
-        data.edit().remove("id2-$id").commit()
-        data.edit().remove("date2-$id").commit()
-        data.edit().remove("weight2-$id").commit()
-        data.edit().remove("year2-$id").commit()
-        data.edit().remove("month2-$id").commit()
-        data.edit().remove("day2-$id").commit()
-        data.edit().putInt("entries2", entryNum - 1).commit()
+        data.edit().remove("id-$id").commit()
+        data.edit().remove("date-$id").commit()
+        data.edit().remove("weight-$id").commit()
+        data.edit().remove("year-$id").commit()
+        data.edit().remove("month-$id").commit()
+        data.edit().remove("day-$id").commit()
+        data.edit().putInt("entryNum", entryNum - 1).commit()
         Utils.recreateActivity(this)
-//        Toast.makeText(this, "Entry[${id}] deleted", Toast.LENGTH_SHORT).show()
-        Toast.makeText(this, deleteMsg, Toast.LENGTH_SHORT).show()
-        Toast.makeText(this, "entries2 = $entryNum - ${entryNum - 1} = ${data.getInt("entries2", -1)}", Toast.LENGTH_SHORT).show()
-        Toast.makeText(this, "{'nextId' : ${data.getInt("nextID", -1)}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Entry[${id}] deleted", Toast.LENGTH_SHORT).show()
     }
 
 }

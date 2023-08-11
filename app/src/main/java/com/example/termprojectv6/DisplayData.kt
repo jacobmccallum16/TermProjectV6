@@ -89,7 +89,7 @@ class DisplayData : AppCompatActivity() {
 
     }
 
-    fun passAllData(entries: ArrayList<Entry2>) {
+    fun passAllData(entries: ArrayList<Entry>) {
         val values = ArrayList<BarEntry>()
         for (i in 0 until entries.size) {
             values.add(BarEntry(i.toFloat(), entries[i].weight))

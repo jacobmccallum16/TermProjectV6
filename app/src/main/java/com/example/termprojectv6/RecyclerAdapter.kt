@@ -1,21 +1,18 @@
 package com.example.termprojectv6
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.termprojectv6.databinding.ActivityEnterDataBinding
 
 interface EntryItemClickListener {
     fun onDeleteClick(entryId: Int)
 }
 
-class RecyclerAdapter(val entries : ArrayList<Entry2>, private val onDeleteClickListener: EntryItemClickListener) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter(val entries : ArrayList<Entry>, private val onDeleteClickListener: EntryItemClickListener) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     val days = arrayOf("", "1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th",
         "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th",
@@ -51,7 +48,7 @@ class RecyclerAdapter(val entries : ArrayList<Entry2>, private val onDeleteClick
         init {
             cardView = itemView.findViewById(R.id.cardView)
             itemDate = itemView.findViewById(R.id.itemDate)
-            itemWeight = itemView.findViewById(R.id.itemWeight)
+            itemWeight = itemView.findViewById(R.id.itemAvgWeight)
             itemEdit = itemView.findViewById(R.id.itemEdit)
             itemDelete = itemView.findViewById(R.id.itemDelete)
         }

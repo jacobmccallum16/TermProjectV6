@@ -3,7 +3,6 @@ package com.example.termprojectv6
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -14,7 +13,6 @@ import com.example.termprojectv6.Adapter.DataAdapter
 import com.example.termprojectv6.Model.DataModel
 import com.example.termprojectv6.Utilility.DatabaseHelper
 import com.example.termprojectv6.databinding.ActivitySecondBinding
-import java.util.Collections
 import java.util.Collections.reverse
 
 class SecondActivity : AppCompatActivity() {
@@ -41,7 +39,7 @@ class SecondActivity : AppCompatActivity() {
         btnDisplayData.setOnClickListener { Utils.openDisplayData(this) }
 
         // get data
-        recyclerView = findViewById(R.id.recycler_view)
+        recyclerView = findViewById(R.id.recyclerView)
         db = DatabaseHelper(this@SecondActivity)
         dataList = java.util.ArrayList<DataModel>()
         adapter = DataAdapter(db, this@SecondActivity)
