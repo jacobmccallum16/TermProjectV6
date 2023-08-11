@@ -22,18 +22,12 @@ import kotlin.math.min
 
 class DisplayData : AppCompatActivity() {
 
-    lateinit var entries : ArrayList<Entry>
-    private lateinit var binding: ActivityDisplayDataBinding
-    var entryNum = 0
-    var axisMax = 0f
-
-    // chart
     lateinit var chart : BarChart
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Utils.applyColorScheme(this)
-        binding = ActivityDisplayDataBinding.inflate(layoutInflater)
+        val binding = ActivityDisplayDataBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
@@ -185,7 +179,8 @@ class DisplayData : AppCompatActivity() {
         Toast.makeText(this, "Displaying All Data", Toast.LENGTH_SHORT).show()
     }
     fun displayMonthlyData() {
-        val entries = Entries.groupByMonth(this)
+        var entries = Entries.groupByMonth(this)
+        entries = Entries.predictionSimple(this, entries)
         var axisMin = entries[0].minWeight
         var axisMax = entries[0].maxWeight
         for (i in 0 until entries.size) {

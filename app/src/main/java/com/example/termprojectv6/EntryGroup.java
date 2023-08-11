@@ -52,6 +52,15 @@ public class EntryGroup {
             avgWeight = total / (float) size;
         }
     }
+    // for predictions
+    public EntryGroup(int month, int year, float minWeight, float avgWeight, float maxWeight) {
+        size = 1;
+        this.month = month;
+        this.year = year;
+        this.minWeight = minWeight;
+        this.avgWeight = avgWeight;
+        this.maxWeight = maxWeight;
+    }
 
     public int getSize() {
         return size;

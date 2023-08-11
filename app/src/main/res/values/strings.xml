@@ -1,31 +1,38 @@
 <resources>
     <string name="app_name">TermProjectV6</string>
     <!--    header-->
-    <string name="tvTitle" translatable="false">Term Project</string>
-    <string name="EnterData_tvTitle" translatable="false">Enter Data</string>
+    <string name="tvTitle">Term Project</string>
+    <string name="EnterData_tvTitle">Enter Data</string>
 
     <!-- Action Bar Titles -->
     <string name="MainActivity_title">Term Project - Main</string>
     <string name="EnterData_title">Term Project - Enter Data</string>
     <string name="DisplayData_title">Term Project - Display Data</string>
     <string name="Settings_title">Term Project - Settings</string>
-    <string name="SecondActivity_title" translatable="false">Term Project - Second Activity</string>
+    <string name="SecondActivity_title">Term Project - Second Activity</string>
 
 
     <!-- Main Activity -->
-    <string name="btnDeleteAllEntries" translatable="false">Delete All Entries</string>
-    <string name="btnRemoveLastEntry" translatable="false">Remove Last Entry</string>
+    <string name="btnDeleteAllEntries">Delete All Entries</string>
+    <string name="btnRemoveLastEntry">Remove Last Entry</string>
+    <string name="num_of_entries_0">%1$d Entries</string>
+    <string name="num_of_entries_1">%1$d Entry</string>
+    <string name="num_of_entries_plural">%1$d Entries</string>
+    <string name="tv_avg_weight">%1$.1f lbs</string>
+    <string name="tv_min_max_weight">%1$.1f - %2$.1f</string>
+
+
     <!-- Enter Data -->
     <string name="etDate_hint">Date</string>
-    <string name="etWeight_hint" translatable="false">Weight in lbs</string>
-    <string name="btnSubmit" translatable="false">Submit</string>
+    <string name="etWeight_hint">Weight in lbs</string>
+    <string name="btnSubmit">Submit</string>
     <string name="tvFeedback" translatable="false"> </string>
     <!-- EnterData Activity -->
     <!-- DisplayData Activity -->
     <!--    old display format start-->
     <string name="tvIDs_start">ID:</string>
     <string name="tvDates_start">Date:</string>
-    <string name="tvWeights_start" translatable="false">Avg Weight:</string>
+    <string name="tvWeights_start">Avg Weight:</string>
     <!-- navbar -->
     <string name="btnMain">Main</string>
     <string name="btnEnterData">Enter Data</string>
@@ -34,20 +41,11 @@
     <string name="btnBarChart" translatable="false">Bar Chart</string>
     <string name="btnLineChart" translatable="false">Line Chart</string>
     <string name="btnOtherChart" translatable="false">Other Chart</string>
-    <!-- Preference Titles -->
-    <string name="messages_header" translatable="false">Messages</string>
-    <string name="sync_header" translatable="false">Sync</string>
 
-    <!-- Messages Preferences -->
-    <string name="signature_title" translatable="false">Your signature</string>
-    <string name="reply_title" translatable="false">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title" translatable="false">Sync email periodically</string>
-    <string name="attachment_title" translatable="false">Download incoming attachments</string>
-    <string name="attachment_summary_on" translatable="false">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off" translatable="false">Only download attachments when manually requested</string>
+    <!-- Sorting -->
+    <string name="btnSortByOld">Oldest</string>
+    <string name="btnSortByRecent">Recent</string>
+    <string name="btnSortByNew">Newest</string>
 
     <!-- Menu Settings -->
     <string name="menu_settings">Settings</string>
@@ -56,18 +54,18 @@
     <string name="menu_two">Two</string>
     <string name="menu_activity_one">Activity One</string>
     <string name="menu_activity_two">Activity Two</string>
-    <string name="delete" translatable="false">Delete</string>
-    <string name="search" translatable="false">Search</string>
+    <string name="delete">Delete</string>
+    <string name="search">Search</string>
     <string name="settings">Settings</string>
-    <string name="edit" translatable="false">Edit</string>
-    <string name="exit" translatable="false">Exit</string>
+    <string name="edit">Edit</string>
+    <string name="exit">Exit</string>
     <string name="menu_main_activity">Main</string>
     <string name="menu_enter_data_activity">Enter Data</string>
     <string name="menu_display_data_activity">Display</string>
-    <string name="menu_second_activity" translatable="false">Second Activity</string>
+    <string name="menu_second_activity">Second Activity</string>
 
     <!-- idk -->
-    <string name="invalid_weight_or_date" translatable="false">Please enter a valid weight and date</string>
+    <string name="invalid_weight_or_date">Please enter a valid weight and date</string>
 
     <!-- Settings Activity -->
     <string name="tvColorScheme">Colour Scheme:</string>
@@ -99,7 +97,7 @@
     <string name="btnSaveSettings">Save</string>
 
     <!-- Second Activity -->
-    <string name="tvDatabase" translatable="false">Database</string>
+    <string name="tvDatabase">Database</string>
 
     <string name="date_format_month_year">%2$s %1$d</string>
     <string name="date_format_full">%2$s %3$s, %1$d</string>

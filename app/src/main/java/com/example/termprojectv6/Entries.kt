@@ -249,5 +249,33 @@ object Entries {
         Toast.makeText(activity, "All Entries Deleted", Toast.LENGTH_SHORT).show()
     }
 
+    fun predictionSimple(activity: Activity, entries: ArrayList<EntryGroup>) : ArrayList<EntryGroup> {
+        var size = entries.size
+        var duration = size - 1
+        var time = duration
+        var firstEntry = entries[1]
+        var lastEntry = entries[duration]
+        // find the simplest slope, (last - first) / (size - 1)
+        var slopeMinWeight = (lastEntry.minWeight - firstEntry.minWeight) / (duration)
+        var slopeAvgWeight = (lastEntry.avgWeight - firstEntry.avgWeight) / (duration)
+        var slopeMaxWeight = (lastEntry.maxWeight - firstEntry.maxWeight) / (duration)
+        // add 8 months
+        for (i in 1 .. 8) {
+            var predictedMonth : Int = lastEntry.month + i
+            var predictedYear : Int = lastEntry.year
+            while (predictedMonth > 12) {
+                predictedMonth -= 12
+                predictedYear += 1
+            }
+            var predictedMinWeight : Float = entries[time].minWeight + slopeMinWeight - 1
+            var predictedAvgWeight : Float = entries[time].avgWeight + slopeAvgWeight
+            var predictedMaxWeight : Float = entries[time].maxWeight + slopeMaxWeight + 1
+            var prediction = EntryGroup(predictedMonth, predictedYear, predictedMinWeight, predictedAvgWeight, predictedMaxWeight)
+            entries.add(prediction)
+            time += 1
+        }
+        return entries
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package com.example.termprojectv6.Adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +14,15 @@ import com.example.termprojectv6.RecyclerAdapter
 import org.w3c.dom.Text
 import java.util.Locale
 
-class EntryGroupRecyclerAdapter(val entryGroups : ArrayList<EntryGroup>, val locale: Locale) : RecyclerView.Adapter<EntryGroupRecyclerAdapter.ViewHolder>() {
+class EntryGroupRecyclerAdapter(val entryGroups : ArrayList<EntryGroup>, val locale: Locale, context: Context) : RecyclerView.Adapter<EntryGroupRecyclerAdapter.ViewHolder>() {
 
-    val months = arrayOf("","January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December")
-    val mois = arrayOf("","Janvier", "Février", "Mars", "Avril", "Mai", "Juin",
-        "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre")
+    val months = context.resources.getStringArray(R.array.months)
+    val dateFormatMonthYear = context.resources.getString(R.string.date_format_month_year)
+    val numOfEntries0 = context.resources.getString(R.string.num_of_entries_0)
+    val numOfEntries1 = context.resources.getString(R.string.num_of_entries_1)
+    val numOfEntriesPlural = context.resources.getString(R.string.num_of_entries_plural)
+    val tvAvgWeight = context.resources.getString(R.string.tv_avg_weight)
+    val tvMinMaxWeight = context.resources.getString(R.string.tv_min_max_weight)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.card_layout_monthly_data, parent, false)
@@ -27,23 +31,14 @@ class EntryGroupRecyclerAdapter(val entryGroups : ArrayList<EntryGroup>, val loc
 
     override fun onBindViewHolder(viewHolder: ViewHolder, i: Int) {
         val item = entryGroups.get(i)
-        if (locale != Locale.FRENCH) {
-            viewHolder.itemDate.text = "${months[item.month]} ${item.year}"
-            if (item.size == 1) {
-                viewHolder.itemSize.text = "${item.size} entry"
-            } else {
-                viewHolder.itemSize.text = "${item.size} entries"
-            }
-        } else {
-            viewHolder.itemDate.text = "${mois[item.month]} ${item.year}"
-            if (item.size == 1 || item.size == 0) {
-                viewHolder.itemSize.text = "${item.size} saisie"
-            } else {
-                viewHolder.itemSize.text = "${item.size} saisies"
-            }
+        viewHolder.itemDate.text = String.format(dateFormatMonthYear, item.year, months[item.month])
+        viewHolder.itemSize.text = when (item.size) {
+            0 -> String.format(numOfEntries0, item.size)
+            1 -> String.format(numOfEntries1, item.size)
+            else -> String.format(numOfEntriesPlural, item.size)
         }
-        viewHolder.itemAvgWeight.text = "${String.format("%.1f", item.avgWeight)} lbs"
-        viewHolder.itemMinMaxWeight.text = "${String.format("%.1f", item.minWeight)} - ${String.format("%.1f", item.maxWeight)}"
+        viewHolder.itemAvgWeight.text = String.format(tvAvgWeight, item.avgWeight)
+        viewHolder.itemMinMaxWeight.text = String.format(tvMinMaxWeight, item.minWeight, item.maxWeight)
     }
 
     override fun getItemCount(): Int {

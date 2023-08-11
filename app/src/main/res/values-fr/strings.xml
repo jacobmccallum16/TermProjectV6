@@ -2,26 +2,30 @@
 <resources>
     <string name="app_name">TermProjectV6</string>
     <string name="MainActivity_title">Projet - Page d\'accueil</string>
-    <string name="EnterData_title">Projet - Entrer les données</string>
+    <string name="EnterData_title">Projet - Saisir les données</string>
     <string name="DisplayData_title">Projet - Graphique</string>
     <string name="Settings_title">Projet - Paramètres</string>
     <string name="etDate_hint">Date</string>
     <string name="tvIDs_start">ID:</string>
     <string name="tvDates_start">Date:</string>
     <string name="btnMain">Accueil</string>
-    <string name="btnEnterData">Entrer</string>
-    <string name="btnDisplayData">Afficher</string>
+    <string name="btnEnterData">Données</string>
+    <string name="btnDisplayData">Graphique</string>
     <string name="menu_settings">Paramètres</string>
-    <string name="menuRandomTheme">Theme randomisé</string>
+    <string name="menuRandomTheme">Thème randomisé</string>
     <string name="menu_one">Un</string>
     <string name="menu_two">Deux</string>
     <string name="menu_activity_one">Activité Un</string>
     <string name="menu_activity_two">Activité Deux</string>
+    <string name="delete">Supprimer</string>
+    <string name="search">Rechercher</string>
     <string name="settings">Paramètres</string>
     <!--  Paramètres -->
+    <string name="edit">Editer</string>
+    <string name="exit">Quitter</string>
     <string name="menu_main_activity">Accueil</string>
-    <string name="menu_enter_data_activity">Entrer</string>
-    <string name="menu_display_data_activity">Afficher</string>
+    <string name="menu_enter_data_activity">Données</string>
+    <string name="menu_display_data_activity">Graphiques</string>
     <string name="tvColorScheme">Couleurs :</string>
     <string-array name="txtColorScheme">
         <item>Gris</item>
@@ -116,4 +120,23 @@
         <item>30</item>
         <item>31</item>
     </string-array>
+    <string name="tvTitle">Projet</string>
+    <string name="EnterData_tvTitle">Saisir les données</string>
+    <string name="SecondActivity_title">Projet - 2e activité</string>
+    <string name="btnDeleteAllEntries">Supprimer tout</string>
+    <string name="btnRemoveLastEntry">Supprimer la dernière</string>
+    <string name="etWeight_hint">Poids en lbs</string>
+    <string name="btnSubmit">Soumettre</string>
+    <string name="tvWeights_start">Poids moyen :</string>
+    <string name="btnSortByOld">Anciens</string>
+    <string name="btnSortByRecent">Récents</string>
+    <string name="btnSortByNew">Nouveaux</string>
+    <string name="menu_second_activity">2e activité</string>
+    <string name="invalid_weight_or_date">Veuillez saisir un poids et une date valides</string>
+    <string name="tvDatabase">Base de données</string>
+    <string name="num_of_entries_0">%1$d donnée</string>
+    <string name="num_of_entries_1">%1$d donnée</string>
+    <string name="num_of_entries_plural">%1$d données</string>
+    <string name="tv_avg_weight">%1$.1f lbs</string>
+    <string name="tv_min_max_weight">%1$.1f - %2$.1f</string>
 </resources>
