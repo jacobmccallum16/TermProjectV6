@@ -122,15 +122,15 @@ object Entries {
     }
     fun saveNewEntry(activity: Activity, entry: Entry2) : Entry2 {
         val data = data(activity)
-        val i = getEntryNum(activity)
+        val entryNum = getEntryNum(activity)
         val nextId = getNextId(activity)
-        data.edit().putInt("id2-$i", entry.id).commit()
-        data.edit().putString("date2-$i", entry.date).commit()
-        data.edit().putFloat("weight2-$i", entry.weight).commit()
-        data.edit().putInt("year2-$i", entry.year).commit()
-        data.edit().putInt("month2-$i", entry.month).commit()
-        data.edit().putInt("day2-$i", entry.day).commit()
-        data.edit().putInt("entries2", i + 1).commit()
+        data.edit().putInt("id2-$nextId", entry.id).commit()
+        data.edit().putString("date2-$nextId", entry.date).commit()
+        data.edit().putFloat("weight2-$nextId", entry.weight).commit()
+        data.edit().putInt("year2-$nextId", entry.year).commit()
+        data.edit().putInt("month2-$nextId", entry.month).commit()
+        data.edit().putInt("day2-$nextId", entry.day).commit()
+        data.edit().putInt("entries2", nextId + 1).commit()
         data.edit().putInt("nextId", nextId + 1).commit()
         return entry
     }
@@ -185,6 +185,10 @@ object Entries {
     fun getDisplayPreference(activity: Activity) : String {
         val data = data(activity)
         return data.getString("displayPreference", "Monthly").toString()
+    }
+
+    fun deleteAllEntries(activity: Activity) {
+        Toast.makeText(activity, "Entries will be deleted later", Toast.LENGTH_SHORT).show()
     }
 
 

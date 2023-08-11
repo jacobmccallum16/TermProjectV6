@@ -66,9 +66,11 @@
     <string name="menu_display_data_activity">Display</string>
     <string name="menu_second_activity">Second Activity</string>
 
+    <!-- idk -->
+    <string name="invalid_weight_or_date">Please enter a valid weight and date</string>
+
     <!-- Settings Activity -->
-    <string name="Settings_tvTitle">Settings</string>
-    <string name="tvColorScheme">Color Scheme:</string>
+    <string name="tvColorScheme">Colour Scheme:</string>
     <string-array name="txtColorScheme">
         <item>Gray</item>
         <item>Blue</item>
@@ -82,8 +84,17 @@
         <item>Teal</item>
         <item>Cyan</item>
     </string-array>
+    <string name="tvColorMode">Colour Mode:</string>
+    <string-array name="txtColorMode">
+        <item>Light Mode</item>
+        <item>Dark Mode</item>
+    </string-array>
+    <string name="tvLanguage">Language:</string>
+    <string-array name="txtLanguage">
+        <item>English</item>
+        <item>Français</item>
+    </string-array>
     <string name="btnSaveSettings">Save</string>
-    <string name="invalid_weight_or_date">Please enter a valid weight and date</string>
 
     <!-- Second Activity -->
     <string name="tvDatabase">Database</string>

@@ -47,6 +47,22 @@ object Utils {
         recreateActivity(activity)
         Toast.makeText(activity, "Color scheme randomly set to: ${colorSchemes[colorSchemeId]}", Toast.LENGTH_SHORT).show()
     }
+    fun updateColorMode(activity: Activity, colorModeId: Int) {
+        val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
+        data.edit().putInt("colorModeId", colorModeId).apply()
+    }
+    fun updateLanguage(activity: Activity, languageId: Int) {
+        val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
+        data.edit().putInt("languageId", languageId).apply()
+    }
+
+    fun saveSettings(activity: Activity, colorSchemeId: Int, colorModeId: Int, languageId: Int) {
+        saveColorScheme(activity, colorSchemeId)
+        updateColorMode(activity, colorModeId)
+        updateLanguage(activity, languageId)
+        recreateActivity(activity)
+        Toast.makeText(activity, "Settings updated", Toast.LENGTH_SHORT).show()
+    }
 
     fun recreateActivity(activity: Activity) {
         val intent = Intent(activity, activity::class.java)

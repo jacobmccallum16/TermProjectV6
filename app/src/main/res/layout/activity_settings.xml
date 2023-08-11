@@ -7,57 +7,97 @@
     android:background="?android:attr/colorBackground"
     tools:context=".MainActivity">
 
-    <include
-        android:id="@+id/include2"
-        layout="@layout/navbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/tvFeedback"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayoutSettings"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="16dp"
-        android:text="@string/tvFeedback"
-        android:textAlignment="center"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tvColorScheme"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="@string/tvColorScheme"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/spinnerColorScheme"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvFeedback"
-        app:layout_constraintWidth_percent=".1" />
+        <LinearLayout
+            android:id="@+id/linearLayoutKeys"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayoutValues"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <Spinner
-        android:id="@+id/spinnerColorScheme"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="16dp"
-        android:entries="@array/txtColorScheme"
-        android:spinnerMode="dropdown"
-        app:layout_constraintBottom_toBottomOf="@+id/tvColorScheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvColorScheme"
-        app:layout_constraintTop_toBottomOf="@+id/tvFeedback" />
+            <TextView
+                android:id="@+id/tvColorScheme"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="start|center_vertical"
+                android:text="@string/tvColorScheme"
+                android:textAlignment="gravity"
+                android:textSize="24sp"
+                app:layout_constraintWidth_percent=".1" />
+
+            <TextView
+                android:id="@+id/tvColorMode"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:gravity="start|center_vertical"
+                android:text="@string/tvColorMode"
+                android:textAlignment="gravity"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/tvLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:gravity="start|center_vertical"
+                android:text="@string/tvLanguage"
+                android:textAlignment="gravity"
+                android:textSize="24sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayoutValues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/linearLayoutKeys"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Spinner
+                android:id="@+id/spinnerColorScheme"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center_vertical|end"
+                android:entries="@array/txtColorScheme"
+                android:spinnerMode="dropdown" />
+
+            <Spinner
+                android:id="@+id/spinnerColorMode"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginTop="16dp"
+                android:entries="@array/txtColorMode"
+                android:spinnerMode="dropdown" />
+
+            <Spinner
+                android:id="@+id/spinnerLanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginTop="16dp"
+                android:entries="@array/txtLanguage"
+                android:spinnerMode="dropdown" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/btnSaveSettings"
@@ -69,24 +109,45 @@
         android:textColor="?attr/colorOnPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvColorScheme" />
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayoutSettings" />
+
+    <TextView
+        android:id="@+id/tvFeedback"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/tvFeedback"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSaveSettings"
+        tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/btnDeleteAllEntries"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="64dp"
         android:backgroundTint="?attr/colorError"
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:text="@string/btnDeleteAllEntries"
         android:textColor="?attr/colorOnError"
-        app:layout_constraintBottom_toTopOf="@+id/include2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSaveSettings"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tvFeedback" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/navbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

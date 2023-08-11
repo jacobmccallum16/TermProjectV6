@@ -22,7 +22,7 @@ class Settings : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        supportActionBar?.title = supportActionBar?.title.toString() + " - Settings"
+        supportActionBar?.title = resources.getString(R.string.Settings_title)
         val btnMain : Button = findViewById(R.id.btnMain)
         btnMain.setOnClickListener { Utils.openMain(this) }
         val btnEnterData : Button = findViewById(R.id.btnEnterData)
@@ -30,16 +30,19 @@ class Settings : AppCompatActivity() {
         val btnDisplayData : Button = findViewById(R.id.btnDisplayData)
         btnDisplayData.setOnClickListener { Utils.openDisplayData(this) }
 
-        val data = getSharedPreferences("data", MODE_PRIVATE) // getter
-        val editor = data.edit() // setter
-
-        val spinnerColorScheme : Spinner = findViewById(R.id.spinnerColorScheme)
-        var colorSchemeId = data.getInt("colorSchemeId", 0)
-        spinnerColorScheme.setSelection(colorSchemeId)
+        val colorSchemeId = Utils.getColorScheme(this)
+        binding.spinnerColorScheme.setSelection(colorSchemeId)
+        binding.spinnerColorMode.setSelection(0)
+        binding.spinnerLanguage.setSelection(0)
         binding.tvFeedback.text = "Current color scheme: ${colorSchemes[colorSchemeId]}"
+
         binding.btnSaveSettings.setOnClickListener {
-            colorSchemeId = spinnerColorScheme.selectedItemPosition
-            Utils.updateColorScheme(this, colorSchemeId)
+            Utils.saveSettings(this, binding.spinnerColorScheme.selectedItemPosition,
+                binding.spinnerColorMode.selectedItemPosition,
+                binding.spinnerLanguage.selectedItemPosition)}
+
+        binding.btnDeleteAllEntries.setOnClickListener {
+            Entries.deleteAllEntries(this)
         }
     }
 
