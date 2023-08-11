@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TermProjectV6</string>
+    <string name="MainActivity_title">Projet - Page d\'accueil</string>
+    <string name="EnterData_title">Projet - Entrer les données</string>
+    <string name="DisplayData_title">Projet - Graphique</string>
+    <string name="Settings_title">Projet - Paramètres</string>
+    <string name="etDate_hint">Date</string>
+    <string name="tvIDs_start">ID:</string>
+    <string name="tvDates_start">Date:</string>
+    <string name="btnMain">Accueil</string>
+    <string name="btnEnterData">Entrer</string>
+    <string name="btnDisplayData">Afficher</string>
+    <string name="menu_settings">Paramètres</string>
+    <string name="menuRandomTheme">Theme randomisé</string>
+    <string name="menu_one">Un</string>
+    <string name="menu_two">Deux</string>
+    <string name="menu_activity_one">Activité Un</string>
+    <string name="menu_activity_two">Activité Deux</string>
+    <string name="settings">Paramètres</string>
+    <!--  Paramètres -->
+    <string name="menu_main_activity">Accueil</string>
+    <string name="menu_enter_data_activity">Entrer</string>
+    <string name="menu_display_data_activity">Afficher</string>
+    <string name="tvColorScheme">Couleurs :</string>
+    <string-array name="txtColorScheme">
+        <item>Gris</item>
+        <item>Bleu</item>
+        <item>Indigo</item>
+        <item>Violet</item>
+        <item>Rose</item>
+        <item>Rouge</item>
+        <item>Orange</item>
+        <item>Jaune</item>
+        <item>Vert</item>
+        <item>Sarcelle</item>
+        <item>Cyan</item>
+    </string-array>
+    <string name="tvColorMode">Thème sombre :</string>
+    <string-array name="txtColorMode">
+        <item>Automatique</item>
+        <item>Thème lumière</item>
+        <item>Thème sombre</item>
+    </string-array>
+    <string name="tvLanguage">Langue :</string>
+    <string-array name="txtLanguage">
+        <item>Langue du système</item>
+        <item>Anglais</item>
+        <item>Français</item>
+    </string-array>
+    <string name="btnSaveSettings">Sauvegarder</string>
+</resources>

@@ -7,14 +7,13 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.termprojectv6.databinding.ActivityMainBinding
+import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    var entryNum = 0
-    var displayIds = "ID:"
-    var displayDates = "Date:"
-    var displayWeights = "Weight:"
+    val months = arrayOf("","January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,91 +31,39 @@ class MainActivity : AppCompatActivity() {
         btnDisplayData.setOnClickListener { Utils.openDisplayData(this) }
 
         // get data
-        val data = getSharedPreferences("data", MODE_PRIVATE) // getter
-        val editor = data.edit() // setter
-        entryNum = data.getInt("entries", 0)
-        val entries : ArrayList<Entry> = ArrayList()
-        for (i in 0 until entryNum) {
-            entries.add(Entry(data.getInt("id-$i", 0),
-                data.getString("date-$i", "n/a").toString(),
-                data.getFloat("weight-$i", 0f)))
-            displayIds += "\n${entries[i].id}"
-            displayDates += "\n${entries[i].date}"
-            displayWeights += "\n${entries[i].weight}"
+
+        val entryGroups = Entries.groupByMonth(this)
+        var displayDates = "Date:"
+        var displayWeights = "Avg Weight:"
+        for (i in 0 until entryGroups.size) {
+            displayDates += "\n${months[entryGroups[i].month]} ${entryGroups[i].year}"
+            displayWeights += "\n${entryGroups[i].avgWeight} lbs"
         }
         // Display Data Start
-        binding.tvIds.text = displayIds
         binding.tvDates.text = displayDates
         binding.tvWeights.text = displayWeights
         // Display Data End
 
-        // add data
-        binding.btnSubmit.setOnClickListener {
-            try {
-                entries.add(Entry(entryNum, binding.etDate.text.toString(), binding.etWeight.text.toString().toFloat()))
-                editor.putInt("id-$entryNum", entries[entryNum].id).apply()
-                displayIds += "\n${entries[entryNum].id}"
-                editor.putString("date-$entryNum", entries[entryNum].date).apply()
-                displayDates += "\n${entries[entryNum].date}"
-                editor.putFloat("weight-$entryNum", entries[entryNum].weight).apply()
-                displayWeights += "\n${entries[entryNum].weight}"
-                entryNum++
-                editor.putInt("entries", entryNum).apply()
-            } catch (e: NumberFormatException) {
-                binding.tvFeedback.text = getString(R.string.invalid_weight_or_date)
-                return@setOnClickListener
-            }
-            binding.tvFeedback.text = ""
-            Toast.makeText(this, "Entry[${entryNum-1}] added", Toast.LENGTH_SHORT).show()
-            binding.tvIds.text = displayIds
-            binding.tvDates.text = displayDates
-            binding.tvWeights.text = displayWeights
-        }
-        // removeLastEntry
-        binding.btnRemoveLastEntry.setOnClickListener {
-            entryNum--
-            editor.remove("id-$entryNum")
-            editor.remove("date-$entryNum")
-            editor.remove("weight-$entryNum")
-            editor.putInt("entries", entryNum)
-            editor.commit()
-            entries.removeAt(entryNum)
-            // reset display
-            displayIds = "ID:"
-            displayDates = "Date:"
-            displayWeights = "Weight:"
-            for (i in entries) {
-                displayIds += "\n${i.id}"
-                displayDates += "\n${i.date}"
-                displayWeights += "\n${i.weight}"
-            }
-            binding.tvFeedback.text = ""
-            binding.tvIds.text = displayIds
-            binding.tvDates.text = displayDates
-            binding.tvWeights.text = displayWeights
-            Toast.makeText(this, "Entry[$entryNum] deleted", Toast.LENGTH_SHORT).show()
-        }
-        // deleteAllEntries
-        binding.btnDeleteAllEntries.setOnClickListener {
-            while (entries.size > 0) {
-                entryNum--
-                editor.remove("id-$entryNum")
-                editor.remove("date-$entryNum")
-                editor.remove("weight-$entryNum")
-                editor.putInt("entries", entryNum)
-                editor.commit()
-                entries.removeAt(entryNum)
-            }
-            // reset display
-            displayIds = "ID:"
-            displayDates = "Date:"
-            displayWeights = "Weight:"
-            binding.tvFeedback.text = ""
-            Toast.makeText(this, "All entries deleted", Toast.LENGTH_SHORT).show()
-            binding.tvIds.text = displayIds
-            binding.tvDates.text = displayDates
-            binding.tvWeights.text = displayWeights
-        }
+//        binding.btnSubmit.setOnClickListener {
+//            try {
+//                entries.add(Entry(entryNum, binding.etDate.text.toString(), binding.etWeight.text.toString().toFloat()))
+//                editor.putInt("id-$entryNum", entries[entryNum].id).apply()
+//                displayIds += "\n${entries[entryNum].id}"
+//                editor.putString("date-$entryNum", entries[entryNum].date).apply()
+//                displayDates += "\n${entries[entryNum].date}"
+//                editor.putFloat("weight-$entryNum", entries[entryNum].weight).apply()
+//                displayWeights += "\n${entries[entryNum].weight}"
+//                entryNum++
+//                editor.putInt("entries", entryNum).apply()
+//            } catch (e: NumberFormatException) {
+//                binding.tvFeedback.text = getString(R.string.invalid_weight_or_date)
+//                return@setOnClickListener
+//            }
+//            binding.tvFeedback.text = ""
+//            Toast.makeText(this, "Entry[${entryNum-1}] added", Toast.LENGTH_SHORT).show()
+//            binding.tvDates.text = displayDates
+//            binding.tvWeights.text = displayWeights
+//        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

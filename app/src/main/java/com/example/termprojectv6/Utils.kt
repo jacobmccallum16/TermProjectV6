@@ -3,9 +3,15 @@ package com.example.termprojectv6
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.util.TypedValue
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_NO
+import androidx.appcompat.app.AppCompatDelegate.MODE_NIGHT_YES
+import java.util.Locale
 import kotlin.random.Random
 
 object Utils {
@@ -13,6 +19,8 @@ object Utils {
         "Red", "Orange", "Yellow", "Green", "Teal", "Cyan")
 
     fun applyColorScheme(activity : Activity) {
+        processNightMode(activity)
+        processLanguage(activity)
         when (activity.getSharedPreferences("data", AppCompatActivity.MODE_PRIVATE).getInt("colorSchemeId", 1)) {
             0 -> { activity.setTheme(R.style.AppTheme_Gray) }
             1 -> { activity.setTheme(R.style.AppTheme_Blue) }
@@ -48,12 +56,57 @@ object Utils {
         Toast.makeText(activity, "Color scheme randomly set to: ${colorSchemes[colorSchemeId]}", Toast.LENGTH_SHORT).show()
     }
 
+    fun saveColorMode(activity: Activity, colorModeId: Int) {
+        val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
+        data.edit().putInt("colorModeId", colorModeId).apply()
+    }
+    fun processNightMode(activity: Activity) {
+        val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
+        when (data.getInt("colorModeId", 0)) {
+            1 -> AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_NO)
+            2 -> AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_YES)
+            else -> AppCompatDelegate.setDefaultNightMode(MODE_NIGHT_FOLLOW_SYSTEM)
+        }
+    }
+    fun processLanguage(activity: Activity) {
+        val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
+        val locale = when (data.getInt("languageId", 0)) {
+            1 -> Locale.ENGLISH
+            2 -> Locale.FRENCH
+            else -> Locale.getDefault()
+        }
+        val config = Configuration()
+        config.locale = locale
+        activity.baseContext.resources.updateConfiguration(config, null)
+    }
+    fun getLocale(activity: Activity): Locale {
+        val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
+        return when (data.getInt("languageId", 0)) {
+            1 -> Locale.ENGLISH
+            2 -> Locale.FRENCH
+            else -> Locale.getDefault()
+        }
+    }
+    fun saveLanguage(activity: Activity, languageId: Int) {
+        val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
+        data.edit().putInt("languageId", languageId).apply()
+    }
+    fun updateSettings(activity: Activity, colorSchemeId: Int, colorModeId: Int, languageId: Int) {
+        saveColorScheme(activity, colorSchemeId)
+        saveColorMode(activity, colorModeId)
+        saveLanguage(activity, languageId)
+        recreateActivity(activity)
+        Toast.makeText(activity, "Settings updated", Toast.LENGTH_SHORT).show()
+    }
+
+
     fun recreateActivity(activity: Activity) {
         val intent = Intent(activity, activity::class.java)
         activity.startActivity(intent)
         activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         activity.finish()
     }
+
 
     fun openMain(activity: Activity) {
         if (activity::class.java != MainActivity::class.java) {

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.SharedPreferences
 import android.widget.Toast
+import java.util.Objects
 
 object Entries {
     val mon = arrayOf("","jan", "feb", "mar", "apr", "may", "jun",
@@ -31,6 +32,21 @@ object Entries {
                 data.getInt("day2-$i", 1)))
         }
         entries.sort()
+        return entries
+    }
+    fun getEntriesReversed(activity: Activity) : ArrayList<Entry2> {
+        val data = data(activity)
+        val entryNum = getEntryNum(activity)
+        val entries : ArrayList<Entry2> = ArrayList()
+        for (i in 0 until entryNum) {
+            entries.add(Entry2(data.getInt("id2-$i", 0),
+                data.getString("date2-$i", "n/a").toString(),
+                data.getFloat("weight2-$i", 0f),
+                data.getInt("year2-$i", 2023),
+                data.getInt("month2-$i", 1),
+                data.getInt("day2-$i", 1)))
+        }
+        entries.reverse()
         return entries
     }
     fun newEntry(activity: Activity, id: Int, date: String, weight: Float) : Entry2 {
@@ -84,18 +100,18 @@ object Entries {
     fun processMonth(month: String) : Int {
         return when (month.lowercase()) {
             "jan" -> 1
-            "feb" -> 2
+            "feb", "fév", "fev" -> 2
             "mar" -> 3
-            "apr" -> 4
-            "may" -> 5
-            "jun" -> 6
-            "jul" -> 7
-            "aug" -> 8
+            "apr", "avr" -> 4
+            "may", "mai" -> 5
+            "jun", "juin" -> 6
+            "jul", "juil" -> 7
+            "aug", "aou", "aoû" -> 8
             "sep" -> 9
             "oct" -> 10
             "nov" -> 11
-            "dec" -> 12
-            else -> 1
+            "dec", "déc" -> 12
+            else -> 12
         }
     }
     fun createEntry(activity: Activity, entries : ArrayList<Entry2>, date: String, weight: Float) : ArrayList<Entry2> {
@@ -106,15 +122,15 @@ object Entries {
     }
     fun saveNewEntry(activity: Activity, entry: Entry2) : Entry2 {
         val data = data(activity)
-        val i = getEntryNum(activity)
+        val entryNum = getEntryNum(activity)
         val nextId = getNextId(activity)
-        data.edit().putInt("id2-$i", entry.id).commit()
-        data.edit().putString("date2-$i", entry.date).commit()
-        data.edit().putFloat("weight2-$i", entry.weight).commit()
-        data.edit().putInt("year2-$i", entry.year).commit()
-        data.edit().putInt("month2-$i", entry.month).commit()
-        data.edit().putInt("day2-$i", entry.day).commit()
-        data.edit().putInt("entries2", i + 1).commit()
+        data.edit().putInt("id2-$nextId", entry.id).commit()
+        data.edit().putString("date2-$nextId", entry.date).commit()
+        data.edit().putFloat("weight2-$nextId", entry.weight).commit()
+        data.edit().putInt("year2-$nextId", entry.year).commit()
+        data.edit().putInt("month2-$nextId", entry.month).commit()
+        data.edit().putInt("day2-$nextId", entry.day).commit()
+        data.edit().putInt("entries2", nextId + 1).commit()
         data.edit().putInt("nextId", nextId + 1).commit()
         return entry
     }
@@ -124,4 +140,60 @@ object Entries {
         entries.sort()
         return entries
     }
+
+    fun getByMonthYear(activity: Activity, month: Int, year: Int) : EntryGroup {
+        val data = data(activity)
+        val entryNum = getEntryNum(activity)
+        val entries : ArrayList<Entry2> = ArrayList()
+        for (i in 0 until entryNum) {
+            if (data.getInt("month2-$i", 0) == month) {
+                if (data.getInt("year2-$i", 0) == year) {
+                    entries.add(Entry2(data.getInt("id2-$i", 0),
+                        data.getString("date2-$i", "n/a").toString(),
+                        data.getFloat("weight2-$i", 0f),
+                        data.getInt("year2-$i", 2023),
+                        data.getInt("month2-$i", 1),
+                        data.getInt("day2-$i", 1)))
+                }
+            }
+        }
+        val entryGroup = EntryGroup(entries, month, year)
+        return entryGroup
+    }
+
+    fun groupByMonth(activity: Activity) : ArrayList<EntryGroup> {
+        // Returns an array list of array lists
+        // hardcoding it for now to be 9 months starting from Dec 2022
+        var ENTRIES = ArrayList<EntryGroup>()
+        // dec 2022
+        ENTRIES.add(getByMonthYear(activity, 12, 2022))
+        ENTRIES.add(getByMonthYear(activity, 1, 2023))
+        ENTRIES.add(getByMonthYear(activity, 2, 2023))
+        ENTRIES.add(getByMonthYear(activity, 3, 2023))
+        ENTRIES.add(getByMonthYear(activity, 4, 2023))
+        ENTRIES.add(getByMonthYear(activity, 5, 2023))
+        ENTRIES.add(getByMonthYear(activity, 6, 2023))
+        ENTRIES.add(getByMonthYear(activity, 7, 2023))
+        ENTRIES.add(getByMonthYear(activity, 8, 2023))
+        return ENTRIES
+    }
+
+    fun setDisplayPreference(activity: Activity, displayPreference: String) {
+        val data = data(activity)
+        data.edit().putString("displayPreference", displayPreference).commit()
+    }
+    fun getDisplayPreference(activity: Activity) : String {
+        val data = data(activity)
+        return data.getString("displayPreference", "Monthly").toString()
+    }
+
+    fun deleteAllEntries(activity: Activity) {
+        val data = activity.getSharedPreferences("data", Context.MODE_PRIVATE)
+        data.edit().clear().commit()
+        data.edit().putInt("nextId", 0).commit()
+        data.edit().putInt("entryNum", 0).commit()
+        Toast.makeText(activity, "All Entries Deleted", Toast.LENGTH_SHORT).show()
+    }
+
+
 }
